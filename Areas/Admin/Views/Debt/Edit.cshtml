@@ -1,0 +1,42 @@
+@model DebtDetailDTO
+@using Taavoni.DTOs
+<form method="post" asp-action="Edit">
+        <div class="form-group">
+        <label for="UserId">نام کاربر</label>
+        <input type="text" class="form-control" id="UserId" name="UserId" value="@Model.UserId.ToString()" readonly />
+    </div>
+    <div class="form-group">
+        <label for="StartDate">تاریخ شروع</label>
+        <input type="date" class="form-control" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" required />
+    </div>
+    <div class="form-group">
+        <label for="EndDate">تاریخ پایان</label>
+        <input type="date" class="form-control" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" required />
+    </div>
+        <div class="form-group">
+        <label for="DueDate">تاریخ سررسید</label>
+        <input type="date" class="form-control" id="DueDate" name="DueDate" value="@Model.DueDate.ToString("yyyy-MM-dd")" required />
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label for="DebtTitleId">Debt Title:</label>
+        <select asp-for="DebtTitleId" asp-items="@(ViewBag.DebtTitles)"class="form-control">
+            <option value="">Select Title</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Amount">مبلغ کل</label>
+        <input type="text" class="form-control" id="Amount" name="Amount" value="@Model.Amount" required />
+    </div>
+      <div class="form-group">
+        <label for="PenaltyRate">نرخ جریمه</label>
+        <input type="text" class="form-control" id="PenaltyRate" name="PenaltyRate" value="@Model.PenaltyRate" required />
+    </div>
+      
+        <div class="form-group col-3">
+        <label asp-for="IsPaid"></label>
+        @Html.CheckBoxFor(model => model.IsPaid)
+    </div>
+    
+    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+</form>

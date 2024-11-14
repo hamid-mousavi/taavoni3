@@ -1,0 +1,88 @@
+@model IEnumerable<PaymentDto>
+@using NonFactors.Mvc.Grid
+@using Taavoni.DTOs
+@using Taavoni.DTOs.Payment
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Debt Details</h1>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+
+
+    <div class="row p-2">
+      <a asp-area="Admin" asp-controller="Payment" asp-action="CreatePayment" class="btn btn-primary btn-circle"
+        style="margin: 5;">
+        <i class="fas fa-plus"></i></a>
+      
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+       
+            <th>Name</th>
+            <th>Debt Id</th>
+            <th>Amount</th>           
+            <th>Title</th>
+            <th>Attachment</th>
+            <th>Action</th>
+          
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>Debt Id</th>
+            <th>Amount</th>           
+            <th>Title</th>
+            <th>Attachment</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <th>@item.Name</th>
+              <th>@item.DebtId</th>
+              <th>@item.Amount</th>
+              <th>@item.Title</th>
+              <th>@item.AttachmentPath</th>
+              <th>
+                <a asp-action="edit" asp-route-id="@item.id" class="btn btn-warning btn-circle btn-sm">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-circle btn-sm">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </th>
+
+            </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  @section Scripts {
+    <script>
+
+      let table = new DataTable('#myTable');
+    </script>
+
+
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+  }

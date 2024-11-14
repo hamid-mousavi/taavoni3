@@ -1,0 +1,57 @@
+
+@model Taavoni.DTOs.Payment.CreatePaymentDto
+@using Taavoni.DTOs.Payment
+@{
+    ViewData["Title"] = "ایجاد پرداختی جدید";
+}
+
+<h2>ایجاد پرداختی جدید</h2>
+
+
+<form asp-action="CreatePayment" method="post" enctype="multipart/form-data">
+     <div class="form-group">
+        <label for="UserId">انتخاب کاربر</label>
+        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Title">عنوان پرداختی</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Amount">مقدار پرداخت شده</label>
+        <input asp-for="Amount" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="DebtId">شناسه بدهی</label>
+        <input asp-for="DebtId" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">توضیحات</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="attachment">پیوست مدرک</label>
+        <input type="file" name="attachment" class="form-control-file" />
+        <span asp-validation-for="AttachmentPath" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">ثبت پرداختی</button>
+</form>
+
+<hr />
+
+<!-- پیوند به صفحه پرداخت‌های قبلی کاربر -->
+<a asp-action="index" class="btn btn-secondary">برگشت به پرداخت‌ها</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,7 @@
+@model Taavoni.DTOs.DebtDetailDTO
+@using Taavoni.Models
+<h3>آیا مطمئن هستید که می‌خواهید این رکورد را حذف کنید؟</h3>
+<form method="post">
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <a href="@Url.Action("Index", "Debt")" class="btn btn-secondary">لغو</a>
+</form>

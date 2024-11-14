@@ -1,0 +1,13 @@
+@model DebtTitleDto
+@using Taavoni.DTOs.DebtTitle
+<h2>Delete Debt Title</h2>
+<p>Are you sure you want to delete this debt title?</p>
+
+<div>
+    <h4>@Model.Title</h4>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit">Delete</button>
+        <a asp-action="Index">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <th>عنوان</th>
+        <th>مقدار پرداخت شده</th>
+        <th>توضیحات</th>
+        <th>پیوست</th>
+    </tr>
+    @foreach (var payment in Model)
+    {
+        <tr>
+            <td>@payment.Title</td>
+            <td>@payment.Amount</td>
+            <td>@payment.Description</td>
+            <td>
+                @if (!string.IsNullOrEmpty(payment.AttachmentPath))
+                {
+                    <a href="@Url.Content(payment.AttachmentPath)">دانلود</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

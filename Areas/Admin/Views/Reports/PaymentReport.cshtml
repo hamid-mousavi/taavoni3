@@ -1,0 +1,137 @@
+@model UserPaymentReportDto
+@using Taavoni.DTOs.Reporting
+
+<!-- Page Heading -->
+<h2>گزارش پرداختی‌ها برای کاربران</h2>
+<!-- Donut Chart -->
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+    <form asp-action="PaymentReport" method="post" class="form-group">
+      <div>
+        <label for="userId">انتخاب کاربر:</label>
+        <select id="userId" name="userId" asp-items="ViewBag.Users" class="form-control">
+          <option value="">-- انتخاب کاربر --</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">نمایش گزارش</button>
+
+    </form>
+
+    @if (Model != null)
+    {
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>تاریخ پرداخت</th>
+              <th>مبلغ</th>
+              <th>توضیحات</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>تاریخ پرداخت</th>
+              <th>مبلغ</th>
+              <th>توضیحات</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            @foreach (var payment in Model.Payments)
+            {
+              <tr>
+                <td>@payment.PaymentDate</td>
+                <td>@payment.Amount</td>
+                <td>@payment.Description</td>
+              </tr>
+            }
+
+          </tbody>
+        </table>
+      </div>
+    }
+
+
+
+    <!-- چارت‌های پرداختی‌ها و بدهی‌ها -->
+    <div class="row mt-4">
+      <div class="col-6">
+        <!-- نمودار خطی پرداختی‌ها -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">گزارش پرداخت‌ها</h6>
+          </div>
+          <div class="card-body">
+            <canvas id="paymentChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+  @section Scripts {
+    <script>
+      let paymentChart = null;
+      // دریافت داده‌های پرداختی‌ها برای چارت
+      async function loadPaymentChartData(userId) {
+        const response = await fetch(`/Reports/api/UserPayments/${userId}`);
+        const data = await response.json();
+        console.log("Payment Data:", data); // نمایش داده‌ها در کنسول
+
+
+
+        const labels = data.map(item => item.paymentDate); // برای تاریخ پرداخت
+        const amounts = data.map(item => item.amount); // برای مبلغ       
+         const ctx = document.getElementById('paymentChart').getContext('2d');
+        
+// اگر چارت قبلی وجود داشته باشد، آن را حذف کن
+      if (paymentChart) {
+        paymentChart.destroy();
+      }
+       
+         paymentChart= new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'مبلغ پرداختی',
+              data: amounts,
+              backgroundColor: 'rgba(78, 115, 223, 0.5)',
+              borderColor: 'rgba(78, 115, 223, 1)',
+              borderWidth: 2
+            }]
+          }
+        });
+      }
+
+
+
+      // بارگذاری چارت‌ها
+      document.getElementById("userId").addEventListener("change", function () {
+        const userId = this.value;
+        if (userId) {
+          loadPaymentChartData(userId);
+      
+        }
+      });
+    </script>
+
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  }

@@ -1,0 +1,14 @@
+@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<h2>لیست نقش‌ها</h2>
+<table>
+    <tr>
+        <th>نام نقش</th>
+    </tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Name</td>
+        </tr>
+    }
+</table>

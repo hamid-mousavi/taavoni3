@@ -1,0 +1,24 @@
+@model List<UserDebtReportDto>
+@using Taavoni.DTOs.Reporting
+
+<h2>گزارش بیشترین بدهی‌ها</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>نام کاربر</th>
+            <th>بدهی کل</th>
+            <th>بدهی باقی‌مانده</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var debt in Model.OrderByDescending(d => d.TotalDebt))
+        {
+            <tr>
+                <td>@debt.UserName</td>
+                <td>@debt.TotalDebt</td>
+                <td>@debt.RemainingDebt</td>
+            </tr>
+        }
+    </tbody>
+</table>

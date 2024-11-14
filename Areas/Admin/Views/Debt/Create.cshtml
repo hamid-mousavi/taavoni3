@@ -1,0 +1,46 @@
+@model Taavoni.DTOs.CreateDebtDetailDTO
+@using Taavoni.DTOs
+<h2>Create Debt Detail</h2>
+
+<form action="Create" method="post">
+     <div class="form-group">
+        <label for="UserId">انتخاب کاربر</label>
+        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+    </div>
+    <div>
+        <label for="DebtTitleId">Debt Title:</label>
+        <select asp-for="DebtTitleId" asp-items="@(ViewBag.DebtTitles)" class="form-control">
+            <option value="">Select Title</option>
+        </select>
+    </div>
+        <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" class="form-control" type="date" />
+    </div>
+     <div class="form-group">
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" class="form-control" type="date"  id="datepicker"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+ 
+ 
+     <div class="form-group">
+        <label asp-for="PenaltyRate"></label>
+        <input asp-for="PenaltyRate" class="form-control" />
+    </div>
+    <div class="form-group col-3">
+        <label asp-for="IsPaid"></label>
+        @Html.CheckBoxFor(model => model.IsPaid)
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+
+

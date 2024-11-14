@@ -1,0 +1,139 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">گزارش بدهی کاربران</h1>
+<!-- Donut Chart -->
+<div class="row">
+    <div class="col-12 col-lg-6">
+      <!-- نمودار دایره‌ای بدهی‌ها -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی‌ها</h6>
+        </div>
+        <div class="card-body">
+          <canvas id="debtChart"></canvas>
+        </div>
+      </div>
+    </div>
+ 
+   <div class="col-lg-6 col-12">
+      
+      <!-- نمودار خطی پرداختی‌ها -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-3 font-weight-bold text-primary">گزارش پرداخت‌ها</h6>
+          <div>
+        <select id="userId" name="userId" asp-items="ViewBag.Users" class="form-control">
+          <option value="">-- انتخاب کاربر --</option>
+        </select>
+      </div>
+        </div>
+        <div class="card-body">
+          <canvas id="paymentChart"></canvas>
+        </div>
+      </div>
+    </div>
+   
+ </div>
+
+
+
+  </div>
+
+
+  @section Scripts {
+
+    <script>
+
+      let paymentChart = null;
+      // دریافت داده‌های پرداختی‌ها برای چارت
+      async function loadPaymentChartData(userId) {
+        const response = await fetch(`/Reports/api/UserPayments/${userId}`);
+        const data = await response.json();
+        console.log("Payment Data:", data); // نمایش داده‌ها در کنسول
+
+
+
+        const labels = data.map(item => item.paymentDate); // برای تاریخ پرداخت
+        const amounts = data.map(item => item.amount); // برای مبلغ       
+        const ctx = document.getElementById('paymentChart').getContext('2d');
+
+        // اگر چارت قبلی وجود داشته باشد، آن را حذف کن
+        if (paymentChart) {
+          paymentChart.destroy();
+        }
+
+        paymentChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'مبلغ پرداختی',
+              data: amounts,
+              backgroundColor: 'rgba(78, 115, 223, 0.5)',
+              borderColor: 'rgba(78, 115, 223, 1)',
+              borderWidth: 2
+            }]
+          }
+        });
+      }
+
+
+      // دریافت داده‌های بدهی‌ها برای چارت
+      async function loadDebtChartData() {
+
+
+        const response = await fetch(`/Reports/api/UserDebts`);
+        const data = await response.json();
+        // نمایش داده‌ها در کنسول
+
+        const labels = data.map(item => item.userName);
+
+        const remainingDebts = data.map(item => item.remainingDebt);
+        console.log("debts Data:", labels);
+        const ctx = document.getElementById('debtChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: remainingDebts,
+              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
+              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#f4b619', '#e02d1b'],
+              borderWidth: 1
+            }]
+          }
+        });
+      }
+
+      // بارگذاری چارت‌ها
+      $(document).ready(function () {
+        console.log("Hello World!");
+        loadDebtChartData();
+
+      });
+
+
+      // بارگذاری چارت‌ها
+      document.getElementById("userId").addEventListener("change", function () {
+        const userId = this.value;
+        if (userId) {
+          loadPaymentChartData(userId);
+
+        }
+      });
+
+
+    </script>
+
+
+
+
+
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  }
