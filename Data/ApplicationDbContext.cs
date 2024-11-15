@@ -17,30 +17,25 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         // بررسی وجود رول "Admin"
-        var roleExist = await roleManager.RoleExistsAsync("Admin");
-        if (!roleExist)
-        {
-            var role = new IdentityRole("Admin");
-            await roleManager.CreateAsync(role);
-        }
 
-        // بررسی وجود کاربر ادمین
-        var user = await userManager.FindByEmailAsync("admin@example.com");
-        if (user == null)
+        if (!await roleManager.RoleExistsAsync("Admin"))
         {
-            user = new ApplicationUser
+            await roleManager.CreateAsync(new IdentityRole("Admin"));
+        }
+        // ایجاد کاربر "Admin" با نقش "Admin" اگر وجود ندارد
+        var adminUser = await userManager.FindByEmailAsync("admin@example.com");
+        if (adminUser == null)
+        {
+            var user = new ApplicationUser
             {
                 UserName = "admin@example.com",
                 Email = "admin@example.com"
             };
-            await userManager.CreateAsync(user, "AdminPassword123!");
-        }
-
-        // افزودن کاربر به رول "Admin" اگر هنوز اضافه نشده
-
-        if (!await userManager.IsInRoleAsync(user, "Admin"))
-        {
-            await userManager.AddToRoleAsync(user, "Admin");
+            var result = await userManager.CreateAsync(user, "YourPassword123!");
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
         }
 
     }

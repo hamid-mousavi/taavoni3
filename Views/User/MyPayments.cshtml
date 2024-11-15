@@ -1,0 +1,60 @@
+
+@model List<PaymentDto>
+@using Taavoni.DTOs.Payment
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Payment Details</h1>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Payment Details</h6>
+  </div>
+  <div class="card-body">
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+  
+    <thead>
+        <tr>
+            <th>تاریخ</th>
+            <th>مبلغ</th>
+            <th>توضیحات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.PaymentDate</td>
+                <td>@payment.Amount</td>
+                <td>@payment.Description</td>
+            </tr>
+        }
+    </tbody>
+    <thead>
+        <tr>
+            <th>تاریخ</th>
+            <th>مبلغ</th>
+            <th>توضیحات</th>
+        </tr>
+    </thead>
+       </table>
+    </div>
+  </div>
+
+
+  @section Scripts {
+    <script>
+
+    </script>
+
+
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+  }

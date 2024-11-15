@@ -168,6 +168,15 @@ public class DebtService : IDebtService
         await _context.SaveChangesAsync();
     }
 
-
-
+    public List<DebtDetailDTO> GetUserDebts(string userId)
+    {
+         return _context.Debts
+            .Where(d => d.UserId == userId).Include(d=>d.debtTitle)
+            .Select(d => new DebtDetailDTO
+            {
+                DebtTitleName= d.debtTitle.Title,
+                Amount = d.Amount
+            })
+            .ToList();
+    }
 }

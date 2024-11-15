@@ -1,0 +1,141 @@
+@model List<PaymentSummaryDto>
+@using Taavoni.DTOs.Reporting
+@using System.Linq;
+
+
+
+
+
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Reports</h1>
+
+<div class="row">
+
+    <div class="col-lg-4">
+        <!-- نمودار دایره‌ای بدهی‌ها -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی‌ها</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="debtChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+            <canvas id="paymentsChart"></canvas>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+
+    <script>
+
+
+        // دریافت داده‌های بدهی‌ها برای چارت
+        async function loadDebtChartData() {
+
+
+            const response = await fetch(`/Reports/api/UserDebts`);
+            const data = await response.json();
+            // نمایش داده‌ها در کنسول
+
+            const labels = data.map(item => item.userName);
+
+            const remainingDebts = data.map(item => item.remainingDebt);
+
+            const ctx = document.getElementById('debtChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: remainingDebts,
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#f4b619', '#e02d1b'],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
+
+        // بارگذاری چارت‌ها
+        $(document).ready(function () {
+            loadDebtChartData();
+        });
+
+
+
+
+    </script>
+
+
+    <script>
+        fetch('/api/Payments/user-payments')
+            .then(response => response.json())
+            .then(data => {
+                console.log('داده‌های دریافت‌شده از API:', data);
+
+                if (data.length === 0) {
+                    alert('هیچ داده‌ای برای نمایش وجود ندارد!');
+                    return;
+                }
+                const labels = data.map(item => item.paymentDate); // برای تاریخ پرداخت
+                const amounts = data.map(item => item.amount); // برای مبلغ       
+
+                console.log('Labels:', labels);
+                console.log('Amounts:', amounts);
+
+                const ctx = document.getElementById('paymentsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'مجموع پرداختی‌ها',
+                            data: amounts,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('خطا در دریافت داده‌ها:', error);
+                alert('مشکلی در بارگذاری داده‌ها رخ داده است.');
+            });
+
+    </script>
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+}

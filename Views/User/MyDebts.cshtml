@@ -1,0 +1,67 @@
+@using Taavoni.DTOs
+@model List<DebtDetailDTO>
+    
+
+
+
+
+
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Debt Details</h1>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Debt Details</h6>
+  </div>
+  <div class="card-body">
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+        <tr>
+            <th>عنوان</th>
+            <th>مبلغ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var debt in Model)
+        {
+            <tr>
+                <td>@debt.DebtTitleName</td>
+                <td>@debt.Amount</td>
+            </tr>
+        }
+    </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  @section Scripts {
+    <script>
+
+      let table = new DataTable('#myTable');
+    </script>
+
+
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+  }

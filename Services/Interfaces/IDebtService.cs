@@ -13,5 +13,6 @@ public interface IDebtService
     Task<bool> DeleteDebtDetailAsync(int Id);
     Task<bool> UpdateDebtDetailAsync(EditDebtlDTO editDebtlDTO);
     Task<IEnumerable<DebtTitle>> GetDebtTitlesAsync();
+    List<DebtDetailDTO> GetUserDebts(string userId);
     // می‌توانید سایر متدها را نیز اضافه کنید
 }

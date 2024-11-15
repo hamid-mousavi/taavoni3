@@ -31,6 +31,12 @@ public class UserDto
     public string UserId { get; set; }
     public string UserName { get; set; }
 }
+public class PaymentSummaryDto
+{
+    public int Year { get; set; }
+    public int Month { get; set; }
+    public decimal TotalAmount { get; set; }
+}
 
 
 }

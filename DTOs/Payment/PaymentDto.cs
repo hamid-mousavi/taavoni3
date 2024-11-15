@@ -9,6 +9,8 @@ namespace Taavoni.DTOs.Payment
     public class PaymentDto
     {
         public int id { get; set; }
+        public DateTime? PaymentDate { get; set; }  // تاریخ پرداخت
+
         [Required(ErrorMessage = "عنوان پرداختی لازم است")]
         public string Title { get; set; }
         [Required(ErrorMessage = "مقدار پرداختی لازم است")]
@@ -38,6 +40,7 @@ namespace Taavoni.DTOs.Payment
         public decimal Amount { get; set; }
         public string UserId { get; set; }
         public int DebtId { get; set; }  // ارتباط با شناسه بدهی
+
 
         public string? Name { get; set; }
         public string? Description { get; set; }

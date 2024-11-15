@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs.Payment;
+using Taavoni.DTOs.Reporting;
 using Taavoni.Models.Entities;
 
 namespace Taavoni.Services.Interfaces
@@ -16,6 +17,8 @@ namespace Taavoni.Services.Interfaces
         Task CreatePaymentDetailAsync(CreatePaymentDto createPaymentDto, IFormFile attachment, int debtId);
         Task<bool> DeleteDebtDetailAsync(int Id);
         Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto createPaymentDto);
+        List<PaymentDto> GetUserPayments(string userId);
+        List<PaymentSummaryDto> GetUserPaymentsSummery(string userId);
     }
 
     public class PaymentService : IPaymentService
@@ -104,10 +107,44 @@ namespace Taavoni.Services.Interfaces
 
         }
 
+        public List<PaymentDto> GetUserPayments(string userId)
+        {
+            return _context.Payments
+           .Where(p => p.UserId == userId)
+           .Select(p => new PaymentDto
+           {
+               Amount = p.Amount,
+               Description = p.Description,
+               PaymentDate = p.PaymentDate
+
+           })
+           .ToList();
+        }
+
+        public List<PaymentSummaryDto> GetUserPaymentsSummery(string userId)
+        {
+
+            var result = _context.Payments
+                .Where(p => p.UserId == userId)
+                .GroupBy(p => new { p.PaymentDate.Value.Year, p.PaymentDate.Value.Month }).AsEnumerable()
+                .Select(g => new PaymentSummaryDto
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    TotalAmount = g.Sum(p => p.Amount) // تبدیل به double
+                })
+                .OrderBy(p => p.Year)
+                .ThenBy(p => p.Month)
+                .ToList();
+                return result;
+
+        }
+
         public Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto createPaymentDto)
         {
             throw new NotImplementedException();
         }
+
     }
 
 }
