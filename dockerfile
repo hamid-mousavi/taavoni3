@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Expose the port your app runs on
-EXPOSE 80
+EXPOSE 5182
 
 # Run the application
 ENTRYPOINT ["dotnet", "Taavoni.dll"]
