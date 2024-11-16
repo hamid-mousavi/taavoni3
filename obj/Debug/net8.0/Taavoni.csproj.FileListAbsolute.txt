@@ -272,3 +272,4 @@ C:\Users\iR\Desktop\PR\Taavoni\Taavoni\obj\Debug\net8.0\Taavoni.pdb
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\obj\Debug\net8.0\Taavoni.genruntimeconfig.cache
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\obj\Debug\net8.0\ref\Taavoni.dll
 c:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\vercel.json
+c:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\liara.json
