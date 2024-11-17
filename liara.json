@@ -1,6 +1,6 @@
 {
-  "port":80,
+  "port":8080,
   "dotnet":{
-    "version":"8.0",
+    "version":"8.0"
   }
 }
