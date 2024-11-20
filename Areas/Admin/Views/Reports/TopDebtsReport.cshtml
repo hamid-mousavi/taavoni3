@@ -1,24 +1,47 @@
 @model List<UserDebtReportDto>
 @using Taavoni.DTOs.Reporting
 
-<h2>گزارش بیشترین بدهی‌ها</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>نام کاربر</th>
-            <th>بدهی کل</th>
-            <th>بدهی باقی‌مانده</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var debt in Model.OrderByDescending(d => d.TotalDebt))
-        {
-            <tr>
-                <td>@debt.UserName</td>
-                <td>@debt.TotalDebt</td>
-                <td>@debt.RemainingDebt</td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<h1 class="h3 mb-4 text-gray-800">گزارش بیشترین بدهی‌ها</h1>
+<!-- Donut Chart -->
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>نام کاربر</th>
+                        <th>بدهی کل</th>
+                        <th>بدهی باقی‌مانده</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>نام کاربر</th>
+                        <th>بدهی کل</th>
+                        <th>بدهی باقی‌مانده</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var debt in Model.OrderByDescending(d => d.TotalDebt))
+                    {
+                        <tr>
+                            <td>@debt.UserName</td>
+                            <td>@debt.TotalDebt</td>
+                            <td>@debt.RemainingDebt</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
