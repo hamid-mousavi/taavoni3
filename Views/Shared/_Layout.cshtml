@@ -1,25 +1,28 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 
 <head>
 
-    <meta charset="utf-8" >
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Taavoni</title>
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+
 
     <!-- Custom fonts for this template-->
     <link href="~/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    @* <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> *@
-   <!-- <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
-    <!-- Custom styles for this template-->
+
+
     <link href="~/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="~/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+ <link href="~/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="~/assets/css/custom-rtl.css" rel="stylesheet" type="text/css">
     <!-- For Persian Time-->
 
@@ -52,8 +55,8 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>داشبورد</span></a>
             </li>
-            
-          
+
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -63,8 +66,8 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>بدهی های من</span></a>
             </li>
-            
-            
+
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
@@ -74,9 +77,9 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>پرداختی های من</span></a>
             </li>
-            
 
-           
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -144,13 +147,13 @@
                         </li>
 
 
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
-                                <partial name="_LoginPartial" />
+                        <partial name="_LoginPartial" />
 
                         <!-- Nav Item - User Information -->
-                        
+
 
                     </ul>
 
@@ -160,7 +163,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                  
+
                     @RenderBody()
 
                 </div>
@@ -211,17 +214,20 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" type="text/Javascript"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js" type="text/Javascript"></script>
+
     <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="~/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-     <!-- Switcher js -->
-    
-     <script src="~/assets/js/sb-admin-2.min.js"></script>
-<script>
+    <!-- Switcher js -->
+
+    <script src="~/assets/js/sb-admin-2.min.js"></script>
+    <script>
         function convertToPersianNumbers(selector) {
             const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
             document.querySelectorAll(selector).forEach(element => {
@@ -234,5 +240,4 @@
 
 </body>
 
-</html>    
-    
+</html>

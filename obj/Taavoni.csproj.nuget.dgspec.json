@@ -70,6 +70,10 @@
             "NonFactors.Grid.Mvc6": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "PersianDateTime": {
+              "target": "Package",
+              "version": "[1.1.5082.36395, )"
             }
           },
           "imports": [
