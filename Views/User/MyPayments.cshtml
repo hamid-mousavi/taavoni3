@@ -2,6 +2,7 @@
 @model List<PaymentDto>
 @using Taavoni.DTOs.Payment
 
+@using System.Globalization
 
 
 <!-- Page Heading -->
@@ -27,6 +28,23 @@
         @foreach (var payment in Model)
         {
             <tr>
+              <td>
+    @{
+        if (payment.PaymentDate.HasValue)  // بررسی مقدار null
+        {
+            var persianCalendar = new PersianCalendar();
+            var date = payment.PaymentDate.Value;
+            var persianDate = $"{persianCalendar.GetYear(date)}/{persianCalendar.GetMonth(date):00}/{persianCalendar.GetDayOfMonth(date):00}";
+            @persianDate
+        }
+        else
+        {
+            <text>-</text>  // مقدار جایگزین در صورت null بودن تاریخ
+        }
+    }
+</td>
+
+              
                 <td>@payment.PaymentDate</td>
                 <td>@payment.Amount</td>
                 <td>@payment.Description</td>
@@ -46,8 +64,9 @@
 
 
   @section Scripts {
-    <script>
+  <script>
 
+      let table = new DataTable('#myTable');
     </script>
 
 

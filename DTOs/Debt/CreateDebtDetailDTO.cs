@@ -15,7 +15,7 @@ namespace Taavoni.DTOs
         public int DebtTitleId {get;set;}
 
         public decimal RemainingAmount { get; set; }  // مقدار باقیمانده
-        public DateTime DueDate { get; set; }  // تاریخ سررسید
+        public string DueDate { get; set; }  // تاریخ سررسید
         public decimal PenaltyRate { get; set; } // درصد جریمه روزانه
     }
 }

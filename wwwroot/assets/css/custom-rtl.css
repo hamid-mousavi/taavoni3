@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'BYekan';
+    src: url('../fonts/BYekan/BYekan.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BYekanBold';
+    src: url('../fonts/BYekan/BYekanBold.ttf') format('Bold');
+}
+
+@font-face {
+    font-family: 'IRANSans';
+    src: url('../fonts/IRSans/Sans.ttf') format('ttf'),
+        url('../fonts/IRSans/Sans.eot') format('eot'),
+        url('../fonts/IRSans/Sans.woff') format('woff');
+
+}
+
+body,
+.date {
+    font-family: 'IRANSans', Arial, sans-serif;
+}
+
+/* Custom RTL Styles */
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Adjust navigation menus */
+.navbar {
+    text-align: right;
+}
+
+.sidebar {
+    float: right;
+}
+
+.sidebar .nav-item .nav-link {
+    text-align: right;
+}
+
+/* Modify card styles */
+.card {
+    text-align: right;
+}
+
+/* Ensure proper alignment of form elements */
+form input,
+form select,
+form textarea {
+    text-align: right;
+}
+
+/* Adjust tables */
+table {
+    direction: rtl;
+}
+
+.table th,
+.table td {
+    text-align: right;
+}
+
+ul#accordionSidebar {
+    padding: 0;
+}
+.sidebar-heading {
+    text-align: center !important;
+}

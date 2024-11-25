@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj": {}
+    "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj": {}
   },
   "projects": {
-    "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj": {
+    "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+        "projectUniqueName": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
         "projectName": "Taavoni",
-        "projectPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+        "projectPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
         "packagesPath": "C:\\Users\\iR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
+        "outputPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\iR\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -70,6 +70,10 @@
             "NonFactors.Grid.Mvc6": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "PersianDateTime": {
+              "target": "Package",
+              "version": "[1.1.5082.36395, )"
             }
           },
           "imports": [

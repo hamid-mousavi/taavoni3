@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<DebtDetailDTO>
 @using NonFactors.Mvc.Grid
+@using System.Globalization
 @using Taavoni.DTOs
 
 
@@ -62,7 +63,28 @@
               <th>@item.Name</th>
               <th>@item.DebtTitleName</th>
               <th>@item.Amount</th>
-              <th>@item.DueDate</th>
+
+
+              <td>
+                @{
+                  var persianDate = "";
+                  if (item.DueDate != DateTime.MinValue)
+                  {
+                    var persianCalendar = new PersianCalendar();
+                    var date = item.DueDate.Date;
+                    persianDate =
+                    $"{persianCalendar.GetYear(date):0000}/{persianCalendar.GetMonth(date):00}/{persianCalendar.GetDayOfMonth(date):00}";
+                  }
+                  else
+                  {
+                    persianDate = "تاریخ معتبر نیست"; // یا می‌توانید تاریخ پیش‌فرض بگذارید
+                  }
+                }
+                @persianDate
+              </td>
+
+
+
               <th>@item.PenaltyRate</th>
               <th>@item.RemainingAmount</th>
               <th>

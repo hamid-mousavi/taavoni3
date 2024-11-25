@@ -9,12 +9,48 @@
       "PackagePath": "staticwebassets\\assets\\.browserslistrc"
     },
     {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\css\\custom-rtl.css",
+      "PackagePath": "staticwebassets\\assets\\css\\custom-rtl.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\css\\jalalidatepicker.css",
+      "PackagePath": "staticwebassets\\assets\\css\\jalalidatepicker.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\css\\jalalidatepicker.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\jalalidatepicker.min.css"
+    },
+    {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\assets\\css\\sb-admin-2.css"
     },
     {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\css\\sb-admin-2.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\sb-admin-2.min.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\BYekan\\BYekan.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\BYekan\\BYekan.ttf"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\BYekan\\BYekanBold.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\BYekan\\BYekanBold.ttf"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\IRSans\\Sans.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.eot"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\IRSans\\Sans.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.svg"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\IRSans\\Sans.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.ttf"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\fonts\\IRSans\\Sans.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.woff"
     },
     {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\img\\000.jpg",
@@ -61,6 +97,14 @@
       "PackagePath": "staticwebassets\\assets\\js\\demo\\datatables-demo.js"
     },
     {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\jalalidatepicker.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jalalidatepicker.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\jalalidatepicker.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jalalidatepicker.min.js"
+    },
+    {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\sb-admin-2.js",
       "PackagePath": "staticwebassets\\assets\\js\\sb-admin-2.js"
     },
@@ -75,6 +119,230 @@
     {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\package.json",
       "PackagePath": "staticwebassets\\assets\\package.json"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\.bower.json",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\.bower.json"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\.gitignore",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\.gitignore"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\.npmignore",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\.npmignore"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\bower.json",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\bower.json"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.css.map",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.css.map"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\animated.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\animated.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\bordered-pulled.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\bordered-pulled.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\core.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\core.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\fixed-width.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\fixed-width.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\font-awesome.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\font-awesome.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\icons.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\icons.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\larger.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\larger.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\list.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\list.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\mixins.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\mixins.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\path.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\path.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\rotated-flipped.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\rotated-flipped.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\stacked.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\stacked.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\variables.less",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\less\\variables.less"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_animated.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_animated.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_bordered-pulled.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_bordered-pulled.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_core.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_core.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_fixed-width.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_fixed-width.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_icons.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_icons.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_larger.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_larger.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_list.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_list.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_path.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_path.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_rotated-flipped.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_rotated-flipped.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_stacked.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_stacked.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\_variables.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\font-awesome.scss",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\fontawesome\\scss\\font-awesome.scss"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\normalize.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\normalize.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\persianDatepicker-dark.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\persianDatepicker-dark.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\persianDatepicker-default.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\persianDatepicker-default.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\persianDatepicker-latoja.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\persianDatepicker-latoja.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\persianDatepicker-lightorang.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\persianDatepicker-lightorang.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\persianDatepicker-melon.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\persianDatepicker-melon.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\prism.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\prism.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\style.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\css\\vertical-responsive-menu.min.css",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\css\\vertical-responsive-menu.min.css"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\ajaxmin.bat",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\ajaxmin.bat"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\angular.min.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\angular.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\jquery-1.10.1.min.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\jquery-1.10.1.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\persianDatepicker.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\persianDatepicker.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\persianDatepicker.min.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\persianDatepicker.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\prism.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\prism.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\prism.min.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\prism.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\persianDatepicker-master\\js\\vertical-responsive-menu.min.js",
+      "PackagePath": "staticwebassets\\assets\\persianDatepicker-master\\js\\vertical-responsive-menu.min.js"
     },
     {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\scss\\_buttons.scss",
@@ -7455,6 +7723,38 @@
     {
       "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Taavoni.Microsoft.AspNetCore.StaticWebAssets.props",

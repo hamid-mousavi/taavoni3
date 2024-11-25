@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs;
+using Taavoni.Extention;
 using Taavoni.Models;
 
 public class DebtService : IDebtService
@@ -82,7 +84,9 @@ public class DebtService : IDebtService
 
     public async Task CreateDebtDetailAsync(CreateDebtDetailDTO createDebtDetailDTO)
     {
+        var persianDueDate = PersianDateTime.Parse(createDebtDetailDTO.DueDate.PersianToEnglish());
 
+        // ایجاد شیء بدهی
         var debtDetail = new Debt
         {
             DebtTitleId = createDebtDetailDTO.DebtTitleId,
@@ -91,15 +95,15 @@ public class DebtService : IDebtService
             Amount = createDebtDetailDTO.Amount,
             IsPaid = createDebtDetailDTO.IsPaid,
             UserId = createDebtDetailDTO.UserId,
-            DueDate = createDebtDetailDTO.DueDate,
+            DueDate = persianDueDate.ToDateTime(),  // ذخیره تاریخ میلادی
             PenaltyRate = createDebtDetailDTO.PenaltyRate,
             RemainingAmount = createDebtDetailDTO.Amount
         };
 
+        // افزودن بدهی به دیتابیس
         _context.Debts.Add(debtDetail);
         await _context.SaveChangesAsync();
     }
-
 
     public async Task<bool> UpdateDebtDetailAsync(EditDebtlDTO dto)
     {
@@ -138,7 +142,7 @@ public class DebtService : IDebtService
 
         return true;
     }
-        public async Task<IEnumerable<DebtTitle>> GetDebtTitlesAsync()
+    public async Task<IEnumerable<DebtTitle>> GetDebtTitlesAsync()
     {
         return await _context.debtTitles.ToListAsync();
     }
@@ -170,13 +174,13 @@ public class DebtService : IDebtService
 
     public List<DebtDetailDTO> GetUserDebts(string userId)
     {
-         return _context.Debts
-            .Where(d => d.UserId == userId).Include(d=>d.debtTitle)
-            .Select(d => new DebtDetailDTO
-            {
-                DebtTitleName= d.debtTitle.Title,
-                Amount = d.Amount
-            })
-            .ToList();
+        return _context.Debts
+           .Where(d => d.UserId == userId).Include(d => d.debtTitle)
+           .Select(d => new DebtDetailDTO
+           {
+               DebtTitleName = d.debtTitle.Title,
+               Amount = d.Amount
+           })
+           .ToList();
     }
 }
