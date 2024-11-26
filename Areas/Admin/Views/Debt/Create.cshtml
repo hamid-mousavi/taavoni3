@@ -15,11 +15,11 @@
     </div>
     <div class="form-group">
         <label asp-for="StartDate"></label>
-        <input asp-for="StartDate" class="form-control" type="date" />
+        <input asp-for="StartDate" class="form-control" type="text" id="StartDate" />
     </div>
     <div class="form-group">
         <label asp-for="EndDate"></label>
-        <input asp-for="EndDate" class="form-control" type="date" />
+        <input asp-for="EndDate" class="form-control" type="text " id="EndDate" />
     </div>
     <div class="form-group">
         <label asp-for="DueDate"></label>
@@ -47,13 +47,29 @@
 
 @section Scripts {
 
-    <link type="text/css" rel="stylesheet" href="~/assets/persianDatepicker-master/css/persianDatepicker-default.css" />
-    <script type="text/javascript" src="~/assets/persianDatepicker-master/js/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="~/assets/persianDatepicker-master/js/persianDatepicker.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#dueDate").persianDatepicker();
+    <link href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#StartDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+            $('#EndDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+            $('#dueDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
         });
+
+
+
+
+
     </script>
 
 

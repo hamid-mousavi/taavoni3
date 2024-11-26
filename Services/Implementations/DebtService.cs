@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs;
 using Taavoni.Models;
+using taavoni3.Extention;
 
 public class DebtService : IDebtService
 {
@@ -84,29 +85,22 @@ public class DebtService : IDebtService
     public async Task CreateDebtDetailAsync(CreateDebtDetailDTO createDebtDetailDTO)
     {
 
-        var persianCalendar = new PersianCalendar();
 
-        var date = createDebtDetailDTO.DueDate;  // استفاده از Value پس از بررسی
-
-        // تبدیل تاریخ شمسی به میلادی
-
-
-        DateTime gregorianDate = persianCalendar.ToDateTime(persianCalendar.GetYear(date), persianCalendar.GetMonth(date), persianCalendar.GetDayOfMonth(date), 0, 0, 0, 0);
-
-        // تنظیم تاریخ میلادی به فیلد DueDate
-        createDebtDetailDTO.DueDate = gregorianDate;
+        var PersianDueDate = PersianDateTime.Parse(createDebtDetailDTO.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(createDebtDetailDTO.StartDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(createDebtDetailDTO.EndDate.PersianToEnglish());
 
 
         // ایجاد شیء بدهی
         var debtDetail = new Debt
         {
             DebtTitleId = createDebtDetailDTO.DebtTitleId,
-            StartDate = createDebtDetailDTO.StartDate,
-            EndDate = createDebtDetailDTO.EndDate,
+            StartDate = PersianStartDate.ToDateTime(),
+            EndDate = PersianEndDate.ToDateTime(),
             Amount = createDebtDetailDTO.Amount,
             IsPaid = createDebtDetailDTO.IsPaid,
             UserId = createDebtDetailDTO.UserId,
-            DueDate = createDebtDetailDTO.DueDate,  // ذخیره تاریخ میلادی
+            DueDate = PersianDueDate.ToDateTime(),  // ذخیره تاریخ میلادی
             PenaltyRate = createDebtDetailDTO.PenaltyRate,
             RemainingAmount = createDebtDetailDTO.Amount
         };
@@ -124,12 +118,16 @@ public class DebtService : IDebtService
             return false;
         }
 
-        debtDetail.StartDate = dto.StartDate;
+        var PersianDueDate = PersianDateTime.Parse(dto.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(dto.StartDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(dto.EndDate.PersianToEnglish());
+
+        debtDetail.StartDate = PersianStartDate.ToDateTime();
         debtDetail.DebtTitleId = dto.DebtTitleId;
-        debtDetail.EndDate = dto.EndDate;
+        debtDetail.EndDate = PersianEndDate.ToDateTime();
         debtDetail.Amount = dto.Amount;
         debtDetail.IsPaid = dto.IsPaid;
-        debtDetail.DueDate = dto.DueDate;
+        debtDetail.DueDate = PersianDueDate.ToDateTime();
         debtDetail.PenaltyRate = dto.PenaltyRate;
 
         // debtDetail.UserId = dto.UserId;
@@ -189,6 +187,7 @@ public class DebtService : IDebtService
            .Where(d => d.UserId == userId).Include(d => d.debtTitle)
            .Select(d => new DebtDetailDTO
            {
+               Id = d.Id,
                DebtTitleName = d.debtTitle.Title,
                Amount = d.Amount
            })

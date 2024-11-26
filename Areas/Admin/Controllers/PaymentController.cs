@@ -22,12 +22,12 @@ namespace Taavoni.Areas.Admin.Controllers
 
 
 
-        public PaymentController(IPaymentService paymentService, ApplicationDbContext context, UserManager<ApplicationUser> userManager,IDebtService debtService)
+        public PaymentController(IPaymentService paymentService, ApplicationDbContext context, UserManager<ApplicationUser> userManager, IDebtService debtService)
         {
             _paymentService = paymentService;
             _context = context;
             _userManager = userManager;
-            _debtService =debtService;
+            _debtService = debtService;
         }
         public async Task<ActionResult> Index()
         {
@@ -38,6 +38,7 @@ namespace Taavoni.Areas.Admin.Controllers
         public async Task<IActionResult> CreatePayment()
         {
             var users = await _userManager.Users.ToListAsync();
+            ViewBag.DebtId = new SelectList(await _debtService.GetAllDebtsAsync(), "Id", "Name");
             ViewBag.Users = new MultiSelectList(users, "Id", "UserName");
             var dto = new CreatePaymentDto(); // مقداردهی اولیه به مدل
             return View(dto);
@@ -45,12 +46,12 @@ namespace Taavoni.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePayment(CreatePaymentDto dto, IFormFile attachment)
         {
-           ViewBag.DebtId = new SelectList(await _debtService.GetAllDebtsAsync(), "Id", "Id");
+
 
             var user = await _context.Users.FindAsync(dto.UserId); // دسترسی مستقیم به کاربران
             if (user != null)
             {
-                await _paymentService.CreatePaymentDetailAsync(dto, attachment,dto.DebtId);
+                await _paymentService.CreatePaymentDetailAsync(dto, attachment, dto.DebtId);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -74,6 +75,14 @@ namespace Taavoni.Areas.Admin.Controllers
 
             return View(payment);
         }
+
+
+        public async Task<IActionResult> GetDebtsByUserId(string userId)
+        {
+            var debts = _debtService.GetUserDebts(userId);
+            return Json(debts);
+        }
+
 
     }
 

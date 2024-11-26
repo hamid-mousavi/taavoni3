@@ -30,18 +30,18 @@ namespace Taavoni.Areas.Admin.Controllers
             _context = context;
             _userManager = userManager;
         }
-    [HttpPost]
-    public async Task<IActionResult> ApplyDailyPenalty()
-    {
-        await _debtService.ApplyDailyPenalty();
-        
-        // پس از اجرای متد، کاربر را به صفحه ایندکس برمی‌گردانیم
-        return RedirectToAction("Index");
-    }
+        [HttpPost]
+        public async Task<IActionResult> ApplyDailyPenalty()
+        {
+            await _debtService.ApplyDailyPenalty();
+
+            // پس از اجرای متد، کاربر را به صفحه ایندکس برمی‌گردانیم
+            return RedirectToAction("Index");
+        }
         public async Task<IActionResult> Index()
         {
             var Debts = await _debtService.GetAllDebtsAsync();
-            
+
             return View(Debts);
         }
 
@@ -104,7 +104,7 @@ namespace Taavoni.Areas.Admin.Controllers
 
             // ارسال کاربران به ویو
             ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", debtDetail.UserId);
-        ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title", debtDetail.DebtTitleId);
+            ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title", debtDetail.DebtTitleId);
             return View(debtDetail);
         }
 
@@ -131,7 +131,7 @@ namespace Taavoni.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "مشکلی در به‌روزرسانی اطلاعات پیش آمده است.");
             }
-                    ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title", dto.DebtTitleId);
+            ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title", dto.DebtTitleId);
             return View(dto);
 
 
@@ -161,5 +161,9 @@ namespace Taavoni.Areas.Admin.Controllers
             }
             return BadRequest("مشکلی در حذف اطلاعات پیش آمده است.");
         }
+
+      
+
+
     }
 }
