@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Taavoni.DTOs;
 
-    public class FixedDebtDTO
-    {
-        public int Id { get; set; }
+public class FixedDebtDTO
+{
+    public int Id { get; set; }
     public decimal Electricity { get; set; }
     public decimal ProofSupply { get; set; }
     public decimal Taxes { get; set; }
@@ -16,4 +16,4 @@ namespace Taavoni.DTOs;
     public decimal WaterCompanyAssessment { get; set; }
     public decimal TotalDebt { get; set; }
     public bool IsPaid { get; set; }
-    }
+}

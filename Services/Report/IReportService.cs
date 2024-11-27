@@ -14,6 +14,8 @@ namespace Taavoni.Services.Interfaces
         Task<List<UserDto>> GetUsersAsync();
         Task<UserPaymentReportDto> GetUserPaymentsReportAsync(string userId);
         Task<UserDebtReportDto> GetTopDebtsReportAsync();
+        Task<DashboardDto> GetUserDashboardAsync(string userId);
+
     }
 
     public class ReportService : IReportService
@@ -87,11 +89,53 @@ namespace Taavoni.Services.Interfaces
             return result;
         }
 
+        public async Task<DashboardDto> GetUserDashboardAsync(string userId)
+        {
+            var totalDebt = await _context.Debts
+             .Where(d => d.UserId == userId)
+             .SumAsync(d =>(double)d.Amount);
+              var totalDebtWithPenaltyRate = await _context.Debts
+             .Where(d => d.UserId == userId)
+             .SumAsync(d =>(double)d.AmountWithPenaltyRate);
+
+            var totalPaid = await _context.Payments
+                .Where(p => p.UserId == userId)
+                .SumAsync(p => (double)p.Amount);
+
+            var debtDetails = await _context.Debts
+                .Where(d => d.UserId == userId)
+                .Select(d => new DebtDetailDto
+                {
+                    Title = d.debtTitle.Title,
+                    Amount = d.Amount,
+                    DueDate = d.DueDate,
+                    StartDate = d.StartDate,
+                    EndDate = d.EndDate,
+                    PenaltyRate = d.PenaltyRate,
+                    RemainingAmount = d.RemainingAmount
+                }).ToListAsync();
+
+            var paymentDetails = await _context.Payments
+                .Where(p => p.UserId == userId)
+                .Select(p => new PaymentDetailDto
+                {
+                    Title = p.Title,
+                    Amount = p.Amount,
+                    PaymentDate = p.PaymentDate
+                }).ToListAsync();
+            
+
+            return new DashboardDto
+            {
+                TotalDebt = (decimal)totalDebt,
+                TotalPaid = (decimal)totalPaid,
+                TotalDeptWithPenaltyRate = (decimal)totalDebtWithPenaltyRate,
+                DebtDetails = debtDetails,
+                PaymentDetails = paymentDetails
 
 
-
-
-
+            };
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,5 +26,31 @@ namespace taavoni3.Extention
             return LettersDictionary.Aggregate(persianStr, (current, item) =>
                          current.Replace(item.Key, item.Value));
         }
+
+
+
+        public static string ToPersianDate(DateTime dateTime)
+        {
+            string persianDate = "";
+            if (dateTime != DateTime.MinValue)
+            {
+                var persianCalendar = new PersianCalendar();
+                var date = dateTime;
+                persianDate =
+                $"{persianCalendar.GetYear(date):0000}/{persianCalendar.GetMonth(date):00}/{persianCalendar.GetDayOfMonth(date):00}";
+            }
+            else
+            {
+                persianDate = "تاریخ معتبر نیست"; // یا می‌توانید تاریخ پیش‌فرض بگذارید
+            }
+            return persianDate;
+        }
+
+
+
+
+
+
     }
+
 }

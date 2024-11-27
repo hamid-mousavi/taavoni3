@@ -60,6 +60,7 @@ table {
 .table th,
 .table td {
     text-align: right;
+    direction: ltr;
 }
 
 ul#accordionSidebar {

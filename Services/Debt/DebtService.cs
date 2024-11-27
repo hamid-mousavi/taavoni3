@@ -108,6 +108,7 @@ public class DebtService : IDebtService
         // افزودن بدهی به دیتابیس
         _context.Debts.Add(debtDetail);
         await _context.SaveChangesAsync();
+        ApplyDailyPenalty();
     }
 
     public async Task<bool> UpdateDebtDetailAsync(EditDebtlDTO dto)
@@ -134,6 +135,7 @@ public class DebtService : IDebtService
 
         _context.Debts.Update(debtDetail);
         await _context.SaveChangesAsync();
+        ApplyDailyPenalty();
 
         return true;
     }
@@ -163,15 +165,17 @@ public class DebtService : IDebtService
 
         foreach (var debt in debts)
         {
+           
 
             // اگر جریمه امروز برای این بدهی اعمال نشده باشد
             if (debt.LastPenaltyAppliedDate != DateTime.Today)
             {
-
-
                 var daysDelayed = (DateTime.Now - debt.DueDate).Days;
                 var penalty = debt.Amount * debt.PenaltyRate * daysDelayed;
                 debt.RemainingAmount += penalty;
+                debt.AmountWithPenaltyRate = penalty + debt.Amount;
+                
+
 
                 // بروزرسانی تاریخ آخرین اعمال جریمه
                 debt.LastPenaltyAppliedDate = DateTime.Today;
