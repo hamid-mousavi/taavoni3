@@ -69,3 +69,6 @@ ul#accordionSidebar {
 .sidebar-heading {
     text-align: center !important;
 }
+.dataTables_filter,.sorting{
+    text-align: end !important;
+}

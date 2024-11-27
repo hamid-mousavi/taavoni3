@@ -29,7 +29,7 @@ namespace taavoni3.Extention
 
 
 
-        public static string ToPersianDate(DateTime dateTime)
+        public static string ToPersianDate(this DateTime dateTime)
         {
             string persianDate = "";
             if (dateTime != DateTime.MinValue)

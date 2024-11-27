@@ -16,7 +16,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return Redirect("/user");
+        return Redirect("/user/dashboard");
     }
 [Authorize(Roles = "Admin")]
     public IActionResult Privacy()
