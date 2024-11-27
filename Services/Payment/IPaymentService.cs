@@ -7,6 +7,7 @@ using Taavoni.Data;
 using Taavoni.DTOs.Payment;
 using Taavoni.DTOs.Reporting;
 using Taavoni.Models.Entities;
+using taavoni3.Extention;
 
 namespace Taavoni.Services.Interfaces
 {
@@ -36,6 +37,7 @@ namespace Taavoni.Services.Interfaces
             var debt = await _context.Debts.FindAsync(debtId);
             if (debt != null && dto.Amount > 0)
             {
+                var PersianPaymentDate = PersianDateTime.Parse(dto.PaymentDate!.PersianToEnglish());
 
                 var payment = new Payment
                 {
@@ -44,7 +46,7 @@ namespace Taavoni.Services.Interfaces
                     DebtId = dto.DebtId,
                     Amount = dto.Amount,
                     Description = dto.Description,
-                    PaymentDate = DateTime.UtcNow,
+                    PaymentDate = PersianPaymentDate.ToDateTime(),
 
                 };
 
@@ -136,13 +138,32 @@ namespace Taavoni.Services.Interfaces
                 .OrderBy(p => p.Year)
                 .ThenBy(p => p.Month)
                 .ToList();
-                return result;
+            return result;
 
         }
 
-        public Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto createPaymentDto)
+        public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto)
         {
-            throw new NotImplementedException();
+            var model = await _context.Payments.FindAsync(dto.id);
+            if (model == null)
+            {
+                return false;
+            }
+
+            var PersianPaymentDate = PersianDateTime.Parse(dto.PaymentDate!.PersianToEnglish());
+
+            model.Title = dto.Title;
+            model.UserId = dto.UserId;
+            model.DebtId = dto.DebtId;
+            model.Amount = dto.Amount;
+            model.Description = dto.Description;
+            model.PaymentDate = PersianPaymentDate.ToDateTime();
+
+           
+            _context.Payments.Update(model);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
     }

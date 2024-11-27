@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs;
-using Taavoni.Extention;
 using Taavoni.Models;
+using taavoni3.Extention;
 
 public class DebtService : IDebtService
 {
@@ -84,18 +84,23 @@ public class DebtService : IDebtService
 
     public async Task CreateDebtDetailAsync(CreateDebtDetailDTO createDebtDetailDTO)
     {
-        var persianDueDate = PersianDateTime.Parse(createDebtDetailDTO.DueDate.PersianToEnglish());
+
+
+        var PersianDueDate = PersianDateTime.Parse(createDebtDetailDTO.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(createDebtDetailDTO.StartDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(createDebtDetailDTO.EndDate.PersianToEnglish());
+
 
         // ایجاد شیء بدهی
         var debtDetail = new Debt
         {
             DebtTitleId = createDebtDetailDTO.DebtTitleId,
-            StartDate = createDebtDetailDTO.StartDate,
-            EndDate = createDebtDetailDTO.EndDate,
+            StartDate = PersianStartDate.ToDateTime(),
+            EndDate = PersianEndDate.ToDateTime(),
             Amount = createDebtDetailDTO.Amount,
             IsPaid = createDebtDetailDTO.IsPaid,
             UserId = createDebtDetailDTO.UserId,
-            DueDate = persianDueDate.ToDateTime(),  // ذخیره تاریخ میلادی
+            DueDate = PersianDueDate.ToDateTime(),  // ذخیره تاریخ میلادی
             PenaltyRate = createDebtDetailDTO.PenaltyRate,
             RemainingAmount = createDebtDetailDTO.Amount
         };
@@ -103,6 +108,7 @@ public class DebtService : IDebtService
         // افزودن بدهی به دیتابیس
         _context.Debts.Add(debtDetail);
         await _context.SaveChangesAsync();
+        ApplyDailyPenalty();
     }
 
     public async Task<bool> UpdateDebtDetailAsync(EditDebtlDTO dto)
@@ -113,18 +119,23 @@ public class DebtService : IDebtService
             return false;
         }
 
-        debtDetail.StartDate = dto.StartDate;
+        var PersianDueDate = PersianDateTime.Parse(dto.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(dto.StartDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(dto.EndDate.PersianToEnglish());
+
+        debtDetail.StartDate = PersianStartDate.ToDateTime();
         debtDetail.DebtTitleId = dto.DebtTitleId;
-        debtDetail.EndDate = dto.EndDate;
+        debtDetail.EndDate = PersianEndDate.ToDateTime();
         debtDetail.Amount = dto.Amount;
         debtDetail.IsPaid = dto.IsPaid;
-        debtDetail.DueDate = dto.DueDate;
+        debtDetail.DueDate = PersianDueDate.ToDateTime();
         debtDetail.PenaltyRate = dto.PenaltyRate;
 
         // debtDetail.UserId = dto.UserId;
 
         _context.Debts.Update(debtDetail);
         await _context.SaveChangesAsync();
+        ApplyDailyPenalty();
 
         return true;
     }
@@ -154,15 +165,17 @@ public class DebtService : IDebtService
 
         foreach (var debt in debts)
         {
+           
 
             // اگر جریمه امروز برای این بدهی اعمال نشده باشد
             if (debt.LastPenaltyAppliedDate != DateTime.Today)
             {
-
-
                 var daysDelayed = (DateTime.Now - debt.DueDate).Days;
                 var penalty = debt.Amount * debt.PenaltyRate * daysDelayed;
                 debt.RemainingAmount += penalty;
+                debt.AmountWithPenaltyRate = penalty + debt.Amount;
+                
+
 
                 // بروزرسانی تاریخ آخرین اعمال جریمه
                 debt.LastPenaltyAppliedDate = DateTime.Today;
@@ -178,6 +191,7 @@ public class DebtService : IDebtService
            .Where(d => d.UserId == userId).Include(d => d.debtTitle)
            .Select(d => new DebtDetailDTO
            {
+               Id = d.Id,
                DebtTitleName = d.debtTitle.Title,
                Amount = d.Amount
            })

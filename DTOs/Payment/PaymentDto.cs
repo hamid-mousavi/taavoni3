@@ -25,6 +25,7 @@ namespace Taavoni.DTOs.Payment
     }
     public class CreatePaymentDto
     {
+        
         public string Title { get; set; }
         public decimal Amount { get; set; }
         public string UserId { get; set; }
@@ -32,6 +33,7 @@ namespace Taavoni.DTOs.Payment
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? AttachmentPath { get; set; }
+        public string? PaymentDate { get; set; }  // تاریخ پرداخت
     }
     public class UpdatePaymentDto
     {
@@ -41,7 +43,7 @@ namespace Taavoni.DTOs.Payment
         public string UserId { get; set; }
         public int DebtId { get; set; }  // ارتباط با شناسه بدهی
 
-
+        public string? PaymentDate { get; set; }  // تاریخ پرداخت
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? AttachmentPath { get; set; }

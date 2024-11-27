@@ -5,31 +5,27 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Taavoni.Models.Entities;
 using Taavoni.Services.Interfaces;
 
 namespace Taavoni.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    public class UserController(IDebtService debtService, IPaymentService paymentService, IReportService reportService) : Controller
     {
-        private readonly IDebtService _debtService;
-        private readonly IPaymentService _paymentService;
-        private readonly IReportService _reportService;
+        private readonly IDebtService _debtService = debtService;
+        private readonly IPaymentService _paymentService = paymentService;
+        private readonly IReportService _reportService = reportService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-
-        public UserController(IDebtService debtService, IPaymentService paymentService, IReportService reportService)
-        {
-            _debtService = debtService;
-            _paymentService = paymentService;
-            _reportService = reportService;
-        }
         public IActionResult index()
         {
             return View();
         }
-        public IActionResult MyDebts()
+        public async Task<IActionResult> MyDebts()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var debts = _debtService.GetUserDebts(userId);
@@ -43,7 +39,13 @@ namespace Taavoni.Controllers
             var payments = _paymentService.GetUserPayments(userId);
             return View(payments);
         }
-        
+        public async Task<IActionResult> Dashboard()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var dashboardData = await _reportService.GetUserDashboardAsync(userId);
+            return View(dashboardData);
+        }
+
 
 
 

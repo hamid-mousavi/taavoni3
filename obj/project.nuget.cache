@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y20WjNcwWH8=",
+  "dgSpecHash": "q2rAbFYOQys=",
   "success": true,
-  "projectFilePath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+  "projectFilePath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iR\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -1,0 +1,157 @@
+@using taavoni3.Extention
+<div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            مجموع بدهی</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDebt</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            مجموع بدهی بااحتساب جریمه</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDeptWithPenaltyRate</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            مجموع پرداختی</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalPaid</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            مبلغ باقیمانده</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.RemainingAmount</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جزئیات بدهی‌ها</h6>
+    </div>
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>عنوان</td>
+                        <td>از تاریخ</td>
+                        <td>تا تاریخ</td>
+                        <td>تاریخ سررسید</td>
+                        <td>مبلغ</td>
+                        <td>درصد جریمه</td>
+                        <td>مبلغ بااحتساب جریمه</td>
+                        <td>مبلغ باقیمانده</td>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var debt in Model.DebtDetails)
+                    {
+                        <tr>
+                            <td>@debt.Title</td>
+                            
+                            <td>@debt.StartDate</td>
+                            <td>@debt.EndDate</td>
+                            <td>@debt.DueDate</td>
+                            <td>@debt.Amount</td>
+                            <td>@debt.PenaltyRate</td>
+                            <td>@debt.TotalDeptWithPenaltyRate</td>
+                            <td>@debt.RemainingAmount</td>
+                            
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جزئیات پرداخت‌ها </h6>
+    </div>
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>مبلغ</th>
+                        <th>تاریخ پرداخت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var payment in Model.PaymentDetails)
+                    {
+                        <tr>
+                            <td>@payment.Title</td>
+                            <td>@payment.Amount</td>
+                            <td>@payment.PaymentDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ public class Debt
     public DateTime EndDate { get; set; }= DateTime.Now;
    
     public decimal Amount { get; set; }
+    public decimal AmountWithPenaltyRate { get; set; }=0;
     public bool IsPaid { get; set; } = true;// وضعیت پرداخت
     
     public decimal RemainingAmount { get; set; }

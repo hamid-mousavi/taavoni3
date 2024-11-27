@@ -549,4 +549,3 @@ C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\Taavoni.pdb
 C:\Users\iR\Desktop\PR\.Net\taavoni3\obj\Debug\net8.0\Taavoni.genruntimeconfig.cache
 C:\Users\iR\Desktop\PR\.Net\taavoni3\obj\Debug\net8.0\ref\Taavoni.dll
 c:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\PersianDateTime.dll
-c:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\PersianDateTime.dll
