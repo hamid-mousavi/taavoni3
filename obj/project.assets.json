@@ -7047,11 +7047,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectUniqueName": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
       "projectName": "Taavoni",
-      "projectPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
       "packagesPath": "C:\\Users\\iR\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
+      "outputPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iR\\AppData\\Roaming\\NuGet\\NuGet.Config"
