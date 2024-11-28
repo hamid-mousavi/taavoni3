@@ -11,8 +11,8 @@ using Taavoni.Data;
 namespace Taavoni.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241110132813_initial")]
-    partial class initial
+    [Migration("20241128153217_FixAspNetRoles")]
+    partial class FixAspNetRoles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,6 +157,9 @@ namespace Taavoni.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("AmountWithPenaltyRate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DebtTitleId")
                         .HasColumnType("INTEGER");
 
@@ -200,8 +203,9 @@ namespace Taavoni.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Title")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -234,6 +238,8 @@ namespace Taavoni.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")

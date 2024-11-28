@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Taavoni")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c7d86a7d43eb482a85fa7123b762ae4d412c46f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5cc7d51283902fa4bb748440b71ba942af502eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Taavoni")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Taavoni")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

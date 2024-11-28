@@ -16,13 +16,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.10" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.10" />
+     <!-- Microsoft.EntityFrameworkCore.Sqlite.Core -->
+     <!-- SQLitePCLRaw.bundle_e_sqlite3mc -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
     <PackageReference Include="NonFactors.Grid.Mvc6" Version="8.0.0" />
     <PackageReference Include="PersianDateTime" Version="1.1.5082.36395" />
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.6" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3mc" Version="2.1.10" />
     <PackageReference Include="SQLitePCLRaw.bundle_sqlcipher" Version="1.1.14" />
   </ItemGroup>
 

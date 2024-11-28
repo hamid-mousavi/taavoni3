@@ -82,6 +82,7 @@ namespace Taavoni.Services.Interfaces
                 AttachmentPath = d.AttachmentPath,
                 Description = d.Description,
                 Name = d.User?.Name,
+                UserName=d.User?.UserName,
                 UserId = d.UserId,
                 Title = d.Title,
                 DebtId = d.DebtId

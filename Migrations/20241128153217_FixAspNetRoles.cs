@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Taavoni.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class FixAspNetRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace Taavoni.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -57,7 +57,7 @@ namespace Taavoni.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<int>(type: "INTEGER", nullable: false)
+                    Title = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,6 +199,7 @@ namespace Taavoni.Migrations
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Amount = table.Column<decimal>(type: "TEXT", nullable: false),
+                    AmountWithPenaltyRate = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsPaid = table.Column<bool>(type: "INTEGER", nullable: false),
                     RemainingAmount = table.Column<decimal>(type: "TEXT", nullable: false),
                     DueDate = table.Column<DateTime>(type: "TEXT", nullable: false),

@@ -22,6 +22,7 @@ namespace Taavoni.DTOs.Payment
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? AttachmentPath { get; set; }
+        public string? UserName { get;  set; }
     }
     public class CreatePaymentDto
     {

@@ -59,11 +59,11 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
-            "Microsoft.Data.Sqlite.Core": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.10, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[8.0.10, )"
             },
@@ -83,9 +83,9 @@
               "target": "Package",
               "version": "[1.1.5082.36395, )"
             },
-            "SQLitePCLRaw.bundle_e_sqlite3": {
+            "SQLitePCLRaw.bundle_e_sqlite3mc": {
               "target": "Package",
-              "version": "[2.1.6, )"
+              "version": "[2.1.10, )"
             },
             "SQLitePCLRaw.bundle_sqlcipher": {
               "target": "Package",

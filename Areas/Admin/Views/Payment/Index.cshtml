@@ -24,25 +24,25 @@
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
-          <tr>
-       
-            <th>Name</th>
-            <th>Debt Id</th>
-            <th>Amount</th>           
-            <th>Title</th>
-            <th>Attachment</th>
-            <th>Action</th>
-          
+        <tr>
+            <th>نام</th>
+            <th>ایمیل</th>
+            <th>شناسه بدهی</th>
+            <th>مبلغ</th>           
+            <th>عنوان</th>
+            <th>پیوست</th>
+            <th>عملیات</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>Name</th>
-            <th>Debt Id</th>
-            <th>Amount</th>           
-            <th>Title</th>
-            <th>Attachment</th>
-            <th>Action</th>
+            <th>نام</th>
+            <th>ایمیل</th>
+            <th>شناسه بدهی</th>
+            <th>مبلغ</th>           
+            <th>عنوان</th>
+            <th>پیوست</th>
+            <th>عملیات</th>
           </tr>
         </tfoot>
         <tbody>
@@ -50,8 +50,9 @@
           {
             <tr>
               <th>@item.Name</th>
+              <th>@item.UserName</th>
               <th>@item.DebtId</th>
-              <th>@item.Amount</th>
+              <th>@item.Amount.ToString("N")</th>
               <th>@item.Title</th>
               <th>@item.AttachmentPath</th>
               <th>

@@ -23,8 +23,8 @@ namespace Taavoni.Controllers
 
         public IActionResult index()
         {
-         //   return View();
-         return Redirect("/user/dashboard");
+            //   return View();
+            return Redirect("/user/dashboard");
         }
         public async Task<IActionResult> MyDebts()
         {

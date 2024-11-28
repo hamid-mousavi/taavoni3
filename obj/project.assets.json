@@ -2139,6 +2139,19 @@
           "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
         }
       },
+      "SQLitePCLRaw.bundle_e_sqlite3mc/2.1.10": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.lib.e_sqlite3mc": "2.1.10",
+          "SQLitePCLRaw.provider.e_sqlite3mc": "2.1.10"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_sqlcipher/1.1.14": {
         "type": "package",
         "dependencies": {
@@ -2157,7 +2170,7 @@
           "lib/netcoreapp/SQLitePCLRaw.batteries_v2.dll": {}
         }
       },
-      "SQLitePCLRaw.core/2.1.6": {
+      "SQLitePCLRaw.core/2.1.10": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -2263,6 +2276,104 @@
           }
         }
       },
+      "SQLitePCLRaw.lib.e_sqlite3mc/2.1.10": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "build": {
+          "buildTransitive/net8.0/SQLitePCLRaw.lib.e_sqlite3mc.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/browser-wasm/nativeassets/net8.0/e_sqlite3mc.a": {
+            "assetType": "native",
+            "rid": "browser-wasm"
+          },
+          "runtimes/linux-arm/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-armel/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-armel"
+          },
+          "runtimes/linux-mips64/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-mips64"
+          },
+          "runtimes/linux-musl-arm/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm"
+          },
+          "runtimes/linux-musl-arm64/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm64"
+          },
+          "runtimes/linux-musl-s390x/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-musl-s390x"
+          },
+          "runtimes/linux-musl-x64/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-ppc64le/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-ppc64le"
+          },
+          "runtimes/linux-s390x/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-s390x"
+          },
+          "runtimes/linux-x64/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x86/native/libe_sqlite3mc.so": {
+            "assetType": "native",
+            "rid": "linux-x86"
+          },
+          "runtimes/maccatalyst-arm64/native/libe_sqlite3mc.dylib": {
+            "assetType": "native",
+            "rid": "maccatalyst-arm64"
+          },
+          "runtimes/maccatalyst-x64/native/libe_sqlite3mc.dylib": {
+            "assetType": "native",
+            "rid": "maccatalyst-x64"
+          },
+          "runtimes/osx-arm64/native/libe_sqlite3mc.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-x64/native/libe_sqlite3mc.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-arm/native/e_sqlite3mc.dll": {
+            "assetType": "native",
+            "rid": "win-arm"
+          },
+          "runtimes/win-arm64/native/e_sqlite3mc.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/e_sqlite3mc.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/e_sqlite3mc.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
       "SQLitePCLRaw.lib.sqlcipher.linux/1.1.14": {
         "type": "package",
         "compile": {
@@ -2330,6 +2441,18 @@
         },
         "runtime": {
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3mc/2.1.10": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.10"
+        },
+        "compile": {
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3mc.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3mc.dll": {}
         }
       },
       "SQLitePCLRaw.provider.sqlcipher.netstandard11/1.1.14": {
@@ -7552,6 +7675,26 @@
         "sqlitepclraw.bundle_e_sqlite3.nuspec"
       ]
     },
+    "SQLitePCLRaw.bundle_e_sqlite3mc/2.1.10": {
+      "sha512": "6+Vo5ByUnTN0VsAhtxqYSoX0GapqHoGzrqDQDHFKEHTH3wUkv3AuSClqcSFs/wqeXdhElBwC2A8fMnSzkLKcVg==",
+      "type": "package",
+      "path": "sqlitepclraw.bundle_e_sqlite3mc/2.1.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/monoandroid90/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net461/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-android31.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-android31.0/SQLitePCLRaw.batteries_v2.xml",
+        "lib/net6.0-ios14.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-ios14.2/SQLitePCLRaw.batteries_v2.dll",
+        "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/xamarinios10/SQLitePCLRaw.batteries_v2.dll",
+        "sqlitepclraw.bundle_e_sqlite3mc.2.1.10.nupkg.sha512",
+        "sqlitepclraw.bundle_e_sqlite3mc.nuspec"
+      ]
+    },
     "SQLitePCLRaw.bundle_sqlcipher/1.1.14": {
       "sha512": "1A/fF7A7LRBLEho+oZeo4NqPy/bIi64xTH0/TgtFlwTJayJ6ocChgwgwi/eY74PCI15Yd7r0vHR5s86WITzEYQ==",
       "type": "package",
@@ -7587,15 +7730,15 @@
         "sqlitepclraw.bundle_sqlcipher.nuspec"
       ]
     },
-    "SQLitePCLRaw.core/2.1.6": {
-      "sha512": "wO6v9GeMx9CUngAet8hbO7xdm+M42p1XeJq47ogyRoYSvNSp0NGLI+MgC0bhrMk9C17MTVFlLiN6ylyExLCc5w==",
+    "SQLitePCLRaw.core/2.1.10": {
+      "sha512": "Ii8JCbC7oiVclaE/mbDEK000EFIJ+ShRPwAvvV89GOZhQ+ZLtlnSWl6ksCNMKu/VGXA4Nfi2B7LhN/QFN9oBcw==",
       "type": "package",
-      "path": "sqlitepclraw.core/2.1.6",
+      "path": "sqlitepclraw.core/2.1.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/SQLitePCLRaw.core.dll",
-        "sqlitepclraw.core.2.1.6.nupkg.sha512",
+        "sqlitepclraw.core.2.1.10.nupkg.sha512",
         "sqlitepclraw.core.nuspec"
       ]
     },
@@ -7640,6 +7783,51 @@
         "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll",
         "sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
         "sqlitepclraw.lib.e_sqlite3.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.lib.e_sqlite3mc/2.1.10": {
+      "sha512": "a04EPHsCRqtkFlKoJQkzS05cK+7X7VI1CN8N5DCjwD43cO/y+TZfc9zimVTbS0tpsL9Llb/1cPll5sxK545XhQ==",
+      "type": "package",
+      "path": "sqlitepclraw.lib.e_sqlite3mc/2.1.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3mc.targets",
+        "buildTransitive/net6.0/SQLitePCLRaw.lib.e_sqlite3mc.targets",
+        "buildTransitive/net7.0/SQLitePCLRaw.lib.e_sqlite3mc.targets",
+        "buildTransitive/net8.0/SQLitePCLRaw.lib.e_sqlite3mc.targets",
+        "lib/net461/_._",
+        "lib/netstandard2.0/_._",
+        "runtimes/browser-wasm/nativeassets/net6.0/e_sqlite3mc.a",
+        "runtimes/browser-wasm/nativeassets/net7.0/e_sqlite3mc.a",
+        "runtimes/browser-wasm/nativeassets/net8.0/e_sqlite3mc.a",
+        "runtimes/browser-wasm/nativeassets/net9.0/e_sqlite3mc.a",
+        "runtimes/linux-arm/native/libe_sqlite3mc.so",
+        "runtimes/linux-arm64/native/libe_sqlite3mc.so",
+        "runtimes/linux-armel/native/libe_sqlite3mc.so",
+        "runtimes/linux-mips64/native/libe_sqlite3mc.so",
+        "runtimes/linux-musl-arm/native/libe_sqlite3mc.so",
+        "runtimes/linux-musl-arm64/native/libe_sqlite3mc.so",
+        "runtimes/linux-musl-s390x/native/libe_sqlite3mc.so",
+        "runtimes/linux-musl-x64/native/libe_sqlite3mc.so",
+        "runtimes/linux-ppc64le/native/libe_sqlite3mc.so",
+        "runtimes/linux-s390x/native/libe_sqlite3mc.so",
+        "runtimes/linux-x64/native/libe_sqlite3mc.so",
+        "runtimes/linux-x86/native/libe_sqlite3mc.so",
+        "runtimes/maccatalyst-arm64/native/libe_sqlite3mc.dylib",
+        "runtimes/maccatalyst-x64/native/libe_sqlite3mc.dylib",
+        "runtimes/osx-arm64/native/libe_sqlite3mc.dylib",
+        "runtimes/osx-x64/native/libe_sqlite3mc.dylib",
+        "runtimes/win-arm/native/e_sqlite3mc.dll",
+        "runtimes/win-arm64/native/e_sqlite3mc.dll",
+        "runtimes/win-x64/native/e_sqlite3mc.dll",
+        "runtimes/win-x86/native/e_sqlite3mc.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/e_sqlite3mc.dll",
+        "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3mc.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3mc.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3mc.dll",
+        "sqlitepclraw.lib.e_sqlite3mc.2.1.10.nupkg.sha512",
+        "sqlitepclraw.lib.e_sqlite3mc.nuspec"
       ]
     },
     "SQLitePCLRaw.lib.sqlcipher.linux/1.1.14": {
@@ -7713,6 +7901,20 @@
         "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3.dll",
         "sqlitepclraw.provider.e_sqlite3.2.1.6.nupkg.sha512",
         "sqlitepclraw.provider.e_sqlite3.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.provider.e_sqlite3mc/2.1.10": {
+      "sha512": "6577BgYi1Nk/0Lw/FYwUoL3XDWFjp44ncD28sj+zna7hwEf/mKwirD/xPaqzyhsAUkuN16RVt/mN7HaosYntPg==",
+      "type": "package",
+      "path": "sqlitepclraw.provider.e_sqlite3mc/2.1.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3mc.dll",
+        "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3mc.dll",
+        "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3mc.dll",
+        "sqlitepclraw.provider.e_sqlite3mc.2.1.10.nupkg.sha512",
+        "sqlitepclraw.provider.e_sqlite3mc.nuspec"
       ]
     },
     "SQLitePCLRaw.provider.sqlcipher.netstandard11/1.1.14": {
@@ -11484,13 +11686,13 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.10",
       "Microsoft.Data.Sqlite >= 8.0.10",
-      "Microsoft.Data.Sqlite.Core >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.10",
+      "Microsoft.EntityFrameworkCore.Sqlite.Core >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.6",
       "NonFactors.Grid.Mvc6 >= 8.0.0",
       "PersianDateTime >= 1.1.5082.36395",
-      "SQLitePCLRaw.bundle_e_sqlite3 >= 2.1.6",
+      "SQLitePCLRaw.bundle_e_sqlite3mc >= 2.1.10",
       "SQLitePCLRaw.bundle_sqlcipher >= 1.1.14"
     ]
   },
@@ -11552,11 +11754,11 @@
             "target": "Package",
             "version": "[8.0.10, )"
           },
-          "Microsoft.Data.Sqlite.Core": {
+          "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[8.0.10, )"
           },
-          "Microsoft.EntityFrameworkCore.Sqlite": {
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": {
             "target": "Package",
             "version": "[8.0.10, )"
           },
@@ -11576,9 +11778,9 @@
             "target": "Package",
             "version": "[1.1.5082.36395, )"
           },
-          "SQLitePCLRaw.bundle_e_sqlite3": {
+          "SQLitePCLRaw.bundle_e_sqlite3mc": {
             "target": "Package",
-            "version": "[2.1.6, )"
+            "version": "[2.1.10, )"
           },
           "SQLitePCLRaw.bundle_sqlcipher": {
             "target": "Package",
