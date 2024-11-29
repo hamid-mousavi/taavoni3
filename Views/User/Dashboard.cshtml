@@ -11,10 +11,11 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDebt.ToString("N0")</div>
+                           
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@(Model.TotalDebt.ToString("N0").MyUnit())</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -28,10 +29,10 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی بااحتساب جریمه</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDeptWithPenaltyRate.ToString("N0")</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDeptWithPenaltyRate.ToString("N0").MyUnit()</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             مجموع پرداختی</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalPaid.ToString("N0")</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalPaid.ToString("N0").MyUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -62,10 +63,10 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             مبلغ باقیمانده</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.RemainingAmount.ToString("N0")</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.RemainingAmount.ToString("N0").MyUnit()</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -165,7 +166,7 @@
 
 
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Reports</h1>
+<h1 class="h3 mb-4 text-gray-800">گزارش</h1>
 
 <div class="row">
 

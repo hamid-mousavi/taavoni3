@@ -45,7 +45,10 @@ namespace taavoni3.Extention
             }
             return persianDate;
         }
-
+        public static string MyUnit(this string str){
+        
+            return str + " تومان";
+        }
 
 
 
