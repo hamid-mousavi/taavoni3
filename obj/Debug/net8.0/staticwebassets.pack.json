@@ -81,6 +81,10 @@
       "PackagePath": "staticwebassets\\assets\\img\\undraw_rocket.svg"
     },
     {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\custom-js.js",
+      "PackagePath": "staticwebassets\\assets\\js\\custom-js.js"
+    },
+    {
       "Id": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\demo\\chart-area-demo.js",
       "PackagePath": "staticwebassets\\assets\\js\\demo\\chart-area-demo.js"
     },

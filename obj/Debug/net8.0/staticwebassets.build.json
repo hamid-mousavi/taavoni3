@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LzDww5Fus+Md+VYNtCrUBhpq3Hr6YL+bC345Ix2csDI=",
+  "Hash": "HxElMjziXuaIie9aTF00hZLJqy3qXX8gxWDLikVZw/g=",
   "Source": "Taavoni",
   "BasePath": "_content/Taavoni",
   "Mode": "Default",
@@ -1554,6 +1554,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\undraw_rocket.svg"
+    },
+    {
+      "Identity": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\custom-js.js",
+      "SourceId": "Taavoni",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\",
+      "BasePath": "_content/Taavoni",
+      "RelativePath": "assets/js/custom-js.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\custom-js.js"
     },
     {
       "Identity": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\wwwroot\\assets\\js\\demo\\chart-area-demo.js",

@@ -51,7 +51,9 @@ namespace taavoni3.Extention
         }
 
 
-
+public static string ToPersianUnit(this string str){
+return str + "تومان ";
+}
 
 
     }

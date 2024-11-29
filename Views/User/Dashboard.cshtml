@@ -11,8 +11,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی</div>
-                           
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">@(Model.TotalDebt.ToString("N0").MyUnit())</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDebt.ToString("N0").ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -29,7 +28,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی بااحتساب جریمه</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDeptWithPenaltyRate.ToString("N0").MyUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDeptWithPenaltyRate.ToString("N0").ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -46,7 +45,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             مجموع پرداختی</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalPaid.ToString("N0").MyUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalPaid.ToString("N0").ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -63,7 +62,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             مبلغ باقیمانده</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.RemainingAmount.ToString("N0").MyUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.RemainingAmount.ToString("N0").ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -93,7 +92,7 @@
                         <td>از تاریخ</td>
                         <td>تا تاریخ</td>
                         <td>تاریخ سررسید</td>
-                        <td>مبلغ</td>
+                        <td>@("مبلغ ".ToPersianUnit())</td>
                         <td>درصد جریمه</td>
                         <td>مبلغ بااحتساب جریمه</td>
                         <td>مبلغ باقیمانده</td>
@@ -197,112 +196,15 @@
 
 @section Scripts {
 
-
+<script src="~/assets/js/custom-js.js"></script>
     <script>
 $(document).ready( function () {
-    
-    var table = $('#datatable2').DataTable({
-        
-    });
-    
-    
+    newTable('#datatable');
+    newTable('#datatable2');
+    loadDebtChartData(`/Reports/api/UserDebts`,'debtChart','doughnut');
+    loadValueChartData(`/api/Payments/user-payments`,'paymentsChart','مجموع پرداختی‌ها');
+
 } );
-        // دریافت داده‌های بدهی‌ها برای چارت
-        async function loadDebtChartData() {
-
-
-            const response = await fetch(`/Reports/api/UserDebts`);
-            const data = await response.json();
-            // نمایش داده‌ها در کنسول
-
-            const labels = data.map(item => item.userName);
-
-            const remainingDebts = data.map(item => item.remainingDebt);
-
-            const ctx = document.getElementById('debtChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: remainingDebts,
-                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'],
-                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#f4b619', '#e02d1b'],
-                        borderWidth: 1
-                    }]
-                }
-            });
-        }
-
-        // بارگذاری چارت‌ها
-        $(document).ready(function () {
-            loadDebtChartData();
-        });
-
-
-
-
-    </script>
-
-
-    <script>
-        fetch('/api/Payments/user-payments')
-            .then(response => response.json())
-            .then(data => {
-                console.log('داده‌های دریافت‌شده از API:', data);
-
-                if (data.length === 0) {
-                    alert('هیچ داده‌ای برای نمایش وجود ندارد!');
-                    return;
-                }
-                const labels = data.map(item => item.paymentDate); // برای تاریخ پرداخت
-                const amounts = data.map(item => item.amount); // برای مبلغ       
-
-                console.log('Labels:', labels);
-                console.log('Amounts:', amounts);
-
-                const ctx = document.getElementById('paymentsChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'مجموع پرداختی‌ها',
-                            data: amounts,
-                            borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
-                                'rgb(54, 162, 235)',
-                                'rgb(153, 102, 255)',
-                                'rgb(201, 203, 207)'
-                            ], backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 205, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(201, 203, 207, 0.2)'
-                            ], borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('خطا در دریافت داده‌ها:', error);
-                alert('مشکلی در بارگذاری داده‌ها رخ داده است.');
-            });
-
     </script>
     <!-- Page level plugins -->
     <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
