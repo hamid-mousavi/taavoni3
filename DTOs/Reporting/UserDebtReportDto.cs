@@ -12,6 +12,12 @@ namespace Taavoni.DTOs.Reporting
         public decimal TotalDebt { get; set; }
         public decimal RemainingDebt { get; set; }
     }
+    public class UserDebtsReportDto
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public List<UserDebtReportDto> Debts { get; set; }
+    }
 
     public class UserPaymentReportDto
     {
@@ -60,6 +66,8 @@ namespace Taavoni.DTOs.Reporting
 
     public class DashboardDto
     {
+
+
         public decimal TotalDebt { get; set; }
         public decimal TotalPaid { get; set; }
         public decimal TotalDeptWithPenaltyRate { get; set; }
@@ -67,6 +75,18 @@ namespace Taavoni.DTOs.Reporting
         public List<DebtDetailDto> DebtDetails { get; set; }
         public List<PaymentDetailDto> PaymentDetails { get; set; }
     }
+    public class DashboardChartDto
+    {
+        public List<DebtChartDto> ChartData { get; set; }
+    }
+
+    public class DebtChartDto
+    {
+        public string Title { get; set; }
+        public double DebtAmount { get; set; }
+        public double PaymentAmount { get; set; }
+    }
+
 
 
 

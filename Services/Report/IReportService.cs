@@ -15,6 +15,8 @@ namespace Taavoni.Services.Interfaces
         Task<UserPaymentReportDto> GetUserPaymentsReportAsync(string userId);
         Task<UserDebtReportDto> GetTopDebtsReportAsync();
         Task<DashboardDto> GetUserDashboardAsync(string userId);
+        Task<UserDebtsReportDto> GetUserDebtsReportAsync(string userId);
+        Task<DashboardChartDto> GetUserDashboardChartAsync(string userId);
 
     }
 
@@ -93,10 +95,10 @@ namespace Taavoni.Services.Interfaces
         {
             var totalDebt = await _context.Debts
              .Where(d => d.UserId == userId)
-             .SumAsync(d =>(double)d.Amount);
-              var totalDebtWithPenaltyRate = await _context.Debts
-             .Where(d => d.UserId == userId)
-             .SumAsync(d =>(double)d.AmountWithPenaltyRate);
+             .SumAsync(d => (double)d.Amount);
+            var totalDebtWithPenaltyRate = await _context.Debts
+           .Where(d => d.UserId == userId)
+           .SumAsync(d => (double)d.AmountWithPenaltyRate);
 
             var totalPaid = await _context.Payments
                 .Where(p => p.UserId == userId)
@@ -123,7 +125,7 @@ namespace Taavoni.Services.Interfaces
                     Amount = p.Amount,
                     PaymentDate = p.PaymentDate
                 }).ToListAsync();
-            
+
 
             return new DashboardDto
             {
@@ -136,6 +138,59 @@ namespace Taavoni.Services.Interfaces
 
             };
         }
+        public async Task<UserDebtsReportDto> GetUserDebtsReportAsync(string userId)
+        {
+            var user = await _context.Users
+                .Where(u => u.Id == userId)
+                .Select(u => new UserDebtsReportDto
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    Debts = u.Debts.Select(d => new UserDebtReportDto
+                    {
+                        TotalDebt = d.Amount,
+
+                    }).ToList()
+
+                })
+                .FirstOrDefaultAsync();
+
+            return user;
+        }
+
+
+
+
+        public async Task<DashboardChartDto> GetUserDashboardChartAsync(string userId)
+        {
+            var debts = await _context.Debts
+                .Where(d => d.UserId == userId)
+                .Select(d => new
+                {
+                    DebtId = d.Id,
+                    Title = d.debtTitle.Title,
+                    Amount = d.Amount,
+                    Payments = _context.Payments
+                        .Where(p => p.DebtId == d.Id) // فرض بر این است که DebtId در پرداخت‌ها وجود دارد
+                        .Sum(p => (double?)p.Amount) ?? 0  // مجموع پرداخت‌های مربوط به این بدهی
+                })
+                .ToListAsync();
+
+            var chartData = debts.Select(d => new DebtChartDto
+            {
+                Title = d.Title,
+                DebtAmount = (double)d.Amount,
+                PaymentAmount = d.Payments  // مجموع پرداخت‌ها برای این بدهی
+            }).ToList();
+
+            return new DashboardChartDto
+            {
+                ChartData = chartData
+            };
+        }
+
+
     }
+
 
 }

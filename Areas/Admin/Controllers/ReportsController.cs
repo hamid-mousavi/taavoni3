@@ -1,7 +1,9 @@
 
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Taavoni.DTOs.Reporting;
 using Taavoni.Services.Interfaces;
 
 namespace Taavoni.Areas.Admin.Controllers
@@ -64,6 +66,7 @@ namespace Taavoni.Areas.Admin.Controllers
             });
             return Json(data);
         }
+   
 
         [HttpGet("api/UserDebts")]
         public async Task<IActionResult> GetUserDebtsData()

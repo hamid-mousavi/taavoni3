@@ -165,7 +165,7 @@
 
 
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">گزارش</h1>
+<h1 class="h3 mb-4 text-gray-800"> گزارش کل بدهی</h1>
 
 <div class="row">
 
@@ -176,17 +176,27 @@
                 <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی‌ها</h6>
             </div>
             <div class="card-body">
-                <canvas id="debtChart"></canvas>
+                <canvas id="alldebtChart"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
+    @* <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">گزارش پرداخت ها</h6>
             </div>
             <div class="card-body">
                 <canvas id="paymentsChart"></canvas>
+            </div>
+        </div>
+    </div> *@
+        <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی ها</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="debtsChart"></canvas>
             </div>
         </div>
     </div>
@@ -197,12 +207,13 @@
 @section Scripts {
 
 <script src="~/assets/js/custom-js.js"></script>
-    <script>
+<script>
 $(document).ready( function () {
     newTable('#datatable');
     newTable('#datatable2');
-    loadDebtChartData(`/Reports/api/UserDebts`,'debtChart','doughnut');
-    loadValueChartData(`/api/Payments/user-payments`,'paymentsChart','مجموع پرداختی‌ها');
+    loadAllDebtChartData(`/Reports/api/UserDebts`,'alldebtChart','doughnut');
+  //  loadPaymentsChartData(`/api/Payments/user-payments`,'paymentsChart','مجموع پرداختی‌ها');
+    loaddebtsChartData(`/api/Payments/user-dashboardchart`,'debtsChart');
 
 } );
     </script>
