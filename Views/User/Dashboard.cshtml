@@ -1,5 +1,8 @@
+@using System.Globalization
+@using Persia_.NET_Core
 @using taavoni3.Extention
 @using Taavoni.DTOs.Reporting
+@using DNTPersianUtils.Core
 @model Taavoni.DTOs.Reporting.DashboardDto
 
 <div class="row">
@@ -11,7 +14,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDebt.ToString("N0").ToPersianUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDebt.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -28,7 +31,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             مجموع بدهی بااحتساب جریمه</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalDeptWithPenaltyRate.ToString("N0").ToPersianUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -45,7 +48,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             مجموع پرداختی</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.TotalPaid.ToString("N0").ToPersianUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalPaid.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -62,7 +65,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             مبلغ باقیمانده</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$@Model.RemainingAmount.ToString("N0").ToPersianUnit()</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.RemainingAmount.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -85,7 +88,7 @@
 
 
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="debttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <td>عنوان</td>
@@ -93,7 +96,6 @@
                         <td>تا تاریخ</td>
                         <td>تاریخ سررسید</td>
                         <td>@("مبلغ ".ToPersianUnit())</td>
-                        <td>درصد جریمه</td>
                         <td>مبلغ بااحتساب جریمه</td>
                         <td>مبلغ باقیمانده</td>
 
@@ -106,15 +108,13 @@
                         <tr>
                             <td>@debt.Title</td>
 
-                            <td>@debt.StartDate.ToPersianDate()</td>
-                            <td>@debt.EndDate.ToPersianDate()</td>
-                            <td>@(debt.DueDate.ToPersianDate())</td>
-                            <td>@debt.Amount.ToString("N0")</td>
-                            <td>@debt.PenaltyRate</td>
-                            <td>@debt.TotalDeptWithPenaltyRate.ToString("N0")</td>
-                            <td>@debt.RemainingAmount.ToString("N0")</td>
-
-
+                            <td>@debt.StartDate.ToPersianDateTextify()</td>
+                            <td>@debt.EndDate.ToPersianDateTextify()</td>
+                            <td>@debt.DueDate.ToPersianDateTextify()</td>
+                            <td>@debt.Amount.ToString().ToPersianNumbers()</td>
+                            
+                            <td>@debt.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</td>
+                        <td>@debt.RemainingAmount.ToString("N0").ToPersianNumbers()</td>
                         </tr>
                     }
                 </tbody>
@@ -136,7 +136,7 @@
 
 
         <div class="table-responsive">
-            <table class="table table-bordered" id="datatable2" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="paymenttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>عنوان</th>
@@ -149,9 +149,10 @@
                     {
                         <tr>
                             <td>@payment.Title</td>
-                            <td>@payment.Amount.ToString("N0")</td>
                            
-                            <td>@( payment.PaymentDate.HasValue ? payment.PaymentDate.Value.ToPersianDate() : "تاریخ موجود نیست")</td>
+                            <td>@payment.Amount.ToString("N0").ToPersianNumbers()</td>
+                           
+                            <td>@( payment.PaymentDate.HasValue ? payment.PaymentDate.Value.ToPersianDateTextify() : "تاریخ موجود نیست")</td>
                         </tr>
                     }
                 </tbody>
@@ -205,25 +206,55 @@
 
 
 @section Scripts {
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="~/assets/js/custom-js.js"></script>
+<script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets/js/demo/datatables-demo.js"></script>
+<script src="~/assets/vendor/chart.js/Chart.min.js"></script>
+
 <script>
-$(document).ready( function () {
-    newTable('#datatable');
-    newTable('#datatable2');
-    loadAllDebtChartData(`/Reports/api/UserDebts`,'alldebtChart','doughnut');
-  //  loadPaymentsChartData(`/api/Payments/user-payments`,'paymentsChart','مجموع پرداختی‌ها');
-    loaddebtsChartData(`/api/Payments/user-dashboardchart`,'debtsChart');
+$(document).ready(function() {
 
-} );
-    </script>
-    <!-- Page level plugins -->
-    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+// تعریف مرتب‌سازی سفارشی برای DataTable
+$.extend($.fn.dataTable.ext.type.order, {
+    'persian-numeric-asc': function(a, b) {
+        return parseFloat(persianToEnglishNumber(a)) - parseFloat(persianToEnglishNumber(b));
+    },
+    'persian-numeric-desc': function(a, b) {
+        return parseFloat(persianToEnglishNumber(b)) - parseFloat(persianToEnglishNumber(a));
+    }
+});
 
-    <!-- Page level custom scripts -->
-    <script src="~/assets/js/demo/datatables-demo.js"></script>
-    <script src="~/assets/vendor/chart.js/Chart.min.js"></script>
+// استفاده از نوع مرتب‌سازی سفارشی در DataTable
+$('#debttable').DataTable({
+    columnDefs: [
+        { targets: [4,5,6], type: 'persian-numeric' } // ستون مورد نظر (مثلاً ستون پنجم)
+    ],
+      language: {
+            url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json',
+        },
+        
+});
+
+
+
+
+
+
+
+
+
+
+
+    
+   // newTable('#debttable');
+    newTable('#paymenttable');
+    loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut');
+    loaddebtsChartData(`/api/Payments/user-dashboardchart`, 'debtsChart');
+});
+
+</script>
 
 
 }

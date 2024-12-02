@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\assets\\fonts\\BYekan\\BYekanBold.ttf"
     },
     {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\DJFont\\djfont.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\DJFont\\djfont.ttf"
+    },
+    {
       "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\IRSans\\Sans.eot",
       "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.eot"
     },
@@ -51,6 +55,38 @@
     {
       "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\IRSans\\Sans.woff",
       "PackagePath": "staticwebassets\\assets\\fonts\\IRSans\\Sans.woff"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan black.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan black.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan bold.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan extrablack.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan extrablack.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan extrabold.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan extrabold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan light.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan medium.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan thin.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan thin.ttf"
+    },
+    {
+      "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\fonts\\iranyekan\\Qs_Iranyekan.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\iranyekan\\Qs_Iranyekan.ttf"
     },
     {
       "Id": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\wwwroot\\assets\\img\\000.jpg",

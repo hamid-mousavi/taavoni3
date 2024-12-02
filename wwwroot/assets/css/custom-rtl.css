@@ -15,10 +15,17 @@
         url('../fonts/IRSans/Sans.woff') format('woff');
 
 }
-
+@font-face {
+    font-family: DJFont;
+    src: url('../fonts/DJFont/djfont.ttf');
+}
+@font-face {
+    font-family: 'IranYekan';
+    src: url('../fonts/iranyekan/Qs_Iranyekan.ttf');
+}
 body,
 .date {
-    font-family: 'IRANSans', Arial, sans-serif;
+    font-family: 'DJFont', Arial, sans-serif;
 }
 
 /* Custom RTL Styles */

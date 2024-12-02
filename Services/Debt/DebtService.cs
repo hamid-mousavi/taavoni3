@@ -175,8 +175,6 @@ public class DebtService : IDebtService
                 debt.RemainingAmount += penalty;
                 debt.AmountWithPenaltyRate = penalty + debt.Amount;
                 
-
-
                 // بروزرسانی تاریخ آخرین اعمال جریمه
                 debt.LastPenaltyAppliedDate = DateTime.Today;
             }

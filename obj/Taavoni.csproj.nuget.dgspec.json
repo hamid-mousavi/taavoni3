@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DNTPersianUtils.Core": {
+              "target": "Package",
+              "version": "[6.3.2, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.10, )"
@@ -88,6 +92,10 @@
             "NonFactors.Grid.Mvc6": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Persia.NetCore": {
+              "target": "Package",
+              "version": "[1.0.7, )"
             },
             "PersianDateTime": {
               "target": "Package",

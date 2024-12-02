@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cvAWWdeCapg=",
+  "dgSpecHash": "Df+RCdZK6w4=",
   "success": true,
   "projectFilePath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\iR\\.nuget\\packages\\dntpersianutils.core\\6.3.2\\dntpersianutils.core.6.3.2.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -126,6 +127,7 @@
     "C:\\Users\\iR\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\iR\\.nuget\\packages\\persia.netcore\\1.0.7\\persia.netcore.1.0.7.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\persiandatetime\\1.1.5082.36395\\persiandatetime.1.1.5082.36395.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",

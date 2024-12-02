@@ -1,5 +1,9 @@
 function newTable(params) {
     var table = $(params).DataTable({
+    
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json',
+        },
 
     });
 };
@@ -176,3 +180,26 @@ async function loaddebtsChartData(api, tableId) {
 
 
 }
+function convertNumbersToPersian() {
+    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    document.body.innerHTML = document.body.innerHTML.replace(/\d/g, function (w) {
+        return persianDigits[+w];
+    });
+}
+// تابع تبدیل اعداد فارسی به انگلیسی
+function persianToEnglishNumber(str) {
+    return str.replace(/,/g, '').replace(/[۰-۹]/g, function(digit){
+        return '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit);
+    });
+}
+function persianToEnglishNumber(str) {
+    return str.replace(/,/g, '').replace(/[۰-۹]/g, function(digit) {
+        return '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit);
+    });
+}
+
+
+
+    
+
+

@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "Taavoni/1.0.0": {
         "dependencies": {
+          "DNTPersianUtils.Core": "6.3.2",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.10",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10",
           "Microsoft.AspNetCore.Identity.UI": "8.0.10",
@@ -19,12 +20,21 @@
           "Microsoft.EntityFrameworkCore.Tools": "8.0.10",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.6",
           "NonFactors.Grid.Mvc6": "8.0.0",
+          "Persia.NetCore": "1.0.7",
           "PersianDateTime": "1.1.5082.36395",
           "SQLitePCLRaw.bundle_e_sqlite3mc": "2.1.10",
           "SQLitePCLRaw.bundle_sqlcipher": "1.1.14"
         },
         "runtime": {
           "Taavoni.dll": {}
+        }
+      },
+      "DNTPersianUtils.Core/6.3.2": {
+        "runtime": {
+          "lib/net8.0/DNTPersianUtils.Core.dll": {
+            "assemblyVersion": "6.3.2.0",
+            "fileVersion": "6.3.2.0"
+          }
         }
       },
       "Humanizer/2.14.1": {
@@ -1632,6 +1642,14 @@
           }
         }
       },
+      "Persia.NetCore/1.0.7": {
+        "runtime": {
+          "lib/net7.0/Persia.NetCore.dll": {
+            "assemblyVersion": "1.0.7.0",
+            "fileVersion": "1.0.7.0"
+          }
+        }
+      },
       "PersianDateTime/1.1.5082.36395": {
         "runtime": {
           "lib/net40/PersianDateTime.dll": {
@@ -2753,6 +2771,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "DNTPersianUtils.Core/6.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2CtYEyPb8RSXsjtRkYbfIWarMphSI5bLXBdrDnZkbsTdCzo+Q6sXNEv7crENZ2gmn3Gqsny87ikoKgm9ZVEJRA==",
+      "path": "dntpersianutils.core/6.3.2",
+      "hashPath": "dntpersianutils.core.6.3.2.nupkg.sha512"
+    },
     "Humanizer/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -3606,6 +3631,13 @@
       "sha512": "sha512-v/GGlIj2dd7svplFmASWEueu62veKW0MrMtBaZ7QG8aJTSGv2yE+pgUGhXRcQ4nxNOEq/wLBrz1vkth/1SND7A==",
       "path": "nuget.versioning/6.11.0",
       "hashPath": "nuget.versioning.6.11.0.nupkg.sha512"
+    },
+    "Persia.NetCore/1.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gh33aNu3MKZq2ZOrxfUOhzZ8jOSPmc3Q743w66YFW7dSLIDdhSIAKfZxrspe/Gsk1dSAag73O8xzpTI70LhZ7A==",
+      "path": "persia.netcore/1.0.7",
+      "hashPath": "persia.netcore.1.0.7.nupkg.sha512"
     },
     "PersianDateTime/1.1.5082.36395": {
       "type": "package",

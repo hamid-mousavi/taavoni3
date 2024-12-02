@@ -6,31 +6,8 @@ using Taavoni.Models.Entities;
 using Taavoni.Services.Interfaces;
 using SQLitePCL;
 using Microsoft.Data.Sqlite;
-
-// Batteries_V2.Init();
-
-// using (var connection = new Microsoft.Data.Sqlite.SqliteConnection("Data Source=file:Taavoni.db?cipher=sqlcipher&legacy=4;Password=Password12!")) // رمز فعلی
-// {
-//     connection.Open();
-
-//     using (var command = connection.CreateCommand())
-//     {
-//         // تغییر به حالت DELETE برای اجازه دادن به تغییر رمز
-//         command.CommandText = "PRAGMA journal_mode = DELETE;";
-//         command.ExecuteNonQuery();
-
-//         // دستور تغییر رمز
-//         command.CommandText = "PRAGMA rekey = 'NewPassword123!';"; // رمز جدید
-//         command.ExecuteNonQuery();
-
-//         // بازگشت به حالت WAL (اختیاری)
-//         command.CommandText = "PRAGMA journal_mode = WAL;";
-//         command.ExecuteNonQuery();
-//     }
-
-//     connection.Close();
-// }
-
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 
 
@@ -45,6 +22,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // افزودن DbContext به DI container
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));  // پشتیبانی از SQLite با رمزگذاری
+
 
 
 //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
@@ -90,6 +68,9 @@ else
 app.UseStaticFiles();
 
 app.UseRouting();
+
+
+
 
 app.UseAuthentication(); // اضافه کردن احراز هویت
 app.UseAuthorization();
