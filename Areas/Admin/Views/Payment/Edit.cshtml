@@ -1,25 +1,30 @@
-@model PaymentDto
+@model UpdatePaymentDto
 @using Taavoni.DTOs.Payment
 <form method="post" asp-action="Edit">
-        <div class="form-group">
+        @* <div class="form-group">
         <label for="UserId">نام کاربر</label>
         <input type="text" class="form-control" id="UserId" name="UserId" value="@Model.UserId.ToString()" readonly />
-    </div>
+    </div> *@
     <div class="form-group">
-        <label for="Title">عنوان</label>
-        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required />
-    </div>
+        <label for="Title">نام کاربر</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title.ToString()" readonly />
+    </div> *
+   
     <div class="form-group">
         <label for="Amount">مقدار پرداخت</label>
         <input type="number" class="form-control" id="Amount" name="Amount" value="@Model.Amount" required />
     </div>
+     <div class="form-group">
+        <label for="DebtId">شناسه بدهی</label>
+        <input type="number" class="form-control" id="DebtId" name="DebtId" value="@Model.DebtId" required readonly />
+    </div>
     <div class="form-group">
         <label for="Description">توضیحات</label>
         <input class="form-control" id="Description" name="Description" value="@Model.Description"/>
-     <div class="form-group">
+     @* <div class="form-group">
         <label for="attachment">پیوست مدرک</label>
         <input type="file" name="attachment" class="form-control-file" value="@Model.AttachmentPath?.ToString()"/>
-    </div> 
+    </div>  *@
   
     
     

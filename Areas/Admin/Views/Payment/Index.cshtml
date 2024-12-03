@@ -2,57 +2,57 @@
 @using NonFactors.Mvc.Grid
 @using Taavoni.DTOs
 @using Taavoni.DTOs.Payment
+@using DNTPersianUtils.Core
 
+@{
+  int number =0;
+}
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Debt Details</h1>
+<h1 class="h3 mb-4 text-gray-800">جزئیات پرداخت</h1>
 
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    <h6 class="m-0 font-weight-bold text-primary">پرداخت ها</h6>
   </div>
   <div class="card-body">
 
 
     <div class="row p-2">
-      <a asp-area="Admin" asp-controller="Payment" asp-action="CreatePayment" class="btn btn-primary btn-circle"
+      <a asp-area="Admin" asp-controller="Payment" asp-action="CreatePayment" class="btn btn-primary btn-icon-split"
         style="margin: 5;">
-        <i class="fas fa-plus"></i></a>
-      
+        <span class="icon text-white-50">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span class="text">جدید</span>
+      </a>
+
     </div>
 
 
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="paymentTable" width="100%" cellspacing="0">
         <thead>
-        <tr>
+          <tr>
+            <th>ردیف</th>
             <th>نام</th>
             <th>ایمیل</th>
-            <th>شناسه بدهی</th>
-            <th>مبلغ</th>           
+            <th> مبلغ بدهی</th>
+            <th>مبلغ پرداختی</th>
             <th>عنوان</th>
             <th>پیوست</th>
             <th>عملیات</th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>نام</th>
-            <th>ایمیل</th>
-            <th>شناسه بدهی</th>
-            <th>مبلغ</th>           
-            <th>عنوان</th>
-            <th>پیوست</th>
-            <th>عملیات</th>
-          </tr>
-        </tfoot>
         <tbody>
           @foreach (var item in Model)
           {
+            number+=1;
             <tr>
+              <th>@number.ToString().ToPersianNumbers()</th>
               <th>@item.Name</th>
               <th>@item.UserName</th>
-              <th>@item.DebtId</th>
-              <th>@item.Amount.ToString("N")</th>
+              <th>@item.DebtAmountWPR.ToString("N0").ToPersianNumbers()</th>
+              <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
               <th>@item.Title</th>
               <th>@item.AttachmentPath</th>
               <th>
@@ -76,7 +76,9 @@
   @section Scripts {
     <script>
 
-      let table = new DataTable('#myTable');
+ $(document).ready(function () {
+        newTable('#paymentTable', [0,3,4]);
+      });
     </script>
 
 

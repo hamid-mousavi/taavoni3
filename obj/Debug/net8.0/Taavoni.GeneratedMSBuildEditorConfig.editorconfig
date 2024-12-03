@@ -17,207 +17,207 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Taavoni
 build_property.RootNamespace = Taavoni
-build_property.ProjectDir = C:\Users\iR\Desktop\PR\.Net\taavoni3\
+build_property.ProjectDir = c:\Users\iR\Desktop\PR\Taavoni\Taavoni\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\iR\Desktop\PR\.Net\taavoni3
+build_property.MSBuildProjectDirectory = c:\Users\iR\Desktop\PR\Taavoni\Taavoni
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/DebtTitle/Create.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/DebtTitle/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFRpdGxlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/DebtTitle/Delete.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/DebtTitle/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFRpdGxlXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/DebtTitle/Edit.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/DebtTitle/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFRpdGxlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/DebtTitle/Index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/DebtTitle/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFRpdGxlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Create.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Delete.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Detail.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Edit.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Debt/Privacy.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Home/index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Home/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Payment/CreatePayment.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Payment/CreatePayment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxDcmVhdGVQYXltZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Payment/Edit.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Payment/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Payment/Index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Payment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Payment/UserPayments.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Payment/UserPayments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGF5bWVudFxVc2VyUGF5bWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Reports/DebtReport.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Reports/DebtReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xEZWJ0UmVwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Reports/PaymentReport.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Reports/PaymentReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xQYXltZW50UmVwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Reports/TopDebtsReport.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Reports/TopDebtsReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xUb3BEZWJ0c1JlcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Shared/Error.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Shared/_LoginPartial.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/_ViewImports.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/_ViewStart.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Login.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Manage/Email.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/Register.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/_ViewImports.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Identity/Pages/_ViewStart.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Home/Index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Home/Privacy.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Roles/CreateAdminRole.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Roles/CreateAdminRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlQWRtaW5Sb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Roles/ListRoles.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Roles/ListRoles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcTGlzdFJvbGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Shared/Error.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Shared/_LoginPartial.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/User/Dashboard.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/User/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/User/index.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/User/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/User/MyDebts.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/User/MyDebts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxNeURlYnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/User/MyPayments.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/User/MyPayments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxNeVBheW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/_ViewImports.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/_ViewStart.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Shared/_Layout.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-yk3bvnlbey
 
-[C:/Users/iR/Desktop/PR/.Net/taavoni3/Views/Shared/_Layout.cshtml]
+[c:/Users/iR/Desktop/PR/Taavoni/Taavoni/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-brvsyqi1it

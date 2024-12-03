@@ -17,7 +17,7 @@ namespace Taavoni.Services.Interfaces
         Task<List<PaymentDto>> GetAllPaymentsDetailsAsync();
         Task CreatePaymentDetailAsync(CreatePaymentDto createPaymentDto, IFormFile attachment, int debtId);
         Task<bool> DeleteDebtDetailAsync(int Id);
-        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto createPaymentDto);
+        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto);
         List<PaymentDto> GetUserPayments(string userId);
         List<PaymentSummaryDto> GetUserPaymentsSummery(string userId);
     }
@@ -74,11 +74,12 @@ namespace Taavoni.Services.Interfaces
 
         public async Task<List<PaymentDto>> GetAllPaymentsDetailsAsync()
         {
-            var payment = await _context.Payments.Include(d => d.User).ToListAsync();
+            var payment = await _context.Payments.Include(d => d.User).Include(d=>d.Debt).ToListAsync();
             return payment.Select(d => new PaymentDto
             {
                 id = d.Id,
                 Amount = d.Amount,
+                DebtAmountWPR =d.Debt.AmountWithPenaltyRate,
                 AttachmentPath = d.AttachmentPath,
                 Description = d.Description,
                 Name = d.User?.Name,
@@ -112,6 +113,7 @@ namespace Taavoni.Services.Interfaces
 
         public List<PaymentDto> GetUserPayments(string userId)
         {
+            
             return _context.Payments
            .Where(p => p.UserId == userId)
            .Select(p => new PaymentDto
@@ -151,14 +153,12 @@ namespace Taavoni.Services.Interfaces
                 return false;
             }
 
-            var PersianPaymentDate = PersianDateTime.Parse(dto.PaymentDate!.PersianToEnglish());
+            
 
             model.Title = dto.Title;
-            model.UserId = dto.UserId;
             model.DebtId = dto.DebtId;
             model.Amount = dto.Amount;
             model.Description = dto.Description;
-            model.PaymentDate = PersianPaymentDate.ToDateTime();
 
            
             _context.Payments.Update(model);

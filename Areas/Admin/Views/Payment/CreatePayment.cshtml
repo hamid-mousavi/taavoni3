@@ -6,11 +6,18 @@
 
 <h2>ایجاد پرداختی جدید</h2>
 
-
+<div class="card shadow mb-4">
+   <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">پرداختی</h6>
+    </div>
+    <div class="card-body">
+        
 <form asp-action="CreatePayment" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="UserId">انتخاب کاربر</label>
-        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control">
+            <option>انتخاب کاربر</option>
+        </select>
     </div>
     <div class="form-group">
         <label asp-for="Title">عنوان پرداختی</label>
@@ -28,9 +35,9 @@
         <span asp-validation-for="Amount" class="text-danger"></span>
     </div>
     <div class="form-group"> 
-        <label asp-for="DebtId"></label>
+        <label asp-for="DebtId">شناسه پرداخت</label>
         <select asp-for="DebtId" class="form-control" id="DebtId">
-            <option value="">Select Debt</option>
+            <option value="">انتخاب</option>
         </select>
     </div>
     @* 
@@ -59,13 +66,17 @@
         <span asp-validation-for="AttachmentPath" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">ثبت پرداختی</button>
+            <button type="submit" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">ثبت</span>
+            </button>
 </form>
+    </div>
+</div>
 
 <hr />
-
-<!-- پیوند به صفحه پرداخت‌های قبلی کاربر -->
-<a asp-action="index" class="btn btn-secondary">برگشت به پرداخت‌ها</a>
 
 @section Scripts {
     @{

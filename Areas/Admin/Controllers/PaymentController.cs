@@ -67,13 +67,54 @@ namespace Taavoni.Areas.Admin.Controllers
         {
 
             var payment = await _paymentService.GetPaymentsAsync(id);
+            var dto = new UpdatePaymentDto
+            {
+                Title = payment.Title,
+                Amount = payment.Amount,
+                Description = payment.Description,
+                DebtId = payment.DebtId
+            };
             if (payment == null)
                 return null;
             var users = await _userManager.Users.ToListAsync();
             // ارسال کاربران به ویو
             ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", payment.id);
 
-            return View(payment);
+            return View(dto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, UpdatePaymentDto dto)
+        {
+
+            if (id != dto.id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                var result = await _paymentService.UpdatePaymentDetailAsync(dto);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", "مشکلی در به‌روزرسانی اطلاعات پیش آمده است.");
+            }
+            else
+            {
+                foreach (var modelStateKey in ModelState.Keys)
+                {
+                    var value = ModelState[modelStateKey];
+                    foreach (var error in value.Errors)
+                    {
+                        Console.WriteLine($"Error in {modelStateKey}: {error.ErrorMessage}");
+                    }
+                }
+                ModelState.AddModelError("", "");
+            }
+
+            return View(dto);
         }
 
 

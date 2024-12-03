@@ -96,10 +96,7 @@ namespace Taavoni.Areas.Admin.Controllers
             }
 
             var users = await _userManager.Users.ToListAsync();
-            foreach (var user in users)
-            {
-                Console.WriteLine(user.UserName); // بررسی نام کاربری
-            }
+            
 
 
             // ارسال کاربران به ویو

@@ -1,7 +1,6 @@
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\appsettings.json
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\liara.json
-C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\vercel.json
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\Taavoni.staticwebassets.runtime.json
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\app.db
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\Taavoni.exe
@@ -613,3 +612,7 @@ c:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\Persia.NetCore.dll
 C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\DNTPersianUtils.Core.dll
 C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\package-lock.json
 C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\package.json
+C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\package-lock.json
+C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\package.json
+C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\DNTPersianUtils.Core.dll
+C:\Users\iR\Desktop\PR\Taavoni\Taavoni\bin\Debug\net8.0\Persia.NetCore.dll
