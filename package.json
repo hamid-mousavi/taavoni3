@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "datatables.net-plugins": "^2.1.7"
+  }
+}

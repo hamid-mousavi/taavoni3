@@ -1,12 +1,33 @@
-function newTable(params) {
-    var table = $(params).DataTable({
-    
-        language: {
-            url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json',
+function newTable(params,sorting) {
+    // افزودن نوع مرتب‌سازی سفارشی برای اعداد فارسی
+    $.extend($.fn.dataTable.ext.type.order, {
+        'persian-numeric-asc': function(a, b) {
+            return parseFloat(persianToEnglishNumber(a)) - parseFloat(persianToEnglishNumber(b));
         },
-
+        'persian-numeric-desc': function(a, b) {
+            return parseFloat(persianToEnglishNumber(b)) - parseFloat(persianToEnglishNumber(a));
+        }
     });
-};
+
+    // بررسی اینکه آیا DataTable قبلاً روی جدول اعمال شده یا نه
+    if (!$.fn.dataTable.isDataTable(params)) {
+         $(params).DataTable({
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'excel', 'pdf'],
+            "paging": true,         // فعال کردن صفحه‌بندی
+            "ordering": true,       // فعال کردن مرتب‌سازی
+            "info": true,          // نمایش اطلاعات صفحه
+            "searching": true,
+            columnDefs: [
+                { targets: sorting, type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
+            ],
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json', // بارگذاری زبان فارسی
+            },
+        });
+    }
+}
 // دریافت داده‌های بدهی‌ها برای چارت
 async function loadAllDebtChartData(api, chartId, chartType) {
 
@@ -93,89 +114,89 @@ async function loadPaymentsChartData(api, tableId, chartLabel) {
 
 async function loaddebtsChartData(api, tableId) {
     fetch(api)
-    .then(response => response.json())
-    .then(data => {
-        const chartData = data.chartData; // دسترسی به آرایه chartData
+        .then(response => response.json())
+        .then(data => {
+            const chartData = data.chartData; // دسترسی به آرایه chartData
 
-        const labels = chartData.map(item => item.title);
-        const debtAmounts = chartData.map(item => item.debtAmount);
-        const paymentAmounts = chartData.map(item => item.paymentAmount);
+            const labels = chartData.map(item => item.title);
+            const debtAmounts = chartData.map(item => item.debtAmount);
+            const paymentAmounts = chartData.map(item => item.paymentAmount);
 
 
-        // رسم نمودار با Chart.js
-        const ctx = document.getElementById(tableId).getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'مقدار بدهی',
-                        data: debtAmounts,
-                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز میله‌ها
-                        borderWidth: 1,  // عرض مرز
-                        hoverBackgroundColor: 'rgba(54, 162, 235, 0.8)',  // رنگ میله‌ها هنگام هاور
-                        hoverBorderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز هنگام هاور
-                        barThickness: 40,  // ضخامت میله‌ها
-                        borderRadius: 50,  // گوشه‌های گرد میله‌ها
-                    },
-                    {
-                        label: 'مجموع پرداخت‌ها',
-                        data: paymentAmounts,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز میله‌ها
-                        borderWidth: 1,  // عرض مرز
-                        hoverBackgroundColor: 'rgba(54, 162, 235, 0.8)',  // رنگ میله‌ها هنگام هاور
-                        hoverBorderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز هنگام هاور
-                        barThickness: 40,  // ضخامت میله‌ها
-                        borderRadius: 5,  // گوشه‌های گرد میله‌ها
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#e0e0e0',  // رنگ خطوط شبکه
-                            lineWidth: 1  // عرض خطوط شبکه
+            // رسم نمودار با Chart.js
+            const ctx = document.getElementById(tableId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'مقدار بدهی',
+                            data: debtAmounts,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز میله‌ها
+                            borderWidth: 1,  // عرض مرز
+                            hoverBackgroundColor: 'rgba(54, 162, 235, 0.8)',  // رنگ میله‌ها هنگام هاور
+                            hoverBorderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز هنگام هاور
+                            barThickness: 40,  // ضخامت میله‌ها
+                            borderRadius: 50,  // گوشه‌های گرد میله‌ها
+                        },
+                        {
+                            label: 'مجموع پرداخت‌ها',
+                            data: paymentAmounts,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز میله‌ها
+                            borderWidth: 1,  // عرض مرز
+                            hoverBackgroundColor: 'rgba(54, 162, 235, 0.8)',  // رنگ میله‌ها هنگام هاور
+                            hoverBorderColor: 'rgba(54, 162, 235, 1)',  // رنگ مرز هنگام هاور
+                            barThickness: 40,  // ضخامت میله‌ها
+                            borderRadius: 5,  // گوشه‌های گرد میله‌ها
                         }
-                    },
-                    x: {
-                        grid: {
-                            color: '#f0f0f0',  // رنگ خطوط شبکه محور x
-                        }
-                    }
+                    ]
                 },
-                plugins: {
-                    tooltip: {
-                        backgroundColor: '#333',  // رنگ پس‌زمینه تولتیپ
-                        titleColor: '#fff',  // رنگ عنوان تولتیپ
-                        bodyColor: '#fff',  // رنگ متن تولتیپ
-                        footerColor: '#fff',  // رنگ فوتر تولتیپ
-                        borderColor: '#fff',  // رنگ مرز تولتیپ
-                        borderWidth: 1  // عرض مرز تولتیپ
-                    },
-                    legend: {
-                        labels: {
-                            fontColor: '#000',  // رنگ فونت لیبل‌های legend
-                            fontSize: 14  // اندازه فونت
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e0e0e0',  // رنگ خطوط شبکه
+                                lineWidth: 1  // عرض خطوط شبکه
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: '#f0f0f0',  // رنگ خطوط شبکه محور x
+                            }
                         }
+                    },
+                    plugins: {
+                        tooltip: {
+                            backgroundColor: '#333',  // رنگ پس‌زمینه تولتیپ
+                            titleColor: '#fff',  // رنگ عنوان تولتیپ
+                            bodyColor: '#fff',  // رنگ متن تولتیپ
+                            footerColor: '#fff',  // رنگ فوتر تولتیپ
+                            borderColor: '#fff',  // رنگ مرز تولتیپ
+                            borderWidth: 1  // عرض مرز تولتیپ
+                        },
+                        legend: {
+                            labels: {
+                                fontColor: '#000',  // رنگ فونت لیبل‌های legend
+                                fontSize: 14  // اندازه فونت
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,  // مدت زمان انیمیشن
+                        easing: 'easeInOutQuad'  // نوع انیمیشن
                     }
-                },
-                animation: {
-                    duration: 1000,  // مدت زمان انیمیشن
-                    easing: 'easeInOutQuad'  // نوع انیمیشن
                 }
-            }
-        
+
+            });
+        })
+        .catch(error => {
+            console.error("خطا در پردازش داده‌ها:", error);
         });
-    })
-    .catch(error => {
-        console.error("خطا در پردازش داده‌ها:", error);
-    });
 
 
 
@@ -188,18 +209,18 @@ function convertNumbersToPersian() {
 }
 // تابع تبدیل اعداد فارسی به انگلیسی
 function persianToEnglishNumber(str) {
-    return str.replace(/,/g, '').replace(/[۰-۹]/g, function(digit){
+    return str.replace(/,/g, '').replace(/[۰-۹]/g, function (digit) {
         return '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit);
     });
 }
 function persianToEnglishNumber(str) {
-    return str.replace(/,/g, '').replace(/[۰-۹]/g, function(digit) {
+    return str.replace(/,/g, '').replace(/[۰-۹]/g, function (digit) {
         return '۰۱۲۳۴۵۶۷۸۹'.indexOf(digit);
     });
 }
 
 
 
-    
+
 
 

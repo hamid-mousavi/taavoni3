@@ -80,15 +80,15 @@
 
 
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 ">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">جزئیات بدهی‌ها</h6>
     </div>
     <div class="card-body">
 
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="debttable" width="100%" cellspacing="0">
+        <div class="dataTable-responsive">
+            <table class="table table-bordered dataTable" id="debttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <td>عنوان</td>
@@ -128,15 +128,15 @@
 
 
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 dataTable-responsive">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">جزئیات پرداخت‌ها </h6>
     </div>
     <div class="card-body">
 
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="paymenttable" width="100%" cellspacing="0">
+        <div class=" dataTable-responsive">
+            <table class="table table-bordered datatable" id="paymenttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>عنوان</th>
@@ -206,7 +206,6 @@
 
 
 @section Scripts {
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="~/assets/js/custom-js.js"></script>
 <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -217,39 +216,9 @@
 $(document).ready(function() {
 
 // تعریف مرتب‌سازی سفارشی برای DataTable
-$.extend($.fn.dataTable.ext.type.order, {
-    'persian-numeric-asc': function(a, b) {
-        return parseFloat(persianToEnglishNumber(a)) - parseFloat(persianToEnglishNumber(b));
-    },
-    'persian-numeric-desc': function(a, b) {
-        return parseFloat(persianToEnglishNumber(b)) - parseFloat(persianToEnglishNumber(a));
-    }
-});
-
-// استفاده از نوع مرتب‌سازی سفارشی در DataTable
-$('#debttable').DataTable({
-    columnDefs: [
-        { targets: [4,5,6], type: 'persian-numeric' } // ستون مورد نظر (مثلاً ستون پنجم)
-    ],
-      language: {
-            url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json',
-        },
-        
-});
-
-
-
-
-
-
-
-
-
-
-
     
-   // newTable('#debttable');
-    newTable('#paymenttable');
+    newTable('#debttable',[4,5,6]);
+    newTable('#paymenttable',[1]);
     loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut');
     loaddebtsChartData(`/api/Payments/user-dashboardchart`, 'debtsChart');
 });

@@ -611,3 +611,5 @@ C:\Users\iR\Desktop\PR\.Net\taavoni3\obj\Debug\net8.0\Taavoni.genruntimeconfig.c
 C:\Users\iR\Desktop\PR\.Net\taavoni3\obj\Debug\net8.0\ref\Taavoni.dll
 c:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\Persia.NetCore.dll
 C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\DNTPersianUtils.Core.dll
+C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\package-lock.json
+C:\Users\iR\Desktop\PR\.Net\taavoni3\bin\Debug\net8.0\package.json

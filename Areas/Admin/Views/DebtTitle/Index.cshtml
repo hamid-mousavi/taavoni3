@@ -1,47 +1,50 @@
 @using Taavoni.DTOs.DebtTitle
 @model IEnumerable<DebtTitleDto>
+@using DNTPersianUtils.Core
 
 
-    
+
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Debt Titels</h1>
+@{
+  int number = 0;
+}
+<h1 class="h3 mb-4 text-gray-800">عناوین بدهی</h1>
 
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+    <h6 class="m-0 font-weight-bold text-primary">عناوین بدهی</h6>
   </div>
   <div class="card-body">
 
 
     <div class="row p-2">
-      <a asp-area="Admin" asp-controller="Debttitle" asp-action="Create" class="btn btn-primary btn-circle"
+      <a asp-area="Admin" asp-controller="Debttitle" asp-action="Create" class="btn btn-primary btn-icon-split"
         style="margin: 5;">
-        <i class="fas fa-plus"></i></a>
-   
+        <span class="icon text-white-50">
+        <i class="fas fa-plus"></i>
+      </span>
+      <span class="text">جدید</span>
+        </a>
+
     </div>
 
 
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="debttitleTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Action</th>
+            <th>ردیف</th>
+            <th>نام</th>
+            <th>عملیات</th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Action</th>
-          </tr>
-        </tfoot>
+
         <tbody>
           @foreach (var item in Model)
           {
+            number+=1;
             <tr>
-                <th>@item.Id</th>
+              <th>@number.ToPersianNumbers()</th>
               <th>@item.Title</th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
@@ -53,6 +56,7 @@
               </th>
 
             </tr>
+
           }
 
         </tbody>
@@ -63,8 +67,9 @@
 
   @section Scripts {
     <script>
-
-      let table = new DataTable('#myTable');
+      $(document).ready(function () {
+        newTable('#debttitleTable',[0]);
+      });
     </script>
 
 

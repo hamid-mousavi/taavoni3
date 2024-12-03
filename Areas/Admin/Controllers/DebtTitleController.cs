@@ -69,7 +69,7 @@ namespace Taavoni.Areas.Admin.Controllers
             return View(debtTitle);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _debtTitleService.DeleteDebtTitleAsync(id);

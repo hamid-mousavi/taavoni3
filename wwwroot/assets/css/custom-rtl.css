@@ -79,3 +79,29 @@ ul#accordionSidebar {
 .dataTables_filter,.sorting{
     text-align: end !important;
 }
+/* رنگ‌بندی سطرها یک در میان */
+.dataTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* سفید */
+}
+
+.dataTable tbody tr:nth-child(even) {
+    background-color: #e0e0e0; /* طوسی */
+}
+
+/* پررنگ کردن ستون اول */
+.dataTable tbody td:first-child {
+    font-weight: bold;
+}
+
+/* استایل هاور برای کل سطر */
+.dataTable tbody tr:hover {
+    background-color: #d1ecf1; /* رنگ آبی کمرنگ برای هاور */
+    transition: background-color 0.3s ease; /* افکت نرم */
+}
+.dataTable {
+    table-layout: auto; /* عرض جدول بر اساس محتوا تنظیم می‌شود */
+    width: 100%;        /* یا مقدار مورد نیاز را تنظیم کنید */
+}
+/* تنظیم رنگ پس‌زمینه تیره‌تر برای ستون اول */
+.dataTable tbody td:first-child {
+}

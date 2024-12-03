@@ -2,38 +2,48 @@
 @using NonFactors.Mvc.Grid
 @using System.Globalization
 @using Taavoni.DTOs
+@using DNTPersianUtils.Core
 
 
+@{
+  int number = 0;
+}
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Debt Details</h1>
+<h1 class="h3 mb-4 text-gray-800">جزئیات بدهی ها</h1>
 
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    <h6 class="m-0 font-weight-bold text-primary">لیست بدهی</h6>
   </div>
   <div class="card-body">
 
 
     <div class="row p-2">
-      <a asp-area="Admin" asp-controller="Debt" asp-action="Create" class="btn btn-primary btn-circle"
-        style="margin: 5;">
-        <i class="fas fa-plus"></i></a>
+      <a asp-area="Admin" asp-controller="Debt" asp-action="Create" class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span class="text">جدید</span>
+      </a>
       <form asp-action="ApplyDailyPenalty" method="post">
-        <span> </span>
-        <button type="submit" class="btn btn-warning btn-circle ml-3">
-          <i class="fas fa-redo-alt"></i>
+        
+        <button type="submit" class="btn btn-warning btn-icon-split mr-2">
+          <span class="icon text-white-50">
+         <i class="fas fa-redo-alt"></i>
+      </span>
+          <span class="text">بروزرسانی</span>
         </button>
       </form>
     </div>
-
+    
 
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="debttable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>ردیف</th>
             <th>نام مالک</th>
-<th>ایمیل</th>
+            <th>ایمیل</th>
             <th>عنوان بدهی</th>
             <th>مبلغ</th>
             <th>تاریخ سررسید</th>
@@ -42,52 +52,26 @@
             <th>عملیات</th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>ID</th>
-            <th>نام</th>
-<th>ایمیل</th>
-            <th>عنوان بدهی</th>
-            <th>مبلغ</th>
-            <th>تاریخ سررسید</th>
-            <th>درصد جریمه روزانه</th>
-            <th>مبلغ باقیمانده</th>
-            <th>عملیات</th>
-          </tr>
-        </tfoot>
+
         <tbody>
           @foreach (var item in Model)
           {
+            number += 1;
             <tr>
-              <th>@item.Id</th>
+              <th>@number.ToPersianNumbers()</th>
               <th>@item.Name</th>
-              <th>@item.UserName</th>
+              <th>@item.UserName.ToString().Substring(0,item.UserName.ToString().IndexOf('@'))</th>
               <th>@item.DebtTitleName</th>
-              <th>@item.Amount</th>
+              <th>@item.Amount.ToString("N").ToPersianNumbers()</th>
 
 
-              <td>
-                @{
-                  var persianDate = "";
-                  if (item.DueDate != DateTime.MinValue)
-                  {
-                    var persianCalendar = new PersianCalendar();
-                    var date = item.DueDate.Date;
-                    persianDate =
-                    $"{persianCalendar.GetYear(date):0000}/{persianCalendar.GetMonth(date):00}/{persianCalendar.GetDayOfMonth(date):00}";
-                  }
-                  else
-                  {
-                    persianDate = "تاریخ معتبر نیست"; // یا می‌توانید تاریخ پیش‌فرض بگذارید
-                  }
-                }
-                @persianDate
+              <td>@item.DueDate.ToShortPersianDateString().ToPersianNumbers()
               </td>
 
 
 
-              <th>@item.PenaltyRate</th>
-              <th>@item.RemainingAmount</th>
+              <th>@item.PenaltyRate.ToString().ToPersianNumbers()</th>
+              <th>@item.RemainingAmount.ToString().ToPersianNumbers()</th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
@@ -108,7 +92,9 @@
 
   @section Scripts {
     <script>
-
+      $(document).ready(function () {
+        newTable('#debttable', [4,6,7]);
+      });
     </script>
 
 

@@ -1,51 +1,71 @@
 @model Taavoni.DTOs.CreateDebtDetailDTO
 @using Taavoni.DTOs
-<h2>Create Debt Detail</h2>
+<h2>ایجاد بدهی جدید برای کاربر</h2>
+<div class="card shadow mb-4">
 
-<form action="Create" method="post">
-    <div class="form-group">
-        <label for="UserId">انتخاب کاربر</label>
-        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">بدهی</h6>
     </div>
-    <div>
-        <label for="DebtTitleId">Debt Title:</label>
-        <select asp-for="DebtTitleId" asp-items="@(ViewBag.DebtTitles)" class="form-control">
-            <option value="">Select Title</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="StartDate"></label>
-        <input asp-for="StartDate" class="form-control" type="text" id="StartDate" />
-    </div>
-    <div class="form-group">
-        <label asp-for="EndDate"></label>
-        <input asp-for="EndDate" class="form-control" type="text " id="EndDate" />
-    </div>
-    <div class="form-group">
-        <label asp-for="DueDate"></label>
-        <input class="form-control" asp-for="DueDate" type="text" id="dueDate" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Amount"></label>
-        <input asp-for="Amount" class="form-control" />
-    </div>
+    <div class="card-body">
+        <form action="Create" method="post">
+            <div class="form-group">
+                <label for="UserId">انتخاب کاربر</label>
+                <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+            </div>
+            <div>
+                <label for="DebtTitleId">عنوان بدهی:</label>
+                <select asp-for="DebtTitleId" asp-items="@(ViewBag.DebtTitles)" class="form-control">
+                    <option value="">انتخاب</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate">از تاریخ</label>
+                <input asp-for="StartDate" class="form-control" type="text" id="StartDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate">تا تاریخ</label>
+                <input asp-for="EndDate" class="form-control" type="text " id="EndDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate">تاریخ سررسید</label>
+                <input class="form-control" asp-for="DueDate" type="text" id="dueDate" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount">مبلغ بدهی</label>
+                <input asp-for="Amount" class="form-control" />
+            </div>
 
 
-    <div class="form-group">
-        <label asp-for="PenaltyRate"></label>
-        @using Microsoft.CodeAnalysis.Scripting;
-        <input asp-for="PenaltyRate" class="form-control" />
-    </div>
-    <div class="form-group col-3">
+            <div class="form-group">
+                <label asp-for="PenaltyRate">درصد جریمه</label>
+                @using Microsoft.CodeAnalysis.Scripting;
+                <input asp-for="PenaltyRate" class="form-control" />
+            </div>
+            @* <div class="form-group col-3">
         <label asp-for="IsPaid"></label>
         @Html.CheckBoxFor(model => model.IsPaid)
+    </div> *@
+            <a asp-area="Admin" asp-controller="Debt" asp-action="Create" class="">
+                
+            </a>
+
+
+            <button type="submit" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">ایجاد</span>
+            </button>
+        </form>
+
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
 
-
+</div>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 
     <link href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>

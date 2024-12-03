@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta charset="utf-8" >
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,18 +12,18 @@
     <title>تعاونی مسکن</title>
 
     <!-- Custom fonts for this template-->
-        <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
 
     <link href="~/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     @* <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> *@
-   <!-- <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
     <!-- Custom styles for this template-->
     <link href="~/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="~/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- For Persian Time-->
-<link href="~/assets/css/custom-rtl.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/custom-rtl.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -53,7 +53,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>داشبورد</span></a>
             </li>
-            
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="~/admin/payment">
                     <i class="fas fa-hand-holding-usd"></i>
                     <span>پرداختی</span></a>
@@ -98,7 +98,7 @@
                         <a class="collapse-item" href="~/Reports/DebtReport">گزارش بدهی کاربران</a>
                         <a class="collapse-item" href="~/Reports/PaymentReport">گزارش پرداختی هر کاربر</a>
                         <a class="collapse-item" href="~/Reports/TopDebtsReport">گزارش بیشترین بدهی‌ها</a>
-                        
+
                     </div>
                 </div>
             </li>
@@ -172,13 +172,13 @@
                         </li>
 
 
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
-                                <partial name="_LoginPartial" />
+                        <partial name="_LoginPartial" />
 
                         <!-- Nav Item - User Information -->
-                        
+
 
                     </ul>
 
@@ -188,7 +188,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                  
+
                     @RenderBody()
 
                 </div>
@@ -198,8 +198,8 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-        
-        <!-- End of Content Wrapper -->
+
+            <!-- End of Content Wrapper -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -208,9 +208,9 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-        
-        
-        
+
+
+
         </div>
 
 
@@ -248,12 +248,17 @@
 
     <!-- Core plugin JavaScript-->
     <script src="~/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/assets/js/custom-js.js"></script>
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+    <script src="~/assets/vendor/chart.js/Chart.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-     <!-- Switcher js -->
-    
-     <script src="~/assets/js/sb-admin-2.min.js"></script>
- @* <script>
+    <!-- Switcher js -->
+
+    <script src="~/assets/js/sb-admin-2.min.js"></script>
+    @* <script>
         function convertToPersianNumbers(selector) {
             const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
             document.querySelectorAll(selector).forEach(element => {
@@ -266,5 +271,4 @@
 
 </body>
 
-</html>    
-    
+</html>
