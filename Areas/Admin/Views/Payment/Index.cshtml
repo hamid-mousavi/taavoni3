@@ -54,7 +54,16 @@
               <th>@item.DebtAmountWPR.ToString("N0").ToPersianNumbers()</th>
               <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
               <th>@item.Title</th>
-              <th>@item.AttachmentPath</th>
+              <th>
+                   @if (!string.IsNullOrEmpty(item.AttachmentPath))
+                    {
+                        <a href="@Url.Action("Download", "Payment", new { filePath = item.AttachmentPath })">Download</a>
+                    }
+                    else
+                    {
+                        <span>No Attachment</span>
+                    }
+              </th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.id" class="btn btn-warning btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
@@ -80,8 +89,6 @@
         newTable('#paymentTable', [0,3,4]);
       });
     </script>
-
-
     <!-- Page level plugins -->
     <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>

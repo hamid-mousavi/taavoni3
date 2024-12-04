@@ -8,6 +8,7 @@ using SQLitePCL;
 using Microsoft.Data.Sqlite;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http.Features;
 
 
 
@@ -39,6 +40,10 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IDebtTitleService, DebtTitleService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddRazorPages();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 10485760; // 10 MB
+});
 
 var app = builder.Build();
 // Seed داده‌ها

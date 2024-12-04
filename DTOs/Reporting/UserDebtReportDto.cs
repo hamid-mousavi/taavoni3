@@ -67,7 +67,8 @@ namespace Taavoni.DTOs.Reporting
     public class DashboardDto
     {
 
-
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
         public decimal TotalDebt { get; set; }
         public decimal TotalPaid { get; set; }
         public decimal TotalDeptWithPenaltyRate { get; set; }
@@ -86,6 +87,7 @@ namespace Taavoni.DTOs.Reporting
         public double DebtAmount { get; set; }
         public double PaymentAmount { get; set; }
     }
+    
 
 
 
