@@ -2,5 +2,11 @@
   "port":80,
   "dotnet":{
     "version":"8.0"
-  }
+  },
+  "disks":[
+        {
+            "name": "database",
+            "mountTo": "db"
+        }
+    ]
 }
