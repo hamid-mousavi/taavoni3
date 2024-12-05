@@ -10,7 +10,7 @@
 
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-             <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size: 20px;"> @user?.Email.ToString().Substring(0,user.UserName.ToString().IndexOf('@'))</span>
+             <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size: 20px; color:#00000"> @user?.Email.ToString().Substring(0,user.UserName.ToString().IndexOf('@'))</span>
              <span class="topbar-divider d-none d-sm-block"></span>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> @user?.Name</span>
                            
