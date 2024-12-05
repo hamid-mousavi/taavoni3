@@ -11770,11 +11770,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
       "projectName": "Taavoni",
-      "projectPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
       "packagesPath": "C:\\Users\\iR\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
+      "outputPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iR\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -11897,6 +11897,12 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
