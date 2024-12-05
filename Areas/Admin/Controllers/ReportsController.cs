@@ -1,9 +1,12 @@
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Taavoni.DTOs.Reporting;
+using Taavoni.Models.Entities;
 using Taavoni.Services.Interfaces;
 
 namespace Taavoni.Areas.Admin.Controllers
@@ -15,10 +18,13 @@ namespace Taavoni.Areas.Admin.Controllers
     public class ReportsController : Controller
     {
         private readonly IReportService _reportService;
+                private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReportsController(IReportService reportService)
+
+        public ReportsController(IReportService reportService, UserManager<ApplicationUser> userManager)
         {
             _reportService = reportService;
+             _userManager = userManager;
         }
 
         [HttpGet("DebtReport")]
@@ -79,6 +85,18 @@ namespace Taavoni.Areas.Admin.Controllers
                 RemainingDebt = d.RemainingDebt
             });
             return Json(data);
+        }
+        [HttpGet("api/allreports")]
+        public async Task<IActionResult> GetAllUserDashboard(){
+            List<DashboardDto> dtos =[];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+              var report =  await _reportService.GetUserDashboardAsync(item.Id);
+              dtos.Add(report);
+            }
+            return View(dtos);
+            
         }
 
     }

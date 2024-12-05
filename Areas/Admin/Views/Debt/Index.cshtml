@@ -62,7 +62,7 @@
               <th>@item.Name</th>
               <th>@item.UserName.ToString().Substring(0,item.UserName.ToString().IndexOf('@'))</th>
               <th>@item.DebtTitleName</th>
-              <th>@item.Amount.ToString("N").ToPersianNumbers()</th>
+              <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
 
 
               <td>@item.DueDate.ToShortPersianDateString().ToPersianNumbers()
@@ -71,7 +71,7 @@
 
 
               <th>@item.PenaltyRate.ToString().ToPersianNumbers()</th>
-              <th>@item.RemainingAmount.ToString().ToPersianNumbers()</th>
+              <th>@item.RemainingAmount.ToString("N0").ToPersianNumbers()</th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
                   <i class="fas fa-edit"></i>

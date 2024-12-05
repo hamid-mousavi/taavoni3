@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs.Reporting;
+using Taavoni.Models.Entities;
 
 namespace Taavoni.Services.Interfaces
 {
@@ -23,10 +25,13 @@ namespace Taavoni.Services.Interfaces
     public class ReportService : IReportService
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReportService(ApplicationDbContext context)
+        public ReportService(ApplicationDbContext context,UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+            
         }
         public async Task<List<UserDto>> GetUsersAsync()
         {
@@ -93,6 +98,8 @@ namespace Taavoni.Services.Interfaces
 
         public async Task<DashboardDto> GetUserDashboardAsync(string userId)
         {
+            var users = await _userManager.Users.ToListAsync();
+            
             var totalDebt = await _context.Debts
              .Where(d => d.UserId == userId)
              .SumAsync(d => (double)d.Amount);
@@ -129,6 +136,8 @@ namespace Taavoni.Services.Interfaces
 
             return new DashboardDto
             {
+                UserName = users.FirstOrDefault(u => u.Id == userId)!.Name,
+                Email =  users.FirstOrDefault(u => u.Id == userId)!.Email,
                 TotalDebt = (decimal)totalDebt,
                 TotalPaid = (decimal)totalPaid,
                 TotalDeptWithPenaltyRate = (decimal)totalDebtWithPenaltyRate,
@@ -163,6 +172,7 @@ namespace Taavoni.Services.Interfaces
 
         public async Task<DashboardChartDto> GetUserDashboardChartAsync(string userId)
         {
+            
             var debts = await _context.Debts
                 .Where(d => d.UserId == userId)
                 .Select(d => new

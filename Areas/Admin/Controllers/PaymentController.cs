@@ -103,14 +103,7 @@ namespace Taavoni.Areas.Admin.Controllers
             }
             else
             {
-                foreach (var modelStateKey in ModelState.Keys)
-                {
-                    var value = ModelState[modelStateKey];
-                    foreach (var error in value.Errors)
-                    {
-                        Console.WriteLine($"Error in {modelStateKey}: {error.ErrorMessage}");
-                    }
-                }
+
                 ModelState.AddModelError("", "");
             }
 
@@ -122,6 +115,65 @@ namespace Taavoni.Areas.Admin.Controllers
         {
             var debts = _debtService.GetUserDebts(userId);
             return Json(debts);
+        }
+
+
+        // GET: payments/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var payment = await _paymentService.GetPaymentsAsync(id);
+            if (payment == null)
+            {
+                return NotFound();
+            }
+
+            return View(payment);
+        }
+
+        // POST: Debts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var result = await _paymentService.DeletePaymentDetailAsync(id);
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return BadRequest("مشکلی در حذف اطلاعات پیش آمده است.");
+        }
+
+
+
+
+        public async Task<IActionResult> Download(string filePath)
+        {
+            if (System.IO.File.Exists(filePath))
+            {
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, GetContentType(filePath), Path.GetFileName(filePath));
+            }
+            return NotFound();
+        }
+
+        private string GetContentType(string path)
+        {
+            var types = new Dictionary<string, string>
+        {
+            { ".pdf", "application/pdf" },
+            { ".jpg", "image/jpeg" },
+            { ".png", "image/png" },
+            { ".doc", "application/vnd.ms-word" },
+            { ".docx", "application/vnd.ms-word" }
+        };
+
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return types.ContainsKey(ext) ? types[ext] : "application/octet-stream";
         }
 
 
