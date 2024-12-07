@@ -1,0 +1,54 @@
+@model IEnumerable<ApplicationUser>
+@using Taavoni.Models.Entities
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">مدیریت کاربران</h1>
+    <!-- دکمه ایجاد کاربر جدید -->
+    <a href="@Url.Action("Create", "Users")" class="btn btn-success mb-3">
+        <i class="fas fa-plus-circle"></i> ایجاد کاربر جدید
+    </a>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">تمامی کاربران</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>نام و نام خانوادگی</th>
+                            <th>نام کاربری</th>
+                            <th>ایمیل</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Users", new { id = user.Id })"
+                                        class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> ویرایش
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Users", new { id = user.Id })"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> حذف
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

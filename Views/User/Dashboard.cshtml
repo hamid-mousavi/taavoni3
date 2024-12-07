@@ -4,11 +4,9 @@
 @using Taavoni.DTOs.Reporting
 @using DNTPersianUtils.Core
 @model Taavoni.DTOs.Reporting.DashboardDto
-
-
-<div class="row">
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+   <div class="row">
+ <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -25,7 +23,7 @@
         </div>
     </div>
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -42,7 +40,7 @@
         </div>
     </div>
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -59,7 +57,7 @@
         </div>
     </div>
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-danger shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -75,20 +73,16 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-
-
+   </div>
 <div class="card shadow mb-4 ">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">جزئیات بدهی‌ها</h6>
     </div>
     <div class="card-body">
 
+ 
 
-        <div class="dataTable-responsive">
+        <div class="table-responsive">
             <table class="table table-bordered dataTable" id="debttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -123,12 +117,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 <div class="card shadow mb-4 dataTable-responsive">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">جزئیات پرداخت‌ها </h6>
@@ -136,7 +124,7 @@
     <div class="card-body">
 
 
-        <div class=" dataTable-responsive">
+        <div class=" table-responsive">
             <table class="table table-bordered datatable" id="paymenttable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -161,14 +149,8 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800"> گزارش کل بدهی</h1>
-
 <div class="row">
 
     <div class="col-lg-6">
