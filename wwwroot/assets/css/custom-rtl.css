@@ -15,14 +15,17 @@
         url('../fonts/IRSans/Sans.woff') format('woff');
 
 }
+
 @font-face {
     font-family: DJFont;
     src: url('../fonts/DJFont/djfont.ttf');
 }
+
 @font-face {
     font-family: 'IranYekan';
     src: url('../fonts/iranyekan/Qs_Iranyekan.ttf');
 }
+
 body,
 .date {
     font-family: 'DJFont', Arial, sans-serif;
@@ -73,19 +76,25 @@ table {
 ul#accordionSidebar {
     padding: 0;
 }
+
 .sidebar-heading {
     text-align: center !important;
 }
-.dataTables_filter,.sorting{
+
+.dataTables_filter,
+.sorting {
     text-align: end !important;
 }
+
 /* رنگ‌بندی سطرها یک در میان */
 .dataTable tbody tr:nth-child(odd) {
-    background-color: #f9f9f9; /* سفید */
+    background-color: #f9f9f9;
+    /* سفید */
 }
 
 .dataTable tbody tr:nth-child(even) {
-    background-color: #e0e0e0; /* طوسی */
+    background-color: #e0e0e0;
+    /* طوسی */
 }
 
 /* پررنگ کردن ستون اول */
@@ -95,13 +104,19 @@ ul#accordionSidebar {
 
 /* استایل هاور برای کل سطر */
 .dataTable tbody tr:hover {
-    background-color: #d1ecf1; /* رنگ آبی کمرنگ برای هاور */
-    transition: background-color 0.3s ease; /* افکت نرم */
+    background-color: #d1ecf1;
+    /* رنگ آبی کمرنگ برای هاور */
+    transition: background-color 0.3s ease;
+    /* افکت نرم */
 }
+
 .dataTable {
-    table-layout: auto; /* عرض جدول بر اساس محتوا تنظیم می‌شود */
-    width: 100%;        /* یا مقدار مورد نیاز را تنظیم کنید */
+    table-layout: auto;
+    /* عرض جدول بر اساس محتوا تنظیم می‌شود */
+    width: 100%;
+    /* یا مقدار مورد نیاز را تنظیم کنید */
 }
+
 /* تنظیم رنگ پس‌زمینه تیره‌تر برای ستون اول */
-.dataTable tbody td:first-child {
-}
+.dataTable tbody td:first-child {}
+
