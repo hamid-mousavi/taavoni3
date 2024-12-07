@@ -17,9 +17,20 @@ namespace Taavoni.DTOs
         public bool IsPaid { get; set; } = false;
         [Required]
         public int DebtTitleId { get; set; }
-        [Range(0, 9999999999999999.99,ErrorMessage = "Please enter valid integer Number")]
+        [Range(0, 9999999999999999.99, ErrorMessage = "Please enter valid integer Number")]
         public decimal RemainingAmount { get; set; } // مقدار باقیمانده
         public string DueDate { get; set; }  // تاریخ سررسید
         public decimal PenaltyRate { get; set; } = 0; // درصد جریمه روزانه
     }
+
+    public class CreateAllDebtDto
+    {
+        public int DebtTitleId { get; set; }
+        public decimal Amount { get; set; }
+        public decimal PenaltyRate { get; set; } = 0; // درصد جریمه روزانه
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+        public string DueDate { get; set; }
+    }
+
 }

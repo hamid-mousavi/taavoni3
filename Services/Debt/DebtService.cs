@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Taavoni.Data;
 using Taavoni.DTOs;
@@ -195,4 +196,44 @@ public class DebtService : IDebtService
            })
            .ToList();
     }
+
+
+    public async Task AddDebtsForAllUsersAsync(CreateAllDebtDto dto)
+    {
+        var users = _context.Users.ToList();
+        
+        var PersianDueDate = PersianDateTime.Parse(dto.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(dto.FromDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(dto.ToDate.PersianToEnglish());
+
+        foreach (var user in users)
+        {
+            var debt = new Debt
+            {
+                DebtTitleId = dto.DebtTitleId,
+                Amount = dto.Amount,
+                PenaltyRate = dto.PenaltyRate,
+                StartDate = PersianStartDate.ToDateTime(),
+                EndDate = PersianEndDate.ToDateTime(),
+                DueDate = PersianDueDate.ToDateTime(),
+                UserId = user.Id
+            };
+
+            _context.Debts.Add(debt);
+        }
+
+        await _context.SaveChangesAsync();
+    }
+
+    public List<SelectListItem> GetDebtTitles()
+    {
+        return _context.debtTitles
+            .Select(dt => new SelectListItem
+            {
+                Value = dt.Id.ToString(),
+                Text = dt.Title
+            })
+            .ToList();
+    }
+
 }

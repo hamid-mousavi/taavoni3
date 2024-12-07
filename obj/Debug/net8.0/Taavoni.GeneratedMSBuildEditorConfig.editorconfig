@@ -46,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/CreateAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxDcmVhdGVBbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/iR/Desktop/PR/Taavoni/Taavoni/Areas/Admin/Views/Debt/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGVidFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

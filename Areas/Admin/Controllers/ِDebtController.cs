@@ -96,7 +96,7 @@ namespace Taavoni.Areas.Admin.Controllers
             }
 
             var users = await _userManager.Users.ToListAsync();
-            
+
 
 
             // ارسال کاربران به ویو
@@ -159,7 +159,25 @@ namespace Taavoni.Areas.Admin.Controllers
             return BadRequest("مشکلی در حذف اطلاعات پیش آمده است.");
         }
 
-      
+        [HttpGet]
+        public IActionResult CreateAll([FromServices] IDebtService debtService)
+        {
+            ViewBag.DebtTitles = debtService.GetDebtTitles();
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateAll(CreateAllDebtDto dto, [FromServices] IDebtService debtService)
+        {
+            if (ModelState.IsValid)
+            {
+                await debtService.AddDebtsForAllUsersAsync(dto);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.DebtTitles = debtService.GetDebtTitles();
+            return View(dto);
+        }
+
 
 
     }
