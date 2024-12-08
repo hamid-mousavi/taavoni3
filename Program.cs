@@ -39,6 +39,7 @@ builder.Services.AddScoped<IDebtService, DebtService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IDebtTitleService, DebtTitleService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+
 builder.Services.AddRazorPages();
 builder.Services.Configure<FormOptions>(options =>
 {

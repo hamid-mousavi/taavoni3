@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace taavoni3.Areas.Admin.ViewModel
 {
@@ -11,8 +12,7 @@ namespace taavoni3.Areas.Admin.ViewModel
     public string Id { get; set; } // شناسه کاربر که برای شناسایی کاربر در درخواست POST استفاده می‌شود
 
     [Required]
-    [StringLength(256)]
-    [Display(Name = "Username")]
+    [Remote(action: "IsUserNameUnique", controller: "Users", areaName: "Admin", ErrorMessage = "این نام کاربری قبلاً ثبت شده است.")]
     public string UserName { get; set; } // نام کاربری کاربر
     [Required]
     [StringLength(100, MinimumLength = 2)]
@@ -20,8 +20,8 @@ namespace taavoni3.Areas.Admin.ViewModel
 
     [Required]
     [EmailAddress]
-    [StringLength(256)]
-    [Display(Name = "Email")]
+    [Remote(action: "IsEmailUnique", controller: "Users", areaName: "Admin", ErrorMessage = "این ایمیل قبلاً ثبت شده است.")]
+
     public string Email { get; set; } // ایمیل کاربر
 
 

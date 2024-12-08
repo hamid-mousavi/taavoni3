@@ -1,0 +1,70 @@
+@model IEnumerable<Taavoni.DTOs.DebtSummaryDto>
+@using DNTPersianUtils.Core
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">خلاصه لیست بدهی</h6>
+    </div>
+    <div class="card-body">
+
+        <div class="row p-2">
+            <a asp-area="Admin" asp-controller="Debt" asp-action="CreateAll" class="btn btn-primary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">جدید</span>
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="summaryTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>عنوان بدهی</th>
+                        <th>از تاریخ</th>
+                        <th>تا تاریخ</th>
+                        <th>تاریخ سررسید</th>
+                        <th>مجموع مبلغ</th>
+                        <th>تعداد بدهی های ثبت شده</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DebtTitleName</td>
+                            <td>@item.StartDate.ToShortPersianDateString().ToPersianNumbers()</td>
+                            <td>@item.EndData.ToShortPersianDateString().ToPersianNumbers()</td>
+                            <td>@item.DueDate.ToPersianDateTextify().ToPersianNumbers()</td>
+                            <td>@item.TotalAmount.ToString("N0").ToPersianNumbers()</td>
+                            <td>@item.UserCount.ToString().ToPersianNumbers()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                newTable('#summaryTable', [4, 5]);
+            });
+        </script>
+
+
+        <!-- Page level plugins -->
+        <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="~/assets/js/demo/datatables-demo.js"></script>
+    }

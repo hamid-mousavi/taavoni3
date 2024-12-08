@@ -30,6 +30,7 @@
                     <input asp-for="UserName" class="form-control form-control-user"
                         placeholder="نام کاربری را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
 
                 <!-- ایمیل -->
@@ -37,6 +38,8 @@
                     <label asp-for="Email" class="font-weight-bold text-dark">ایمیل</label>
                     <input asp-for="Email" class="form-control form-control-user" placeholder="ایمیل را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
                 </div>
 
                 <!-- پسورد -->
@@ -49,7 +52,8 @@
 
                 <div class="form-group">
                     <label asp-for="ConfirmPassword" class="font-weight-bold text-dark">تأیید پسورد</label>
-                    <input asp-for="ConfirmPassword" type="password" class="form-control"  placeholder="تکرار رمز عبور جدید" />
+                    <input asp-for="ConfirmPassword" type="password" class="form-control"
+                        placeholder="تکرار رمز عبور جدید" />
                     @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
 
