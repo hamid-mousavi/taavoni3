@@ -28,7 +28,7 @@ namespace Taavoni.Areas.Admin.Controllers
         {
              var users = await _reportService.GetUsersAsync();
               ViewBag.Users = new SelectList(users, "UserId", "UserName");
-            return View();
+            return Redirect("/reports/api/TopTenUser");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

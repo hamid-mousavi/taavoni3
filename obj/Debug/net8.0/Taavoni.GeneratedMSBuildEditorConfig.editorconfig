@@ -106,6 +106,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xHZXRBbGxVc2VyRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Reports/GetTopTenUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xHZXRUb3BUZW5Vc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/iR/Desktop/PR/.Net/taavoni3/Areas/Admin/Views/Reports/PaymentReport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xQYXltZW50UmVwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
