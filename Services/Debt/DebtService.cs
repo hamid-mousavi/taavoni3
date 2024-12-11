@@ -34,7 +34,9 @@ public class DebtService : IDebtService
             UserId = d.UserId,
             DueDate = d.DueDate,
             PenaltyRate = d.PenaltyRate,
-            RemainingAmount = d.RemainingAmount
+            RemainingAmount = d.RemainingAmount,
+            AmountWithPenaltyRate = d.AmountWithPenaltyRate
+
 
         }).ToList();
     }
@@ -64,24 +66,24 @@ public class DebtService : IDebtService
         };
     }
 
-    public async Task AddDebtDetailAsync(DebtDetailDTO debtDetailDTO)
-    {
-        var debtDetail = new Debt
-        {
-            StartDate = debtDetailDTO.StartDate,
-            EndDate = debtDetailDTO.EndDate,
-            Amount = debtDetailDTO.Amount,
-            IsPaid = debtDetailDTO.IsPaid,
-            UserId = debtDetailDTO.UserId,
-            DueDate = debtDetailDTO.DueDate,
-            PenaltyRate = debtDetailDTO.PenaltyRate,
-            RemainingAmount = debtDetailDTO.RemainingAmount
+    // public async Task AddDebtDetailAsync(DebtDetailDTO debtDetailDTO)
+    // {
+    //     var debtDetail = new Debt
+    //     {
+    //         StartDate = debtDetailDTO.StartDate,
+    //         EndDate = debtDetailDTO.EndDate,
+    //         Amount = debtDetailDTO.Amount,
+    //         IsPaid = debtDetailDTO.IsPaid,
+    //         UserId = debtDetailDTO.UserId,
+    //         DueDate = debtDetailDTO.DueDate,
+    //         PenaltyRate = debtDetailDTO.PenaltyRate,
+    //         RemainingAmount = debtDetailDTO.RemainingAmount
 
 
-        };
-        await _context.Debts.AddAsync(debtDetail);
-        await _context.SaveChangesAsync();
-    }
+    //     };
+    //     await _context.Debts.AddAsync(debtDetail);
+    //     await _context.SaveChangesAsync();
+    // }
 
     public async Task CreateDebtDetailAsync(CreateDebtDetailDTO createDebtDetailDTO)
     {
@@ -161,20 +163,22 @@ public class DebtService : IDebtService
     public async Task ApplyDailyPenalty()
     {
         var debts = await _context.Debts
-            .Where(d => d.DueDate < DateTime.Now && d.RemainingAmount > 0)
+            .Where(d => d.DueDate < DateTime.Now)
             .ToListAsync();
 
         foreach (var debt in debts)
         {
-
-
             // اگر جریمه امروز برای این بدهی اعمال نشده باشد
             if (debt.LastPenaltyAppliedDate != DateTime.Today)
             {
                 var daysDelayed = (DateTime.Now - debt.DueDate).Days;
+
+                // محاسبه جریمه به ازای هر روز با درصد صحیح
                 var penalty = debt.Amount * debt.PenaltyRate * daysDelayed;
+
+                // به‌روزرسانی مقدار با جریمه
                 debt.RemainingAmount += penalty;
-                debt.AmountWithPenaltyRate = penalty + debt.Amount;
+                debt.AmountWithPenaltyRate = debt.Amount + penalty;  // مبلغ با جریمه
 
                 // بروزرسانی تاریخ آخرین اعمال جریمه
                 debt.LastPenaltyAppliedDate = DateTime.Today;
@@ -183,6 +187,7 @@ public class DebtService : IDebtService
 
         await _context.SaveChangesAsync();
     }
+
 
     public List<DebtDetailDTO> GetUserDebts(string userId)
     {
@@ -218,11 +223,12 @@ public class DebtService : IDebtService
                 DueDate = PersianDueDate.ToDateTime(),
                 UserId = user.Id
             };
-
             _context.Debts.Add(debt);
         }
 
         await _context.SaveChangesAsync();
+        ApplyDailyPenalty();
+
     }
 
     public List<SelectListItem> GetDebtTitles()
@@ -238,7 +244,7 @@ public class DebtService : IDebtService
     public async Task<List<DebtSummaryDto>> GetDebtSummariesAsync()
     {
         var summaries = await _context.Debts
-            .GroupBy(d => new { d.DebtTitleId, d.debtTitle.Title, d.DueDate,d.StartDate,d.EndDate })
+            .GroupBy(d => new { d.DebtTitleId, d.debtTitle.Title, d.DueDate, d.StartDate, d.EndDate })
             .Select(g => new DebtSummaryDto
             {
                 DebtTitleId = g.Key.DebtTitleId,

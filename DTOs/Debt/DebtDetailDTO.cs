@@ -9,7 +9,7 @@ namespace Taavoni.DTOs;
 public class DebtDetailDTO
 {
     public int Id { get; set; }
-    public int DebtTitleId {get;set;}
+    public int DebtTitleId { get; set; }
     public string? DebtTitleName { get; set; }
 
     public DateTime StartDate { get; set; }
@@ -20,13 +20,14 @@ public class DebtDetailDTO
     public string UserName { get; set; }
     public string Name { get; set; }
     public decimal RemainingAmount { get; set; }  // مقدار باقیمانده
+    public decimal AmountWithPenaltyRate { get; set; }  // مقدار باقیمانده
     public DateTime DueDate { get; set; }  // تاریخ سررسید
     public decimal PenaltyRate { get; set; } // درصد جریمه روزانه
 }
 public class EditDebtlDTO
 {
     public int Id { get; set; }
-        public int DebtTitleId {get;set;}
+    public int DebtTitleId { get; set; }
 
     public string StartDate { get; set; }
     public string EndDate { get; set; }

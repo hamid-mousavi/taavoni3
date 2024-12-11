@@ -48,7 +48,7 @@
             <th>مبلغ</th>
             <th>تاریخ سررسید</th>
             <th>درصد جریمه روزانه</th>
-            <th>مبلغ باقیمانده</th>
+            <th>مبلغ بدهی با جریمه</th>
             <th>عملیات</th>
           </tr>
         </thead>
@@ -60,7 +60,7 @@
             <tr>
               <th>@number.ToPersianNumbers()</th>
               <th>@item.Name</th>
-              <th>@item.UserName.ToString().Substring(0,item.UserName.ToString().IndexOf('@'))</th>
+              <th>@item.UserName.ToString()</th>
               <th>@item.DebtTitleName</th>
               <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
 
@@ -71,7 +71,7 @@
 
 
               <th>@item.PenaltyRate.ToString().ToPersianNumbers()</th>
-              <th>@item.RemainingAmount.ToString("N0").ToPersianNumbers()</th>
+              <th>@item.AmountWithPenaltyRate.ToString("N0").ToPersianNumbers()</th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
