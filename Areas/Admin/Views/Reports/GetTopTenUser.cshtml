@@ -26,7 +26,7 @@
             <th>ایمیل</th>
             <th>نام و نام خانوادگی</th>
             <th> مبلغ بدهی</th>
-            <th> مبلغ بدهی با جریمه</th>
+            @* <th> مبلغ بدهی با جریمه</th> *@
             <th>مبلغ پرداختی</th>
             <th>مبلغ باقیمانده</th>
           </tr>
@@ -42,7 +42,7 @@
                 <th>@item.Email</th>
                 <th>@item.UserName</th>
                 <th>@item.TotalDebt.ToString("N0").ToPersianNumbers()</th>
-                <th>@item.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</th>
+                @* <th>@item.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</th> *@
                 <th>@item.TotalPaid.ToString("N0").ToPersianNumbers()</th>
                 <th>@item.RemainingAmount.ToString("N0").ToPersianNumbers()</th>
 
@@ -61,7 +61,7 @@
   @section Scripts {
     <script>
       $(document).ready(function () {
-        newTable('#reportTable', [3, 4, 5, 6]);
+        newTable('#reportTable', [0,3,4,5]);
       });
     </script>
     <!-- Page level plugins -->

@@ -109,7 +109,7 @@ namespace Taavoni.Areas.Admin.Controllers
                 var report = await _reportService.GetUserDashboardAsync(item.Id);
                 dtos.Add(report);
             }
-            return View(dtos.Take(10).OrderBy(t=> t.TotalDeptWithPenaltyRate).ToList());
+            return View(dtos);
 
         }
         [HttpGet("api/BadTenUser")]
@@ -122,7 +122,7 @@ namespace Taavoni.Areas.Admin.Controllers
                 var report = await _reportService.GetUserDashboardAsync(item.Id);
                 dtos.Add(report);
             }
-            return View(dtos.Take(10).OrderBy(t=> t.TotalDeptWithPenaltyRate).OrderDescending());
+            return View(dtos);
 
         }
 

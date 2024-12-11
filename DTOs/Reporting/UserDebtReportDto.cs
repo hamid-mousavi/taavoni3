@@ -52,7 +52,7 @@ namespace Taavoni.DTOs.Reporting
 
     public class DebtDetailDto
     {
-        public decimal TotalDeptWithPenaltyRate { get; set; }
+        // public decimal TotalDeptWithPenaltyRate { get; set; }
 
         public decimal RemainingAmount { get; set; }  // مقدار باقی
         public decimal PenaltyRate { get; set; } // درصد جریمه روزانه
@@ -71,7 +71,7 @@ namespace Taavoni.DTOs.Reporting
         public string? Email { get; set; }
         public decimal TotalDebt { get; set; }
         public decimal TotalPaid { get; set; }
-        public decimal TotalDeptWithPenaltyRate { get; set; }
+        // public decimal TotalDeptWithPenaltyRate { get; set; }
         public decimal RemainingAmount => TotalDebt - TotalPaid;
         public List<DebtDetailDto> DebtDetails { get; set; }
         public List<PaymentDetailDto> PaymentDetails { get; set; }

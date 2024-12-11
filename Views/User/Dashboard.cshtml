@@ -23,7 +23,7 @@
         </div>
     </div>
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
+    @* <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
@@ -91,8 +91,8 @@
                         <td>تا تاریخ</td>
                         <td>تاریخ سررسید</td>
                         <td>@("مبلغ ".ToPersianUnit())</td>
-                        <td>مبلغ بااحتساب جریمه</td>
-                        <td>مبلغ باقیمانده</td>
+                        @* <td>مبلغ بااحتساب جریمه</td> *@
+                        @* <td>مبلغ باقیمانده</td> *@
 
 
                     </tr>
@@ -108,8 +108,8 @@
                             <td>@debt.DueDate.ToPersianDateTextify()</td>
                             <td>@debt.Amount.ToString().ToPersianNumbers()</td>
                             
-                            <td>@debt.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</td>
-                        <td>@debt.RemainingAmount.ToString("N0").ToPersianNumbers()</td>
+                            @* <td>@debt.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</td> *@
+                        @* <td>@debt.RemainingAmount.ToString("N0").ToPersianNumbers()</td> *@
                         </tr>
                     }
                 </tbody>
@@ -200,7 +200,7 @@ $(document).ready(function() {
 
 // تعریف مرتب‌سازی سفارشی برای DataTable
     
-    newTable('#debttable',[4,5,6]);
+    newTable('#debttable',[4]);
     newTable('#paymenttable',[1]);
     loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut');
     loaddebtsChartData(`/api/Payments/user-dashboardchart`, 'debtsChart');

@@ -103,9 +103,9 @@ namespace Taavoni.Services.Interfaces
             var totalDebt = await _context.Debts
              .Where(d => d.UserId == userId)
              .SumAsync(d => (double)d.Amount);
-            var totalDebtWithPenaltyRate = await _context.Debts
-           .Where(d => d.UserId == userId)
-           .SumAsync(d => (double)d.AmountWithPenaltyRate);
+        //     var totalDebtWithPenaltyRate = await _context.Debts
+        //    .Where(d => d.UserId == userId)
+        //    .SumAsync(d => (double)d.AmountWithPenaltyRate);
 
             var totalPaid = await _context.Payments
                 .Where(p => p.UserId == userId)
@@ -121,7 +121,7 @@ namespace Taavoni.Services.Interfaces
                     StartDate = d.StartDate,
                     EndDate = d.EndDate,
                     PenaltyRate = d.PenaltyRate,
-                    RemainingAmount = d.RemainingAmount
+                    // RemainingAmount = d.RemainingAmount
                 }).ToListAsync();
 
             var paymentDetails = await _context.Payments
@@ -140,7 +140,7 @@ namespace Taavoni.Services.Interfaces
                 Email =  users.FirstOrDefault(u => u.Id == userId)!.Email,
                 TotalDebt = (decimal)totalDebt,
                 TotalPaid = (decimal)totalPaid,
-                TotalDeptWithPenaltyRate = (decimal)totalDebtWithPenaltyRate,
+                // TotalDeptWithPenaltyRate = (decimal)totalDebtWithPenaltyRate,
                 DebtDetails = debtDetails,
                 PaymentDetails = paymentDetails
 
