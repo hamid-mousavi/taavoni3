@@ -18,4 +18,9 @@ public interface IDebtService
     // می‌توانید سایر متدها را نیز اضافه کنید
     Task AddDebtsForAllUsersAsync(CreateAllDebtDto dto);
     List<SelectListItem> GetDebtTitles();
+    Task<List<DebtSummaryDto>> GetDebtSummariesAsync();
+    Task UpdateDebtsForAllUsersAsync(int debtTitleId, EditAllDebtDto dto);
+    Task DeleteDebtsForAllUsersAsync(int debtTitleId);
+    ///
+
 }

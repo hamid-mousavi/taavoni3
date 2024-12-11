@@ -27,10 +27,34 @@ namespace Taavoni.DTOs
     {
         public int DebtTitleId { get; set; }
         public decimal Amount { get; set; }
+        public string? DebtTitleName { get; set; }
         public decimal PenaltyRate { get; set; } = 0; // درصد جریمه روزانه
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public string DueDate { get; set; }
     }
+    public class DebtSummaryDto
+    {
+        public int DebtTitleId { get; set; }
+        public string DebtTitleName { get; set; }
+        public DateTime DueDate { get; set; }
+        public decimal Amount { get; set; }
+
+        public double TotalAmount { get; set; }
+        public int UserCount { get; set; }
+    }
+    public class EditAllDebtDto
+    {
+        public int DebtTitleId { get; set; }
+        public string DebtTitleName { get; set; }
+        public decimal OriginalAmount { get; set; } // مبلغ اولیه
+        public decimal Amount { get; set; }
+        public decimal PenaltyRate { get; set; }
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+        public string DueDate { get; set; }
+    }
+
+
 
 }

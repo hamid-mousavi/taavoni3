@@ -1,0 +1,65 @@
+@model Taavoni.DTOs.EditAllDebtDto
+
+<h1 class="h3 mb-4 text-gray-800">ویرایش بدهی</h1>
+
+<form asp-action="EditAll" method="post">
+    <input type="hidden" asp-for="DebtTitleId" />
+    <div class="form-group">
+        <label for="DebtTitleName">عنوان بدهی</label>
+        <input type="text" asp-for="DebtTitleName" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label for="Amount">مبلغ </label>
+        <input type="text" asp-for="Amount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="FromDate">مبلغ </label>
+        <input type="text" asp-for="FromDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="ToDate">مبلغ </label>
+        <input type="text" asp-for="ToDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="PenaltyRate">درصد جریمه روزانه</label>
+        <input type="text" asp-for="PenaltyRate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="DueDate">تاریخ سررسید</label>
+        <input type="text" asp-for="DueDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">ثبت تغییرات</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <link href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#FromDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+            $('#ToDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+            $('#DueDate').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true
+            });
+        });
+
+
+
+
+
+    </script>
+
+
+}

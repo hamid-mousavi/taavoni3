@@ -26,16 +26,16 @@
         <span class="text">جدید</span>
       </a>
       <form asp-action="ApplyDailyPenalty" method="post">
-        
+
         <button type="submit" class="btn btn-warning btn-icon-split mr-2">
           <span class="icon text-white-50">
-         <i class="fas fa-redo-alt"></i>
-      </span>
+            <i class="fas fa-redo-alt"></i>
+          </span>
           <span class="text">بروزرسانی</span>
         </button>
       </form>
     </div>
-    
+
 
     <div class="table-responsive">
       <table class="table table-bordered" id="debttable" width="100%" cellspacing="0">
@@ -60,7 +60,22 @@
             <tr>
               <th>@number.ToPersianNumbers()</th>
               <th>@item.Name</th>
-              <th>@item.UserName.ToString().Substring(0,item.UserName.ToString().IndexOf('@'))</th>
+
+              <th>
+                @{
+                  var userName = item.UserName?.ToString();
+                  var atIndex = userName?.IndexOf('@') ?? -1;
+                  if (atIndex > 0)
+                  {
+                    @userName.Substring(0, atIndex)
+                  }
+                  else
+                  {
+                    <span>نامعتبر</span>
+                  }
+                }
+              </th>
+
               <th>@item.DebtTitleName</th>
               <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
 
@@ -93,7 +108,7 @@
   @section Scripts {
     <script>
       $(document).ready(function () {
-        newTable('#debttable', [4,6,7]);
+        newTable('#debttable', [4, 6, 7]);
       });
     </script>
 

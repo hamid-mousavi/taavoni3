@@ -166,7 +166,7 @@ public class DebtService : IDebtService
 
         foreach (var debt in debts)
         {
-           
+
 
             // اگر جریمه امروز برای این بدهی اعمال نشده باشد
             if (debt.LastPenaltyAppliedDate != DateTime.Today)
@@ -175,7 +175,7 @@ public class DebtService : IDebtService
                 var penalty = debt.Amount * debt.PenaltyRate * daysDelayed;
                 debt.RemainingAmount += penalty;
                 debt.AmountWithPenaltyRate = penalty + debt.Amount;
-                
+
                 // بروزرسانی تاریخ آخرین اعمال جریمه
                 debt.LastPenaltyAppliedDate = DateTime.Today;
             }
@@ -201,7 +201,7 @@ public class DebtService : IDebtService
     public async Task AddDebtsForAllUsersAsync(CreateAllDebtDto dto)
     {
         var users = _context.Users.ToList();
-        
+
         var PersianDueDate = PersianDateTime.Parse(dto.DueDate.PersianToEnglish());
         var PersianStartDate = PersianDateTime.Parse(dto.FromDate.PersianToEnglish());
         var PersianEndDate = PersianDateTime.Parse(dto.ToDate.PersianToEnglish());
@@ -235,5 +235,62 @@ public class DebtService : IDebtService
             })
             .ToList();
     }
+
+    public async Task<List<DebtSummaryDto>> GetDebtSummariesAsync()
+    {
+        var summaries = await _context.Debts
+            .GroupBy(d => new { d.DebtTitleId, d.debtTitle.Title, d.DueDate })
+            .Select(g => new DebtSummaryDto
+            {
+                DebtTitleId = g.Key.DebtTitleId,
+                DebtTitleName = g.Key.Title,
+                DueDate = g.Key.DueDate,
+                Amount = g.FirstOrDefault().Amount, // مقدار اولیه
+                TotalAmount = g.Sum(d => (double)d.Amount),
+                UserCount = g.Count()
+            })
+            .ToListAsync();
+
+        return summaries;
+    }
+
+    public async Task UpdateDebtsForAllUsersAsync(int debtTitleId, EditAllDebtDto dto)
+    {
+        var debts = _context.Debts.Where(d => d.DebtTitleId == debtTitleId).ToList();
+
+        var PersianDueDate = PersianDateTime.Parse(dto.DueDate.PersianToEnglish());
+        var PersianStartDate = PersianDateTime.Parse(dto.FromDate.PersianToEnglish());
+        var PersianEndDate = PersianDateTime.Parse(dto.ToDate.PersianToEnglish());
+
+        foreach (var debt in debts)
+        {
+            debt.Amount = dto.Amount;
+            debt.PenaltyRate = dto.PenaltyRate;
+            debt.StartDate = PersianStartDate.ToDateTime();
+            debt.EndDate = PersianEndDate.ToDateTime();
+            debt.DueDate = PersianDueDate.ToDateTime();
+        }
+
+        await _context.SaveChangesAsync();
+    }
+    public async Task DeleteDebtsForAllUsersAsync(int debtTitleId)
+    {
+        // پیدا کردن تمام بدهی‌ها با DebtTitleId مشخص
+        var debts = await _context.Debts.Where(d => d.DebtTitleId == debtTitleId).ToListAsync();
+
+        if (debts.Any())
+        {
+            // حذف بدهی‌ها
+            _context.Debts.RemoveRange(debts);
+            await _context.SaveChangesAsync();
+        }
+        else
+        {
+            // اگر هیچ بدهی با این عنوان پیدا نشد
+            throw new Exception("هیچ بدهی‌ای برای این عنوان پیدا نشد.");
+        }
+    }
+
+
 
 }

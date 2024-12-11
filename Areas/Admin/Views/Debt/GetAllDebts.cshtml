@@ -1,0 +1,52 @@
+@model IEnumerable<Taavoni.DTOs.DebtSummaryDto>
+@using DNTPersianUtils.Core
+
+
+<h1 class="h3 mb-4 text-gray-800">خلاصه بدهی‌ها</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="summaryTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>عنوان بدهی</th>
+                <th>مجموع مبلغ</th>
+                <th>تاریخ سررسید</th>
+                <th>مجموع مبلغ</th>
+                <th>تعداد کاربران</th>
+                <th>عملیات</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DebtTitleName</td>
+                    <td>@item.Amount</td>
+                    <td>@item.DueDate.ToShortPersianDateString()</td>
+                    <td>@item.TotalAmount.ToString("N0").ToPersianNumbers()</td>
+                    <td>@item.UserCount.ToString().ToPersianNumbers()</td>
+                    <td>
+                        <a asp-action="EditAll" asp-route-id="@item.DebtTitleId" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> ویرایش
+                        </a>
+                        <form asp-action="DeleteAll" asp-route-id="@item.DebtTitleId" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger ">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#summaryTable').DataTable();
+        });
+    </script>
+}

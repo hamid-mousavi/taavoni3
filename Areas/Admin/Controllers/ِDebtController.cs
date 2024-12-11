@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DNTPersianUtils.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Taavoni.Data;
 using Taavoni.DTOs;
+using Taavoni.Models;
 using Taavoni.Models.Entities;
+using taavoni3.Extention;
 
 namespace Taavoni.Areas.Admin.Controllers
 {
@@ -177,7 +180,59 @@ namespace Taavoni.Areas.Admin.Controllers
             ViewBag.DebtTitles = debtService.GetDebtTitles();
             return View(dto);
         }
+        public async Task<IActionResult> GetAllDebts()
+        {
+            var summaries = await _debtService.GetDebtSummariesAsync();
+            return View(summaries);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditAll(int id)
+        {
+            var debtGroup = await _context.Debts
+                 .Include(d => d.debtTitle)
+                 .Where(d => d.DebtTitleId == id)
+                 .ToListAsync();
 
+            var firstDebt = debtGroup.FirstOrDefault();
+            var dto = new EditAllDebtDto
+            {
+
+                DebtTitleId = id,
+                DebtTitleName = firstDebt?.debtTitle?.Title ?? "نامشخص", // مقدار پیش‌فرض
+                OriginalAmount = firstDebt?.Amount ?? 0,
+                Amount = firstDebt?.Amount ?? 0,
+                PenaltyRate = firstDebt?.PenaltyRate ?? 0,
+                DueDate = firstDebt?.DueDate.ToPersianDate() ?? string.Empty
+            };
+
+            return View(dto); // ویوی مخصوص ویرایش بدهی‌ها
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAll(EditAllDebtDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _debtService.UpdateDebtsForAllUsersAsync(dto.DebtTitleId, dto);
+                return RedirectToAction("Index");
+            }
+
+            return View(dto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteAll(int id)
+        {
+            try
+            {
+                await _debtService.DeleteDebtsForAllUsersAsync(id); // فراخوانی متد حذف بدهی‌ها
+                return RedirectToAction("Index"); // به صفحه ایندکس هدایت می‌شود
+            }
+            catch (Exception ex)
+            {
+                // مدیریت خطا (در صورت وجود)
+                return View(ex.ToString());
+            }
+        }
 
 
     }
