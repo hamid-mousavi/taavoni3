@@ -16,18 +16,22 @@
                 @Html.AntiForgeryToken()
 
                 <input type="hidden" asp-for="Id" />
-                  <!-- نام  -->
+                <!-- نام  -->
                 <div class="form-group">
                     <label asp-for="Name" class="font-weight-bold text-dark">نام </label>
-                    <input asp-for="Name" class="form-control form-control-user" placeholder="نام و نام خانوادگی را وارد کنید" />
+                    <input asp-for="Name" class="form-control form-control-user"
+                        placeholder="نام و نام خانوادگی را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
 
                 <!-- نام کاربری -->
                 <div class="form-group">
                     <label asp-for="UserName" class="font-weight-bold text-dark">نام کاربری</label>
-                    <input asp-for="UserName" class="form-control form-control-user" placeholder="نام کاربری را وارد کنید" />
+                    <input asp-for="UserName" class="form-control form-control-user"
+                        placeholder="نام کاربری را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+
                 </div>
 
                 <!-- ایمیل -->
@@ -35,19 +39,23 @@
                     <label asp-for="Email" class="font-weight-bold text-dark">ایمیل</label>
                     <input asp-for="Email" class="form-control form-control-user" placeholder="ایمیل را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
                 </div>
 
                 <!-- پسورد جدید -->
                 <div class="form-group">
                     <label asp-for="NewPassword" class="font-weight-bold text-dark">پسورد جدید</label>
-                    <input asp-for="NewPassword" type="password" class="form-control form-control-user" placeholder="پسورد جدید را وارد کنید" />
+                    <input asp-for="NewPassword" type="password" class="form-control form-control-user"
+                        placeholder="پسورد جدید را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
                 </div>
 
                 <!-- تایید پسورد -->
                 <div class="form-group">
                     <label asp-for="ConfirmPassword" class="font-weight-bold text-dark">تایید پسورد جدید</label>
-                    <input asp-for="ConfirmPassword" type="password" class="form-control form-control-user" placeholder="تایید پسورد جدید را وارد کنید" />
+                    <input asp-for="ConfirmPassword" type="password" class="form-control form-control-user"
+                        placeholder="تایید پسورد جدید را وارد کنید" />
                     @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
 

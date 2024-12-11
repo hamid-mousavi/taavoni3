@@ -1,0 +1,73 @@
+@model List<DashboardDto>
+@using Taavoni.DTOs.Reporting
+@using DNTPersianUtils.Core
+
+
+@{
+  int number = 0;
+}
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">جزئیات پرداخت</h1>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">پرداخت ها</h6>
+  </div>
+  <div class="card-body">
+
+
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ردیف</th>
+            <th>ایمیل</th>
+            <th>نام و نام خانوادگی</th>
+            <th> مبلغ بدهی</th>
+            <th> مبلغ بدهی با جریمه</th>
+            <th>مبلغ پرداختی</th>
+            <th>مبلغ باقیمانده</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            if (item.TotalDebt > 0)
+            {
+              number += 1;
+              <tr>
+                <th>@number.ToString().ToPersianNumbers()</th>
+                <th>@item.Email</th>
+                <th>@item.UserName</th>
+                <th>@item.TotalDebt.ToString("N0").ToPersianNumbers()</th>
+                <th>@item.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</th>
+                <th>@item.TotalPaid.ToString("N0").ToPersianNumbers()</th>
+                <th>@item.RemainingAmount.ToString("N0").ToPersianNumbers()</th>
+
+
+              </tr>
+            }
+
+          }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  @section Scripts {
+    <script>
+      $(document).ready(function () {
+        newTable('#reportTable', [3, 4, 5, 6]);
+      });
+    </script>
+    <!-- Page level plugins -->
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/assets/js/demo/datatables-demo.js"></script>
+  }

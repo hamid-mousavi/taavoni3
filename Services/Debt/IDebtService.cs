@@ -9,7 +9,7 @@ public interface IDebtService
     Task<List<DebtDetailDTO>> GetAllDebtsAsync();
     Task<DebtDetailDTO> GetDebtByIdAsync(int id);
     Task ApplyDailyPenalty();
-    Task AddDebtDetailAsync(DebtDetailDTO debtDetailDTO);
+    // Task AddDebtDetailAsync(DebtDetailDTO debtDetailDTO);
     Task CreateDebtDetailAsync(CreateDebtDetailDTO createDebtDetailDTO);
     Task<bool> DeleteDebtDetailAsync(int Id);
     Task<bool> UpdateDebtDetailAsync(EditDebtlDTO editDebtlDTO);
@@ -19,8 +19,4 @@ public interface IDebtService
     Task AddDebtsForAllUsersAsync(CreateAllDebtDto dto);
     List<SelectListItem> GetDebtTitles();
     Task<List<DebtSummaryDto>> GetDebtSummariesAsync();
-    Task UpdateDebtsForAllUsersAsync(int debtTitleId, EditAllDebtDto dto);
-    Task DeleteDebtsForAllUsersAsync(int debtTitleId);
-    ///
-
 }

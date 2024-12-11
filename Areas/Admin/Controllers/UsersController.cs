@@ -47,6 +47,14 @@ namespace taavoni3.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // بررسی وجود نام کاربری در دیتابیس
+                var existingUserName = await _userManager.FindByNameAsync(model.UserName);
+                if (existingUserName != null)
+                {
+                    ModelState.AddModelError("UserName", "این نام کاربری قبلاً ثبت شده است.");
+                    return View(model);
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.UserName,
@@ -55,7 +63,6 @@ namespace taavoni3.Areas.Admin.Controllers
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
-
                 if (result.Succeeded)
                 {
                     return RedirectToAction(nameof(Index));
@@ -66,18 +73,9 @@ namespace taavoni3.Areas.Admin.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            else
-            {
-                // نمایش خطاها
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine(error.ErrorMessage);  // یا از یک لاگ برای مشاهده خطاها استفاده کنید
-                }
-            }
 
             return View(model);
         }
-
 
         // GET: Users/Edit/{id}
         public async Task<IActionResult> Edit(string id)
@@ -110,7 +108,7 @@ namespace taavoni3.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, EditUserViewModel model)
         {
-            if (id != model.Id)  // مقایسه با شناسه کاربر
+            if (id != model.Id)
             {
                 return NotFound();
             }
@@ -123,57 +121,48 @@ namespace taavoni3.Areas.Admin.Controllers
                     return NotFound();
                 }
 
-                // اگر نام کاربری تغییر کرده باشد، آن را به‌روزرسانی می‌کنیم
+                // بررسی تکراری بودن نام کاربری فقط در صورت تغییر
                 if (user.UserName != model.UserName)
                 {
+                    var existingUserName = await _userManager.Users
+                        .AnyAsync(u => u.UserName == model.UserName && u.Id != id); // چک تکرار به‌جز کاربر فعلی
+                    if (existingUserName)
+                    {
+                        ModelState.AddModelError("UserName", "این نام کاربری قبلاً ثبت شده است.");
+                        return View(model);
+                    }
                     user.UserName = model.UserName;
                 }
 
-                // اگر ایمیل تغییر کرده باشد، آن را به‌روزرسانی می‌کنیم
+                // بررسی تکراری بودن ایمیل فقط در صورت تغییر
                 if (user.Email != model.Email)
                 {
+                    var existingEmail = await _userManager.Users
+                        .AnyAsync(u => u.Email == model.Email && u.Id != id); // چک تکرار به‌جز کاربر فعلی
+                    if (existingEmail)
+                    {
+                        ModelState.AddModelError("Email", "این ایمیل قبلاً ثبت شده است.");
+                        return View(model);
+                    }
                     user.Email = model.Email;
                 }
 
-                // اگر ایمیل تغییر کرده باشد، آن را به‌روزرسانی می‌کنیم
-                if (user.Name != model.Name)
+                // به‌روزرسانی سایر فیلدها
+                user.Name = model.Name;
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
                 {
-                    user.Name = model.Name;
+                    return RedirectToAction(nameof(Index));
                 }
 
-                // اگر پسورد جدید وارد شده باشد، پسورد را تغییر می‌دهیم
-                if (!string.IsNullOrEmpty(model.NewPassword))
-                {
-                    // ابتدا یک توکن برای تغییر پسورد تولید می‌کنیم
-                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                    var result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
-
-                    if (!result.Succeeded)
-                    {
-                        // اگر تغییر پسورد با خطا مواجه شد، خطاها را در مدل اضافه می‌کنیم
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                        return View(model);
-                    }
-                }
-
-                // به‌روزرسانی اطلاعات کاربر (بدون تغییر پسورد اگر تغییر نکرده باشد)
-                var updateResult = await _userManager.UpdateAsync(user);
-                if (updateResult.Succeeded)
-                {
-                    return RedirectToAction(nameof(Index)); // هدایت به صفحه لیست کاربران
-                }
-
-                // اگر خطای دیگری در به روز رسانی وجود داشت، آن‌ها را در مدل اضافه می‌کنیم
-                foreach (var error in updateResult.Errors)
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            return View(model); // اگر اعتبارسنجی ناموفق باشد، فرم دوباره نشان داده می‌شود
+            return View(model);
         }
 
         // GET: Users/Delete/{id}
@@ -251,6 +240,26 @@ namespace taavoni3.Areas.Admin.Controllers
         }
 
 
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsEmailUnique(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                return Json(false);
+            }
+            return Json(true);
+        }
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsUserNameUnique(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            if (user != null)
+            {
+                return Json(false);
+            }
+            return Json(true);
+        }
 
     }
 

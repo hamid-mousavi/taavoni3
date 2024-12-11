@@ -6976,11 +6976,11 @@
         "Templates/Blazor/Details.tt",
         "Templates/Blazor/Edit.tt",
         "Templates/Blazor/Index.tt",
-        "Templates/BlazorIdentity/ApplicationUserAccessor.tt",
         "Templates/BlazorIdentity/IdentityComponentsEndpointRouteBuilderExtensions.tt",
         "Templates/BlazorIdentity/IdentityNoOpEmailSender.tt",
         "Templates/BlazorIdentity/IdentityRedirectManager.tt",
         "Templates/BlazorIdentity/IdentityRevalidatingAuthenticationStateProvider.tt",
+        "Templates/BlazorIdentity/IdentityUserAccessor.tt",
         "Templates/BlazorIdentity/Pages/ConfirmEmail.tt",
         "Templates/BlazorIdentity/Pages/ConfirmEmailChange.tt",
         "Templates/BlazorIdentity/Pages/ExternalLogin.tt",
@@ -11770,11 +11770,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
       "projectName": "Taavoni",
-      "projectPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+      "projectPath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
       "packagesPath": "C:\\Users\\iR\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\obj\\",
+      "outputPath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iR\\AppData\\Roaming\\NuGet\\NuGet.Config"

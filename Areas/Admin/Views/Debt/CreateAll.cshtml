@@ -3,7 +3,8 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">ایجاد بدهی جدید</h6>
+            <h6 class="m-0 font-weight-bold text-danger" style="font-size: 30px;">ثبت بدهی: برای کلیه کاربران ثبت می شود
+            </h6>
         </div>
         <div class="card-body">
             <form asp-action="CreateAll" method="post">
@@ -13,15 +14,17 @@
                 </div>
                 <div class="form-group">
                     <label for="Amount">مبلغ بدهی:</label>
-                    <input asp-for="Amount" class="form-control" type="number" step="0.01" placeholder="مبلغ را وارد کنید" />
+                    <input asp-for="Amount" class="form-control" type="number" step="0.01"
+                        placeholder="مبلغ را وارد کنید" />
                 </div>
                 <div class="form-group">
-                    <label for="PenaltyRate">مبلغ بدهی:</label>
-                    <input asp-for="PenaltyRate" class="form-control" type="number" step="0.01" placeholder="درصد روزانه جریمه" />
+                    <label for="PenaltyRate">درصد جریمه:</label>
+                    <input asp-for="PenaltyRate" class="form-control" type="number" placeholder="درصد روزانه جریمه" />
+                    <span asp-validation-for="PenaltyRate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="FromDate">از تاریخ:</label>
-                    <input asp-for="FromDate" class="form-control"type="text" />
+                    <input asp-for="FromDate" class="form-control" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="ToDate">تا تاریخ:</label>
@@ -69,4 +72,3 @@
 
 
 }
-

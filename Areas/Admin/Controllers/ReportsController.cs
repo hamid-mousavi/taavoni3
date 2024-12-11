@@ -18,13 +18,13 @@ namespace Taavoni.Areas.Admin.Controllers
     public class ReportsController : Controller
     {
         private readonly IReportService _reportService;
-                private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 
         public ReportsController(IReportService reportService, UserManager<ApplicationUser> userManager)
         {
             _reportService = reportService;
-             _userManager = userManager;
+            _userManager = userManager;
         }
 
         [HttpGet("DebtReport")]
@@ -72,7 +72,7 @@ namespace Taavoni.Areas.Admin.Controllers
             });
             return Json(data);
         }
-   
+
 
         [HttpGet("api/UserDebts")]
         public async Task<IActionResult> GetUserDebtsData()
@@ -87,16 +87,43 @@ namespace Taavoni.Areas.Admin.Controllers
             return Json(data);
         }
         [HttpGet("api/allreports")]
-        public async Task<IActionResult> GetAllUserDashboard(){
-            List<DashboardDto> dtos =[];
+        public async Task<IActionResult> GetAllUserDashboard()
+        {
+            List<DashboardDto> dtos = [];
             var users = await _userManager.Users.ToListAsync();
             foreach (var item in users)
             {
-              var report =  await _reportService.GetUserDashboardAsync(item.Id);
-              dtos.Add(report);
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
             }
             return View(dtos);
-            
+
+        }
+        [HttpGet("api/TopTenUser")]
+        public async Task<IActionResult> GetTopTenUser()
+        {
+            List<DashboardDto> dtos = [];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
+            }
+            return View(dtos.Take(10).OrderBy(t=> t.TotalDeptWithPenaltyRate).ToList());
+
+        }
+        [HttpGet("api/BadTenUser")]
+        public async Task<IActionResult> GetBadTenUser()
+        {
+            List<DashboardDto> dtos = [];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
+            }
+            return View(dtos.Take(10).OrderBy(t=> t.TotalDeptWithPenaltyRate).OrderDescending());
+
         }
 
     }

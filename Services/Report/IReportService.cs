@@ -144,7 +144,6 @@ namespace Taavoni.Services.Interfaces
                 DebtDetails = debtDetails,
                 PaymentDetails = paymentDetails
 
-
             };
         }
         public async Task<UserDebtsReportDto> GetUserDebtsReportAsync(string userId)
