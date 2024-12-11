@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "le7d5XbRwRA=",
+  "dgSpecHash": "dRXTsMcLB1Q=",
   "success": true,
-  "projectFilePath": "C:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
+  "projectFilePath": "c:\\Users\\iR\\Desktop\\PR\\Taavoni\\Taavoni\\Taavoni.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iR\\.nuget\\packages\\dntpersianutils.core\\6.3.2\\dntpersianutils.core.6.3.2.nupkg.sha512",
     "C:\\Users\\iR\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

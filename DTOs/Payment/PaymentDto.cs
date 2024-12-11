@@ -18,7 +18,7 @@ namespace Taavoni.DTOs.Payment
         public decimal Amount { get; set; }
         public string UserId { get; set; }
         public int DebtId { get; set; }  // ارتباط با شناسه بدهی
-        public decimal DebtAmountWPR { get; set; }
+        public decimal DebtAmount { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? AttachmentPath { get; set; }

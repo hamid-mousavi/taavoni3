@@ -107,7 +107,7 @@ namespace Taavoni.Services.Interfaces
             {
                 id = d.Id,
                 Amount = d.Amount,
-                DebtAmountWPR = d.Debt.AmountWithPenaltyRate,
+                DebtAmount = d.Debt.Amount,
                 AttachmentPath = d.AttachmentPath,
                 Description = d.Description,
                 Name = d.User?.Name,
