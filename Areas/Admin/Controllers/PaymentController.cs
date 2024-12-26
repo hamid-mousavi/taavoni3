@@ -37,9 +37,14 @@ namespace Taavoni.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreatePayment()
         {
-            var users = await _userManager.Users.ToListAsync();
+            var users = await _userManager.Users.Select(u => new UserViewModel
+            {
+                Id = u.Id,
+                UserName = u.UserName,
+                Name = u.Name
+            }).ToListAsync();
             ViewBag.DebtId = new SelectList(await _debtService.GetAllDebtsAsync(), "Id", "Name");
-            ViewBag.Users = new MultiSelectList(users, "Id", "UserName");
+            ViewBag.Users = new MultiSelectList(users, "Id", "DisplayName");
             var dto = new CreatePaymentDto(); // مقداردهی اولیه به مدل
             return View(dto);
         }

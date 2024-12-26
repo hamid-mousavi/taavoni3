@@ -56,9 +56,16 @@ namespace Taavoni.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            var users = await _userManager.Users
+    .Select(u => new UserViewModel
+    {
+        Id = u.Id,
+        UserName = u.UserName,
+        Name = u.Name
+    })
+    .ToListAsync();
 
-            var users = await _userManager.Users.ToListAsync();
-            ViewBag.Users = new MultiSelectList(users, "Id", "UserName");
+            ViewBag.Users = new MultiSelectList(users, "Id", "DisplayName");
             ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title");
             return View();
         }

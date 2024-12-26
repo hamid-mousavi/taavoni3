@@ -121,11 +121,11 @@ namespace taavoni3.Areas.Admin.Controllers
                     return NotFound();
                 }
 
-                // بررسی تکراری بودن نام کاربری فقط در صورت تغییر
+                // به‌روزرسانی اطلاعات کاربر
                 if (user.UserName != model.UserName)
                 {
                     var existingUserName = await _userManager.Users
-                        .AnyAsync(u => u.UserName == model.UserName && u.Id != id); // چک تکرار به‌جز کاربر فعلی
+                        .AnyAsync(u => u.UserName == model.UserName && u.Id != id);
                     if (existingUserName)
                     {
                         ModelState.AddModelError("UserName", "این نام کاربری قبلاً ثبت شده است.");
@@ -134,11 +134,10 @@ namespace taavoni3.Areas.Admin.Controllers
                     user.UserName = model.UserName;
                 }
 
-                // بررسی تکراری بودن ایمیل فقط در صورت تغییر
                 if (user.Email != model.Email)
                 {
                     var existingEmail = await _userManager.Users
-                        .AnyAsync(u => u.Email == model.Email && u.Id != id); // چک تکرار به‌جز کاربر فعلی
+                        .AnyAsync(u => u.Email == model.Email && u.Id != id);
                     if (existingEmail)
                     {
                         ModelState.AddModelError("Email", "این ایمیل قبلاً ثبت شده است.");
@@ -147,8 +146,29 @@ namespace taavoni3.Areas.Admin.Controllers
                     user.Email = model.Email;
                 }
 
-                // به‌روزرسانی سایر فیلدها
                 user.Name = model.Name;
+
+                // تغییر رمز عبور
+                if (!string.IsNullOrEmpty(model.NewPassword))
+                {
+                    if (model.NewPassword != model.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("ConfirmPassword", "رمز عبور و تکرار آن مطابقت ندارند.");
+                        return View(model);
+                    }
+
+                    var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var passwordChangeResult = await _userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
+
+                    if (!passwordChangeResult.Succeeded)
+                    {
+                        foreach (var error in passwordChangeResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                        return View(model);
+                    }
+                }
 
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
