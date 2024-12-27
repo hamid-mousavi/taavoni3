@@ -219,6 +219,88 @@ function persianToEnglishNumber(str) {
     });
 }
 
+function GetUserDebtsData(tableId){
+        $(tableId).DataTable({
+            "ajax": {
+                "url": "/Reports/api/UserDebts",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "UserName", "title": "نام کاربری" },
+                { 
+                    "data": "TotalDebt", 
+                    "title": "مجموع بدهی",
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                { 
+                    "data": "RemainingDebt", 
+                    "title": "باقیمانده بدهی",
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '')
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/fa.json"
+            }
+        });
+  
+
+}
+function GetUserDebtsData(params) {
+    $.extend($.fn.dataTable.ext.type.order, {
+        'persian-numeric-asc': function(a, b) {
+            return parseFloat(persianToEnglishNumber(a)) - parseFloat(persianToEnglishNumber(b));
+        },
+        'persian-numeric-desc': function(a, b) {
+            return parseFloat(persianToEnglishNumber(b)) - parseFloat(persianToEnglishNumber(a));
+        }
+    });
+    if (!$.fn.dataTable.isDataTable(params)) {
+        $(params).DataTable({
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'excel', 'pdf'],
+            "paging": true,         // فعال کردن صفحه‌بندی
+            "ordering": true,       // فعال کردن مرتب‌سازی
+            "info": true,          // نمایش اطلاعات صفحه
+            "searching": true,
+            
+            "ajax": {
+                "url": "/Reports/api/UserDebts",
+                "type": "GET",
+        "dataSrc": "" // اگر JSON بازگشتی لیستی از اشیاء است، این مقدار باید خالی باشد.
+            },
+            "columns": [
+                { "data": "userName", "title": "نام کاربری" },
+        { 
+            "data": "totalDebt", 
+            "title": "مجموع بدهی",
+            "render": $.fn.dataTable.render.number(',', '.', 0, '')
+        },
+          { 
+            "data": "totalPayd", 
+            "title": "مجموع پرداختی",
+            "render": $.fn.dataTable.render.number(',', '.', 0, '')
+        },
+        { 
+            "data": "remainingDebt", 
+            "title": "باقیمانده بدهی",
+            "render": $.fn.dataTable.render.number(',', '.', 0, '')
+        }
+            ],
+            // columnDefs: [
+            //     { targets: [1,2], type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
+            // ],
+            "language": {
+                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json', // بارگذاری زبان فارسی
+
+            }
+        });
+    }
+   
+
+  }
+  
 
 
 

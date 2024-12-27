@@ -149,11 +149,42 @@
         </div>
     </div>
 </div>
+
+
+<h1 class="h3 mb-4 text-gray-800">گزارش بدهی کاربران</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جدول بدهی کاربران</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="debtsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>نام کاربری</th>
+                        <th>مجموع بدهی</th>
+                        <th>مجموع پرداختی</th>
+                        <th>باقیمانده بدهی</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800"> گزارش کل بدهی</h1>
+<h1 class="h3 mb-4 text-gray-800"> گزارش کل بدهی و پرداخت</h1>
 <div class="row">
 
-    <div class="col-lg-6">
+    @* <div class="col-lg-6">
         <!-- نمودار دایره‌ای بدهی‌ها -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -163,7 +194,7 @@
                 <canvas id="alldebtChart"></canvas>
             </div>
         </div>
-    </div>
+    </div> *@
     @* <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -174,16 +205,22 @@
             </div>
         </div>
     </div> *@
-        <div class="col-lg-6">
+        <div class="col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی ها</h6>
+                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی ها و پرداخت‌ها</h6>
             </div>
             <div class="card-body">
                 <canvas id="debtsChart"></canvas>
             </div>
         </div>
     </div>
+
+
+
+
+
+
 
 </div>
 
@@ -202,9 +239,11 @@ $(document).ready(function() {
     
     newTable('#debttable',[4]);
     newTable('#paymenttable',[1]);
-    loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut');
+    @* loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut'); *@
     loaddebtsChartData(`/api/Payments/user-dashboardchart`, 'debtsChart');
-});
+   
+    GetUserDebtsData('#debtsTable');
+   });
 
 </script>
 

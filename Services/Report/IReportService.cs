@@ -53,8 +53,9 @@ namespace Taavoni.Services.Interfaces
             return users.Select(u => new UserDebtReportDto
             {
                 UserId = u.Id,
-                UserName = u.UserName,
+                UserName = u.UserName + "-" + u.Name,
                 TotalDebt = u.Debts.Sum(d => d.Amount),
+                TotalPayd = u.payments.Sum(p=>p.Amount),
                 RemainingDebt = u.Debts.Sum(d => d.Amount) - u.payments.Sum(p => p.Amount)
             }).ToList();
         }

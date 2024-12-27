@@ -82,8 +82,9 @@ namespace Taavoni.Areas.Admin.Controllers
             {
                 UserName = d.UserName,
                 TotalDebt = d.TotalDebt,
+                TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            });
+            }).OrderBy(t=>t.RemainingDebt);
             return Json(data);
         }
         [HttpGet("api/allreports")]

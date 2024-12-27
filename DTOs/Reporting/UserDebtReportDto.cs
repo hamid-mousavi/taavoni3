@@ -10,6 +10,7 @@ namespace Taavoni.DTOs.Reporting
         public string UserId { get; set; }
         public string UserName { get; set; }
         public decimal TotalDebt { get; set; }
+        public decimal? TotalPayd { get; set; }
         public decimal RemainingDebt { get; set; }
     }
     public class UserDebtsReportDto

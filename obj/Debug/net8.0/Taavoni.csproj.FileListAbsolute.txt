@@ -309,11 +309,11 @@ C:\Users\iR\Desktop\PR\Taavoni\Taavoni\obj\Debug\net8.0\Taavoni.genruntimeconfig
 C:\Users\iR\Desktop\PR\Taavoni\Taavoni\obj\Debug\net8.0\ref\Taavoni.dll
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\appsettings.json
-C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\app.db
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\liara.json
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\package-lock.json
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\package.json
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\Taavoni.staticwebassets.runtime.json
+C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\app.db
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\Taavoni.exe
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\Taavoni.deps.json
 C:\Users\iR\Desktop\PR\taavoni3\bin\Debug\net8.0\Taavoni.runtimeconfig.json
