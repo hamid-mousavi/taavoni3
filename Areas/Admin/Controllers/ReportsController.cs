@@ -83,13 +83,15 @@ namespace Taavoni.Areas.Admin.Controllers
         public async Task<IActionResult> GetUserDebtsData()
         {
             var debtsReport = await _reportService.GetUserDebtsReportAsync();
-            var data = debtsReport.Select(d => new
+            var data = debtsReport
+            .Where(d => d.UserId != "a1c5af87-6fb3-481a-9695-d94dbf5a4e94") // حذف کاربر با نام "admin"
+            .Select(d => new
             {
                 UserName = d.UserName,
                 TotalDebt = d.TotalDebt,
                 TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            }).OrderBy(t=>t.RemainingDebt);
+            }).OrderBy(t=>t.RemainingDebt).Take(20);
             return Json(data);
         }
                 [HttpGet("api/TopTen")]
