@@ -12,7 +12,7 @@ using Taavoni.Services.Interfaces;
 namespace Taavoni.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    
     [Route("Reports")]
 
     public class ReportsController : Controller
@@ -28,6 +28,7 @@ namespace Taavoni.Areas.Admin.Controllers
         }
 
         [HttpGet("DebtReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DebtReport()
         {
             var report = await _reportService.GetUserDebtsReportAsync();
@@ -35,6 +36,7 @@ namespace Taavoni.Areas.Admin.Controllers
         }
 
         [HttpGet("PaymentReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PaymentReport()
         {
             var users = await _reportService.GetUsersAsync();
@@ -43,6 +45,7 @@ namespace Taavoni.Areas.Admin.Controllers
         }
 
         [HttpPost("PaymentReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PaymentReport(string userId)
         {
             var report = await _reportService.GetUserPaymentsReportAsync(userId);
@@ -53,6 +56,7 @@ namespace Taavoni.Areas.Admin.Controllers
 
 
         [HttpGet("TopDebtsReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> TopDebtsReport()
         {
             var report = await _reportService.GetUserDebtsReportAsync();
@@ -62,6 +66,7 @@ namespace Taavoni.Areas.Admin.Controllers
 
 
         [HttpGet("api/UserPayments/{userId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserPaymentsData(string userId)
         {
             var report = await _reportService.GetUserPaymentsReportAsync(userId);
@@ -84,7 +89,7 @@ namespace Taavoni.Areas.Admin.Controllers
                 TotalDebt = d.TotalDebt,
                 TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            }).OrderByDescending(t=>t.RemainingDebt);
+            }).OrderBy(t=>t.RemainingDebt);
             return Json(data);
         }
                 [HttpGet("api/TopTen")]
