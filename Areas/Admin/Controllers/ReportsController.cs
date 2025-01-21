@@ -91,7 +91,7 @@ namespace Taavoni.Areas.Admin.Controllers
                 TotalDebt = d.TotalDebt,
                 TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            }).OrderBy(t=>t.RemainingDebt).Take(20);
+            }).OrderByDescending(t=>t.RemainingDebt).Take(20);
             return Json(data);
         }
                 [HttpGet("api/TopTen")]
