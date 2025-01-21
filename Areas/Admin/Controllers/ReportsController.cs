@@ -84,7 +84,20 @@ namespace Taavoni.Areas.Admin.Controllers
                 TotalDebt = d.TotalDebt,
                 TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            }).OrderBy(t=>t.RemainingDebt);
+            }).OrderByDescending(t=>t.RemainingDebt);
+            return Json(data);
+        }
+                [HttpGet("api/TopTen")]
+        public async Task<IActionResult> GetTopTen()
+        {
+            var debtsReport = await _reportService.GetUserDebtsReportAsync();
+            var data = debtsReport.Select(d => new
+            {
+                UserName = d.UserName,
+                TotalDebt = d.TotalDebt,
+                TotalPayd = d.TotalPayd,
+                RemainingDebt = d.RemainingDebt
+            }).OrderBy(t=>t.RemainingDebt).Take(20);
             return Json(data);
         }
         [HttpGet("api/allreports")]

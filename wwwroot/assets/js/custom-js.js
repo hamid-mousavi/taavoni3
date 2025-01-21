@@ -257,6 +257,7 @@ function GetUserDebtsData(params) {
     });
     if (!$.fn.dataTable.isDataTable(params)) {
         $(params).DataTable({
+            order:[[3,'desc']],
             responsive: true,
             dom: 'Bfrtip',
             buttons: ['copy', 'excel', 'pdf'],
@@ -264,9 +265,10 @@ function GetUserDebtsData(params) {
             "ordering": true,       // فعال کردن مرتب‌سازی
             "info": true,          // نمایش اطلاعات صفحه
             "searching": true,
+
             
             "ajax": {
-                "url": "/Reports/api/UserDebts",
+                "url": "/Reports/api/TopTen",
                 "type": "GET",
         "dataSrc": "" // اگر JSON بازگشتی لیستی از اشیاء است، این مقدار باید خالی باشد.
             },
@@ -291,6 +293,11 @@ function GetUserDebtsData(params) {
             // columnDefs: [
             //     { targets: [1,2], type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
             // ],
+
+            "createdRow": function(row, data, dataIndex) {
+    const lightness = 100 - (dataIndex * 4); // از ۱۰۰ (سفید) تا ۲۰ (قرمز تیره)
+    $(row).css('background-color', `hsl(0, 100%, ${lightness}%)`);
+},
             "language": {
                 url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json', // بارگذاری زبان فارسی
 
