@@ -17,7 +17,7 @@ namespace Taavoni.Services.Interfaces
         Task<List<PaymentDto>> GetAllPaymentsDetailsAsync();
         Task CreatePaymentDetailAsync(CreatePaymentDto createPaymentDto, IFormFile attachment, int debtId);
         Task<bool> DeletePaymentDetailAsync(int Id);
-        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto);
+        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto, IFormFile? attachment = null);
         List<PaymentDto> GetUserPayments(string userId);
         List<PaymentSummaryDto> GetUserPaymentsSummery(string userId);
     }
@@ -91,7 +91,8 @@ namespace Taavoni.Services.Interfaces
                 if (!string.IsNullOrEmpty(result.AttachmentPath) && System.IO.File.Exists(result.AttachmentPath))
                 {
                     System.IO.File.Delete(result.AttachmentPath);
-                }else{}
+                }
+                else { }
                 _context.Payments.Remove(result);
                 await _context.SaveChangesAsync();
                 return true;
@@ -172,8 +173,7 @@ namespace Taavoni.Services.Interfaces
             return result;
 
         }
-
-        public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto)
+        public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto, IFormFile? attachment = null)
         {
             var model = await _context.Payments.FindAsync(dto.id);
             if (model == null)
@@ -181,20 +181,51 @@ namespace Taavoni.Services.Interfaces
                 return false;
             }
 
-
-
+            // به‌روزرسانی فیلدهای اصلی
             model.Title = dto.Title;
             model.DebtId = dto.DebtId;
             model.Amount = dto.Amount;
             model.Description = dto.Description;
 
+            // اگر فایل پیوست جدید ارسال شده است
+            if (attachment != null)
+            {
+                // بررسی فرمت فایل
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(attachment.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    throw new InvalidOperationException("Invalid file format. Only .jpg, .jpeg, .png files are allowed.");
+                }
+
+                // اگر فایل پیوست قدیمی وجود دارد، آن را حذف کنید
+                if (!string.IsNullOrEmpty(model.AttachmentPath) && File.Exists(model.AttachmentPath))
+                {
+                    File.Delete(model.AttachmentPath);
+                }
+
+                // ذخیره فایل جدید
+                var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
+                var directoryPath = Path.Combine("wwwroot/attachments", todayDate);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+                var fileName = Path.GetRandomFileName() + fileExtension; // ایجاد یک نام فایل منحصر به فرد
+                var filePath = Path.Combine(directoryPath, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await attachment.CopyToAsync(stream);
+                }
+                model.AttachmentPath = filePath;
+            }
 
             _context.Payments.Update(model);
             await _context.SaveChangesAsync();
 
             return true;
         }
-
+       
     }
 
 }

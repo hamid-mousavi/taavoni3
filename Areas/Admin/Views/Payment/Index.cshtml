@@ -5,7 +5,7 @@
 @using DNTPersianUtils.Core
 
 @{
-  int number =0;
+  int number = 0;
 }
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">جزئیات پرداخت</h1>
@@ -46,7 +46,7 @@
         <tbody>
           @foreach (var item in Model)
           {
-            number+=1;
+            number += 1;
             <tr>
               <th>@number.ToString().ToPersianNumbers()</th>
               <th>@item.Name</th>
@@ -54,15 +54,24 @@
               <th>@item.DebtAmount.ToString("N0").ToPersianNumbers()</th>
               <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
               <th>@item.Title</th>
+
+
               <th>
-                   @if (!string.IsNullOrEmpty(item.AttachmentPath))
-                    {
-                        <a href="@Url.Action("Download", "Payment", new { filePath = item.AttachmentPath })">Download</a>
-                    }
-                    else
-                    {
-                        <span>No Attachment</span>
-                    }
+                @if (!string.IsNullOrEmpty(item.AttachmentPath))
+                {
+                  <a href="@Url.Action("Download", "Payment", new { filePath = item.AttachmentPath })"
+                    class="attachment-link">
+                    <img  src="@Url.Action("Download", "Payment", new { filePath = item.AttachmentPath })"
+                      class="attachment-image" />
+                  </a>
+                }
+                else
+                {
+                  <span class="empty-attachment">
+                    @* <i class="fas fa-file-alt" style="width: 100px;"></i> <!-- استفاده از آیکون فونت آوسام --> *@
+                    <span></span>
+                  </span>
+                }
               </th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.id" class="btn btn-warning btn-circle btn-sm">
@@ -85,8 +94,8 @@
   @section Scripts {
     <script>
 
- $(document).ready(function () {
-        newTable('#paymentTable', [0,3,4]);
+      $(document).ready(function () {
+        newTable('#paymentTable', [0, 3, 4]);
       });
     </script>
     <!-- Page level plugins -->

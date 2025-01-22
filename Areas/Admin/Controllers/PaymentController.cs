@@ -70,52 +70,68 @@ namespace Taavoni.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
-
             var payment = await _paymentService.GetPaymentsAsync(id);
+            if (payment == null)
+            {
+                return NotFound(); // یا یک صفحه خطا نمایش دهید
+            }
+            // یافتن کاربر بر اساس شناسه
+            var user = await _userManager.FindByIdAsync(payment.UserId.ToString());
+            if (user == null)
+            {
+                return NotFound(); // یا یک صفحه خطا نمایش دهید
+            }
+
             var dto = new UpdatePaymentDto
             {
+                id = payment.id, // اضافه کردن شناسه پرداخت
                 Title = payment.Title,
                 Amount = payment.Amount,
                 Description = payment.Description,
-                DebtId = payment.DebtId
+                DebtId = payment.DebtId,
+                AttachmentPath = payment.AttachmentPath, // اضافه کردن مسیر فایل پیوست
+                UserName = user.Name // نام کاربر
             };
-            if (payment == null)
-                return null;
+
             var users = await _userManager.Users.ToListAsync();
-            // ارسال کاربران به ویو
             ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", payment.id);
 
             return View(dto);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, UpdatePaymentDto dto)
+        public async Task<IActionResult> Edit(int id, UpdatePaymentDto dto, IFormFile? attachment)
         {
-
             if (id != dto.id)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
-                var result = await _paymentService.UpdatePaymentDetailAsync(dto);
+                var result = await _paymentService.UpdatePaymentDetailAsync(dto, attachment);
                 if (result)
                 {
+                    TempData["SuccessMessage"] = "ویرایش با موفقیت انجام شد.";
                     return RedirectToAction(nameof(Index));
                 }
-                ModelState.AddModelError("", "مشکلی در به‌روزرسانی اطلاعات پیش آمده است.");
+                else
+                {
+                    ModelState.AddModelError("", "مشکلی در به‌روزرسانی اطلاعات پیش آمده است.");
+                }
             }
             else
             {
-
-                ModelState.AddModelError("", "");
+                ModelState.AddModelError("", "لطفاً اطلاعات را به درستی وارد کنید.");
             }
 
+            // اگر مدل معتبر نباشد، دوباره فرم را نمایش دهید
+            var users = await _userManager.Users.ToListAsync();
+            ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", dto.id);
             return View(dto);
         }
-
-
         public async Task<IActionResult> GetDebtsByUserId(string userId)
         {
             var debts = _debtService.GetUserDebts(userId);
