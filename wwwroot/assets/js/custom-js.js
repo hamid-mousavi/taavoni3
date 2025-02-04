@@ -9,25 +9,27 @@ function newTable(params, sorting) {
         }
     });
 
-    // بررسی اینکه آیا DataTable قبلاً روی جدول اعمال شده یا نه
     if (!$.fn.dataTable.isDataTable(params)) {
         $(params).DataTable({
+            dom: 'Bfrtip', // این گزینه باید باشد تا دکمه‌ها نمایش داده شوند
+            buttons: [
+                'copy', 'csv', 'print'
+            ],
             responsive: true,
-            dom: 'Bfrtip',
-            buttons: ['copy', 'excel', 'pdf'],
-            "paging": true,         // فعال کردن صفحه‌بندی
-            "ordering": true,       // فعال کردن مرتب‌سازی
-            "info": true,          // نمایش اطلاعات صفحه
-            "searching": true,
+            paging: true,         // فعال کردن صفحه‌بندی
+            ordering: true,       // فعال کردن مرتب‌سازی
+            info: true,           // نمایش اطلاعات صفحه
+            searching: true,
             columnDefs: [
                 { targets: sorting, type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
             ],
             language: {
-                url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json', // بارگذاری زبان فارسی
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/fa.json', // بارگذاری زبان فارسی
             },
         });
     }
 }
+
 // دریافت داده‌های بدهی‌ها برای چارت
 async function loadAllDebtChartData(api, chartId, chartType) {
 

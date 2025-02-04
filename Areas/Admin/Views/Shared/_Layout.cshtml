@@ -10,20 +10,15 @@
     <meta name="author" content="">
 
     <title>تعاونی مسکن</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
-
     <link href="~/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    @* <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> *@
-    <!-- <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
-    <!-- Custom styles for this template-->
     <link href="~/assets/css/sb-admin-2.min.css" rel="stylesheet">
-
     <!-- Custom styles for this page -->
     <link href="~/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- For Persian Time-->
     <link href="~/assets/css/custom-rtl.css" rel="stylesheet" type="text/css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
 
 </head>
@@ -66,7 +61,7 @@
                         <h6 class="collapse-header">بدهی:</h6>
                         <a class="collapse-item" href="~/admin/debttitle">عنوان بدهی</a>
                         <a class="collapse-item" href="~/admin/debt">بدهی</a>
-                        <a class="collapse-item" href="~/admin/debt/getall"> بدهی کل کاربران  </a>
+                        <a class="collapse-item" href="~/admin/debt/getall"> بدهی کل کاربران </a>
 
                     </div>
                 </div>
@@ -257,12 +252,38 @@
 
 
     <!-- Core plugin JavaScript-->
-    <script src="~/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    @* <script src="~/assets/vendor/jquery-easing/jquery.easing.min.js"></script> *@
     <script src="~/assets/js/custom-js.js"></script>
-    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    @* <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script> *@
     <script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="~/assets/js/demo/datatables-demo.js"></script>
     <script src="~/assets/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables Scripts -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
     <!-- Switcher js -->
