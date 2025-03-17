@@ -131,43 +131,64 @@ ul#accordionSidebar {
 .attachment-image:hover {
     transform: scale(1.1);
 }
+
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
+
 /* استایل برای لینک و تصویر */
 .attachment-link {
     display: inline-block;
-    width: 60px; /* عرض ثابت */
-    height: 60px; /* ارتفاع ثابت */
+    width: 60px;
+    /* عرض ثابت */
+    height: 60px;
+    /* ارتفاع ثابت */
     text-align: center;
-    line-height: 60px; /* برای عمودی‌سازی محتوا */
+    line-height: 60px;
+    /* برای عمودی‌سازی محتوا */
     border: 1px solid #ddd;
     border-radius: 5px;
-    overflow: hidden; /* برای جلوگیری از بیرون زدن تصویر */
+    overflow: hidden;
+    /* برای جلوگیری از بیرون زدن تصویر */
 }
 
 /* استایل برای تصویر */
 .attachment-image {
-    width: 100%; /* تصویر 100% عرض والد را بگیرد */
-    height: 100%; /* تصویر 100% ارتفاع والد را بگیرد */
-    object-fit: cover; /* تصویر را به اندازه‌ی کادر برش می‌دهد */
+    width: 100%;
+    /* تصویر 100% عرض والد را بگیرد */
+    height: 100%;
+    /* تصویر 100% ارتفاع والد را بگیرد */
+    object-fit: cover;
+    /* تصویر را به اندازه‌ی کادر برش می‌دهد */
     border-radius: 5px;
 }
 
 /* استایل برای حالت بدون تصویر */
 .empty-attachment {
     display: inline-block;
-    width: 60px; /* عرض ثابت */
-    height: 60px; /* ارتفاع ثابت */
+    width: 60px;
+    /* عرض ثابت */
+    height: 60px;
+    /* ارتفاع ثابت */
     background-color: #f8f9fa;
     border: 1px dashed #ccc;
     border-radius: 5px;
     text-align: center;
-    line-height: 60px; /* برای عمودی‌سازی محتوا */
+    line-height: 60px;
+    /* برای عمودی‌سازی محتوا */
     color: #ccc;
-    font-size: 24px; /* اندازه آیکون */
+    font-size: 24px;
+    /* اندازه آیکون */
 }
 
 .empty-attachment span {
@@ -175,3 +196,5 @@ ul#accordionSidebar {
     font-size: 12px;
     margin-top: 5px;
 }
+
+

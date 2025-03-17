@@ -26,16 +26,16 @@
         <span class="text">جدید</span>
       </a>
       <form asp-action="ApplyDailyPenalty" method="post">
-        
+
         <button type="submit" class="btn btn-warning btn-icon-split mr-2">
           <span class="icon text-white-50">
-         <i class="fas fa-redo-alt"></i>
-      </span>
+            <i class="fas fa-redo-alt"></i>
+          </span>
           <span class="text">بروزرسانی</span>
         </button>
       </form>
     </div>
-    
+
 
     <div class="table-responsive">
       <table class="table table-bordered" id="debttable" width="100%" cellspacing="0">
@@ -47,6 +47,7 @@
             <th>عنوان بدهی</th>
             <th>مبلغ</th>
             <th>تاریخ سررسید</th>
+            <th>وضعیت پرداخت</th>
             @* <th>درصد جریمه روزانه</th>
             <th>مبلغ بدهی با جریمه</th> *@
             <th>عملیات</th>
@@ -63,15 +64,17 @@
               <th>@item.UserName.ToString()</th>
               <th>@item.DebtTitleName</th>
               <th>@item.Amount.ToString("N0").ToPersianNumbers()</th>
-
-
               <td>@item.DueDate.ToShortPersianDateString().ToPersianNumbers()
               </td>
 
 
-@* 
+              @* 
               <th>@item.PenaltyRate.ToString().ToPersianNumbers()</th>
               <th>@item.AmountWithPenaltyRate.ToString("N0").ToPersianNumbers()</th> *@
+
+              <th style="color: @(item.IsPaid ? "green": "red");">
+                @(item.IsPaid ? "پرداخت شد" : "پرداخت نشده")
+              </th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
                   <i class="fas fa-edit"></i>
@@ -90,11 +93,11 @@
   </div>
 
 
-  @section Scripts {
+@section Scripts {
     <script>
       $(document).ready(function () {
-        newTable('#debttable', [0,4]);
+      var table =  newTable('#debttable', [0, 4]);
       });
     </script>
 
-  }
+}

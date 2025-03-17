@@ -10,25 +10,41 @@ function newTable(params, sorting) {
     });
 
     if (!$.fn.dataTable.isDataTable(params)) {
-        $(params).DataTable({
-            dom: 'Bfrtip', // این گزینه باید باشد تا دکمه‌ها نمایش داده شوند
-            buttons: [
-                'copy', 'csv', 'print'
-            ],
+         $(params).DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'print'],
             responsive: true,
-            paging: true,         // فعال کردن صفحه‌بندی
-            ordering: true,       // فعال کردن مرتب‌سازی
-            info: true,           // نمایش اطلاعات صفحه
+            paging: true,
+            ordering: true,
+            info: true,
             searching: true,
             columnDefs: [
-                { targets: sorting, type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
+                { targets: sorting, type: 'persian-numeric' }
             ],
             language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/fa.json', // بارگذاری زبان فارسی
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/fa.json',
             },
+            initComplete: function () {
+                // اضافه کردن فیلتر دراپ‌داون به هدر هر ستون
+                this.api().columns(6).every(function () {
+                    var column = this;
+                    var select = $('<select class="form-control"><option value="">همه</option></select>')
+                        .appendTo($(column.header()))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+
+                    // دریافت مقادیر یکتا و اضافه کردن به دراپ‌داون
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>');
+                    });
+                });
+            }
         });
     }
 }
+
 
 // دریافت داده‌های بدهی‌ها برای چارت
 async function loadAllDebtChartData(api, chartId, chartType) {
@@ -296,10 +312,12 @@ function GetUserDebtsData(params) {
             //     { targets: [1,2], type: 'persian-numeric' } // اعمال مرتب‌سازی فارسی روی ستون‌های مشخص
             // ],
 
-            "createdRow": function (row, data, dataIndex) {
-                const lightness = 100 - (dataIndex * 4); // از ۱۰۰ (سفید) تا ۲۰ (قرمز تیره)
-                $(row).css('background-color', `hsl(0, 100%, ${lightness}%)`);
-            },
+            // "createdRow": function (row, data, dataIndex) {
+            //     const lightness = 25 + (dataIndex * 4); // از ۲۵ (سبز تیره) تا ۸۵ (سبز روشن)
+            //     $(row).css('background-color', `hsl(140, 60%, ${lightness}%)`);
+            // },
+
+
             "language": {
                 url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/fa.json', // بارگذاری زبان فارسی
 

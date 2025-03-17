@@ -20,7 +20,19 @@ public class DebtService : IDebtService
     public async Task<List<DebtDetailDTO>> GetAllDebtsAsync()
     {
         var Debts = await _context.Debts.Include(d => d.User).Include(d => d.debtTitle).ToListAsync();
-        return Debts.Select(d => new DebtDetailDTO
+        var payments = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
+         foreach (var item in Debts)
+        {
+          //  var d = payments.FirstOrDefault(t => t.DebtId == item.Id);
+            var d = payments.Where(t => t.DebtId == item.Id);
+            if (d != null && d.Sum(d=>d.Amount) >= item.Amount)
+            {
+                item.IsPaid = true;
+
+
+            }
+        }
+        var debtsList = Debts.Select(d => new DebtDetailDTO
         {
             Id = d.Id,
             StartDate = d.StartDate,
@@ -39,6 +51,11 @@ public class DebtService : IDebtService
 
 
         }).ToList();
+       
+
+        await _context.SaveChangesAsync();
+        return debtsList;
+
     }
 
     public async Task<DebtDetailDTO> GetDebtByIdAsync(int id)
@@ -256,7 +273,6 @@ public class DebtService : IDebtService
                 UserCount = g.Count()
             })
             .ToListAsync();
-
         return summaries;
     }
 

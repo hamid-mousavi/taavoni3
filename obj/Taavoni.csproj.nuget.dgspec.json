@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\iR\\Desktop\\PR\\DotNet\\taavoni3\\Taavoni.csproj": {}
+    "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj": {}
   },
   "projects": {
-    "c:\\Users\\iR\\Desktop\\PR\\DotNet\\taavoni3\\Taavoni.csproj": {
+    "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\iR\\Desktop\\PR\\DotNet\\taavoni3\\Taavoni.csproj",
+        "projectUniqueName": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
         "projectName": "Taavoni",
-        "projectPath": "c:\\Users\\iR\\Desktop\\PR\\DotNet\\taavoni3\\Taavoni.csproj",
+        "projectPath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\Taavoni.csproj",
         "packagesPath": "C:\\Users\\iR\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\iR\\Desktop\\PR\\DotNet\\taavoni3\\obj\\",
+        "outputPath": "C:\\Users\\iR\\Desktop\\PR\\.Net\\taavoni3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\iR\\AppData\\Roaming\\NuGet\\NuGet.Config"

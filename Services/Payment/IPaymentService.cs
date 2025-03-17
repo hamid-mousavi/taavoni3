@@ -75,6 +75,11 @@ namespace Taavoni.Services.Interfaces
                     }
                     payment.AttachmentPath = filePath;
                 }
+                if(debt.Amount <= payment.Amount)
+                {
+                    debt.IsPaid = true;
+                }
+                
 
                 _context.Payments.Add(payment);
                 debt.RemainingAmount -= dto.Amount;
@@ -104,6 +109,7 @@ namespace Taavoni.Services.Interfaces
         public async Task<List<PaymentDto>> GetAllPaymentsDetailsAsync()
         {
             var payment = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
+            
             return payment.Select(d => new PaymentDto
             {
                 id = d.Id,
@@ -118,6 +124,7 @@ namespace Taavoni.Services.Interfaces
                 DebtId = d.DebtId
 
             }).ToList();
+            
         }
 
         public async Task<PaymentDto> GetPaymentsAsync(int id)
@@ -219,6 +226,7 @@ namespace Taavoni.Services.Interfaces
                 }
                 model.AttachmentPath = filePath;
             }
+            
 
             _context.Payments.Update(model);
             await _context.SaveChangesAsync();

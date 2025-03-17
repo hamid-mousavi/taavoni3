@@ -42,6 +42,7 @@ namespace Taavoni.DTOs
         public DateTime DueDate { get; set; }
         public double TotalAmount { get; set; }
         public int UserCount { get; set; }
+        public bool IsPaid { get; set; }
     }
 
 
