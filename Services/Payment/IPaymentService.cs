@@ -75,11 +75,11 @@ namespace Taavoni.Services.Interfaces
                     }
                     payment.AttachmentPath = filePath;
                 }
-                if(debt.Amount <= payment.Amount)
+                if (debt.Amount <= payment.Amount)
                 {
                     debt.IsPaid = true;
                 }
-                
+
 
                 _context.Payments.Add(payment);
                 debt.RemainingAmount -= dto.Amount;
@@ -109,7 +109,7 @@ namespace Taavoni.Services.Interfaces
         public async Task<List<PaymentDto>> GetAllPaymentsDetailsAsync()
         {
             var payment = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
-            
+
             return payment.Select(d => new PaymentDto
             {
                 id = d.Id,
@@ -124,7 +124,7 @@ namespace Taavoni.Services.Interfaces
                 DebtId = d.DebtId
 
             }).ToList();
-            
+
         }
 
         public async Task<PaymentDto> GetPaymentsAsync(int id)
@@ -182,6 +182,8 @@ namespace Taavoni.Services.Interfaces
         }
         public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto, IFormFile? attachment = null)
         {
+            var Debts = await _context.Debts.Include(d => d.User).Include(d => d.debtTitle).ToListAsync();
+            var payments = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
             var model = await _context.Payments.FindAsync(dto.id);
             if (model == null)
             {
@@ -193,7 +195,19 @@ namespace Taavoni.Services.Interfaces
             model.DebtId = dto.DebtId;
             model.Amount = dto.Amount;
             model.Description = dto.Description;
-
+            foreach (var item in Debts)
+            {
+                //  var d = payments.FirstOrDefault(t => t.DebtId == item.Id);
+                var d = payments.Where(t => t.DebtId == item.Id);
+                if (d != null && d.Sum(d => d.Amount) >= item.Amount)
+                {
+                    item.IsPaid = true;
+                }
+                else if (d != null && d.Sum(d => d.Amount) <= item.Amount)
+                {
+                    item.IsPaid = false;
+                }
+            }
             // اگر فایل پیوست جدید ارسال شده است
             if (attachment != null)
             {
@@ -226,14 +240,14 @@ namespace Taavoni.Services.Interfaces
                 }
                 model.AttachmentPath = filePath;
             }
-            
+
 
             _context.Payments.Update(model);
             await _context.SaveChangesAsync();
 
             return true;
         }
-       
+
     }
 
 }

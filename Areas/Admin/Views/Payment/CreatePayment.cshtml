@@ -104,7 +104,7 @@
                 var debtSelect = $('#DebtId');
                 debtSelect.html('<option value="">Loading...</option>');
 
-                fetch(`@Url.Action("GetDebtsByUserId")?userId=${userId}`)
+                fetch(`@Url.Action("GetUserUnpaidDebts")?userId=${userId}`)
                     .then(response => response.json())
                     .then(data => {
                         debtSelect.html('');

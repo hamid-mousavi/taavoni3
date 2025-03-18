@@ -276,5 +276,16 @@ public class DebtService : IDebtService
         return summaries;
     }
 
-
+    public List<DebtDetailDTO> GetUserUnpaidDebtsAsync(string userId)
+    {
+          return _context.Debts
+           .Where(d => d.UserId == userId && d.IsPaid ==false).Include(d => d.debtTitle)
+           .Select(d => new DebtDetailDTO
+           {
+               Id = d.Id,
+               DebtTitleName = d.debtTitle.Title,
+               Amount = d.Amount
+           })
+           .ToList();
+    }
 }

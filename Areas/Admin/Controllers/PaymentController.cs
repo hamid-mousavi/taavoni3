@@ -137,7 +137,11 @@ namespace Taavoni.Areas.Admin.Controllers
             var debts = _debtService.GetUserDebts(userId);
             return Json(debts);
         }
-
+        public async Task<IActionResult> GetUserUnpaidDebts(string userId)
+        {
+            var debts = _debtService.GetUserUnpaidDebtsAsync(userId);
+            return Json(debts);
+        }
 
         // GET: payments/Delete/5
         public async Task<IActionResult> Delete(int id)

@@ -7,6 +7,7 @@ using Taavoni.Models;
 public interface IDebtService
 {
     Task<List<DebtDetailDTO>> GetAllDebtsAsync();
+
     Task<DebtDetailDTO> GetDebtByIdAsync(int id);
     Task ApplyDailyPenalty();
     // Task AddDebtDetailAsync(DebtDetailDTO debtDetailDTO);
@@ -15,6 +16,7 @@ public interface IDebtService
     Task<bool> UpdateDebtDetailAsync(EditDebtlDTO editDebtlDTO);
     Task<IEnumerable<DebtTitle>> GetDebtTitlesAsync();
     List<DebtDetailDTO> GetUserDebts(string userId);
+    List<DebtDetailDTO> GetUserUnpaidDebtsAsync(string userId);
     // می‌توانید سایر متدها را نیز اضافه کنید
     Task AddDebtsForAllUsersAsync(CreateAllDebtDto dto);
     List<SelectListItem> GetDebtTitles();

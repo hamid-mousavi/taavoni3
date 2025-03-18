@@ -26,19 +26,32 @@ function newTable(params, sorting) {
             },
             initComplete: function () {
                 // اضافه کردن فیلتر دراپ‌داون به هدر هر ستون
-                this.api().columns(6).every(function () {
-                    var column = this;
-                    var select = $('<select class="form-control"><option value="">همه</option></select>')
-                        .appendTo($(column.header()))
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                            column.search(val ? '^' + val + '$' : '', true, false).draw();
-                        });
-
-                    // دریافت مقادیر یکتا و اضافه کردن به دراپ‌داون
-                    column.data().unique().sort().each(function (d, j) {
-                        select.append('<option value="' + d + '">' + d + '</option>');
+                this.api()
+                .columns([1,2,3,4,5,6])
+                .every(function () {
+                    let column = this;
+     
+                    // Create select element
+                    let select = document.createElement('select');
+                    select.add(new Option(''));
+                    select.classList.add('btn')
+                    column.footer().replaceChildren(select);
+     
+                    // Apply listener for user change in value
+                    select.addEventListener('change', function () {
+                        column
+                            .search(select.value, {exact: true})
+                            .draw();
                     });
+     
+                    // Add list of options
+                    column
+                        .data()
+                        .unique()
+                        .sort()
+                        .each(function (d, j) {
+                            select.add(new Option(d));
+                        });
                 });
             }
         });

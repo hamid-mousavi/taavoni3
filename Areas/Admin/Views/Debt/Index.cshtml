@@ -73,7 +73,7 @@
               <th>@item.AmountWithPenaltyRate.ToString("N0").ToPersianNumbers()</th> *@
 
               <th style="color: @(item.IsPaid ? "green": "red");">
-                @(item.IsPaid ? "پرداخت شد" : "پرداخت نشده")
+                @(item.IsPaid ? "پرداخت شد" : "عدم پرداخت")
               </th>
               <th>
                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-circle btn-sm">
@@ -88,6 +88,20 @@
           }
 
         </tbody>
+             <tfoot>
+          <tr>
+            <th></th>
+            <th>نام مالک</th>
+            <th>ایمیل</th>
+            <th>عنوان بدهی</th>
+            <th>مبلغ</th>
+            <th>تاریخ سررسید</th>
+            <th>وضعیت پرداخت</th>
+            <th></th>
+          </tr>
+             </tfoot>
+     
+     
       </table>
     </div>
   </div>

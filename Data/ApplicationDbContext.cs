@@ -42,12 +42,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     }
 
-
-
-
-
-
-
     public DbSet<Debt> Debts { get; set; }  // اضافه کردن DbSet
     public DbSet<FixedDebt> FixedDebts { get; set; }  // اضافه کردن DbSet
     public DbSet<Payment> Payments { get; set; }
