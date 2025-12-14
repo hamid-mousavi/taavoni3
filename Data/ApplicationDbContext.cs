@@ -9,8 +9,9 @@ namespace Taavoni.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
+    // سازنده DbContext برای DI
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-     : base(options)
+        : base(options)
     {
     }
 
@@ -28,10 +29,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             var user = new ApplicationUser
             {
+                Name = "Admin",
                 UserName = "admin@example.com",
                 Email = "admin@example.com"
             };
-            var result = await userManager.CreateAsync(user, "YourPassword123!");
+            var result = await userManager.CreateAsync(user, "AdminPassword123!");
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "Admin");
@@ -39,12 +41,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         }
 
     }
-
-
-
-
-
-
 
     public DbSet<Debt> Debts { get; set; }  // اضافه کردن DbSet
     public DbSet<FixedDebt> FixedDebts { get; set; }  // اضافه کردن DbSet

@@ -1,25 +1,34 @@
 
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Taavoni.DTOs.Reporting;
+using Taavoni.Models.Entities;
 using Taavoni.Services.Interfaces;
 
 namespace Taavoni.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    
     [Route("Reports")]
 
     public class ReportsController : Controller
     {
         private readonly IReportService _reportService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReportsController(IReportService reportService)
+
+        public ReportsController(IReportService reportService, UserManager<ApplicationUser> userManager)
         {
             _reportService = reportService;
+            _userManager = userManager;
         }
 
         [HttpGet("DebtReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DebtReport()
         {
             var report = await _reportService.GetUserDebtsReportAsync();
@@ -27,6 +36,7 @@ namespace Taavoni.Areas.Admin.Controllers
         }
 
         [HttpGet("PaymentReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PaymentReport()
         {
             var users = await _reportService.GetUsersAsync();
@@ -35,6 +45,7 @@ namespace Taavoni.Areas.Admin.Controllers
         }
 
         [HttpPost("PaymentReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PaymentReport(string userId)
         {
             var report = await _reportService.GetUserPaymentsReportAsync(userId);
@@ -45,6 +56,7 @@ namespace Taavoni.Areas.Admin.Controllers
 
 
         [HttpGet("TopDebtsReport")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> TopDebtsReport()
         {
             var report = await _reportService.GetUserDebtsReportAsync();
@@ -54,6 +66,7 @@ namespace Taavoni.Areas.Admin.Controllers
 
 
         [HttpGet("api/UserPayments/{userId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserPaymentsData(string userId)
         {
             var report = await _reportService.GetUserPaymentsReportAsync(userId);
@@ -65,17 +78,73 @@ namespace Taavoni.Areas.Admin.Controllers
             return Json(data);
         }
 
+
         [HttpGet("api/UserDebts")]
         public async Task<IActionResult> GetUserDebtsData()
+        {
+            var debtsReport = await _reportService.GetUserDebtsReportAsync();
+            var data = debtsReport
+            .Where(d => d.UserId != "a1c5af87-6fb3-481a-9695-d94dbf5a4e94") // حذف کاربر با نام "admin"
+            .Select(d => new
+            {
+                UserName = d.UserName,
+                TotalDebt = d.TotalDebt,
+                TotalPayd = d.TotalPayd,
+                RemainingDebt = d.RemainingDebt
+            }).OrderByDescending(t=>t.RemainingDebt).Take(20);
+            return Json(data);
+        }
+                [HttpGet("api/TopTen")]
+        public async Task<IActionResult> GetTopTen()
         {
             var debtsReport = await _reportService.GetUserDebtsReportAsync();
             var data = debtsReport.Select(d => new
             {
                 UserName = d.UserName,
                 TotalDebt = d.TotalDebt,
+                TotalPayd = d.TotalPayd,
                 RemainingDebt = d.RemainingDebt
-            });
+            }).OrderBy(t=>t.RemainingDebt).Take(20);
             return Json(data);
+        }
+        [HttpGet("api/allreports")]
+        public async Task<IActionResult> GetAllUserDashboard()
+        {
+            List<DashboardDto> dtos = [];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
+            }
+            return View(dtos);
+
+        }
+        [HttpGet("api/TopTenUser")]
+        public async Task<IActionResult> GetTopTenUser()
+        {
+            List<DashboardDto> dtos = [];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
+            }
+            return View(dtos);
+
+        }
+        [HttpGet("api/BadTenUser")]
+        public async Task<IActionResult> GetBadTenUser()
+        {
+            List<DashboardDto> dtos = [];
+            var users = await _userManager.Users.ToListAsync();
+            foreach (var item in users)
+            {
+                var report = await _reportService.GetUserDashboardAsync(item.Id);
+                dtos.Add(report);
+            }
+            return View(dtos);
+
         }
 
     }

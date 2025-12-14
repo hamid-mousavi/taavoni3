@@ -16,8 +16,8 @@ namespace Taavoni.Services.Interfaces
         Task<PaymentDto> GetPaymentsAsync(int id);
         Task<List<PaymentDto>> GetAllPaymentsDetailsAsync();
         Task CreatePaymentDetailAsync(CreatePaymentDto createPaymentDto, IFormFile attachment, int debtId);
-        Task<bool> DeleteDebtDetailAsync(int Id);
-        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto createPaymentDto);
+        Task<bool> DeletePaymentDetailAsync(int Id);
+        Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto, IFormFile? attachment = null);
         List<PaymentDto> GetUserPayments(string userId);
         List<PaymentSummaryDto> GetUserPaymentsSummery(string userId);
     }
@@ -30,10 +30,19 @@ namespace Taavoni.Services.Interfaces
         {
             _context = context;
         }
-
-
         public async Task CreatePaymentDetailAsync(CreatePaymentDto dto, IFormFile attachment, int debtId)
         {
+            string fileExtension = "";
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+            if (attachment != null)
+            {
+                fileExtension = Path.GetExtension(attachment.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    throw new InvalidOperationException("Invalid file format. Only .jpg, .jpeg, .png files are allowed.");
+                }
+            }
+
             var debt = await _context.Debts.FindAsync(debtId);
             if (debt != null && dto.Amount > 0)
             {
@@ -52,13 +61,25 @@ namespace Taavoni.Services.Interfaces
 
                 if (attachment != null)
                 {
-                    var filePath = Path.Combine("wwwroot/attachments", attachment.FileName);
+                    var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    var directoryPath = Path.Combine("wwwroot/attachments", todayDate);
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
+                    var fileName = Path.GetRandomFileName() + fileExtension; // Generate a unique file name
+                    var filePath = Path.Combine(directoryPath, fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await attachment.CopyToAsync(stream);
                     }
                     payment.AttachmentPath = filePath;
                 }
+                if (debt.Amount <= payment.Amount)
+                {
+                    debt.IsPaid = true;
+                }
+
 
                 _context.Payments.Add(payment);
                 debt.RemainingAmount -= dto.Amount;
@@ -66,27 +87,44 @@ namespace Taavoni.Services.Interfaces
             }
         }
 
-
-        public Task<bool> DeleteDebtDetailAsync(int Id)
+        public async Task<bool> DeletePaymentDetailAsync(int Id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Payments.FindAsync(Id);
+            if (result != null)
+            {
+                // حذف فایل پیوست اگر وجود داشته باشد
+                if (!string.IsNullOrEmpty(result.AttachmentPath) && System.IO.File.Exists(result.AttachmentPath))
+                {
+                    System.IO.File.Delete(result.AttachmentPath);
+                }
+                else { }
+                _context.Payments.Remove(result);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+
         }
 
         public async Task<List<PaymentDto>> GetAllPaymentsDetailsAsync()
         {
-            var payment = await _context.Payments.Include(d => d.User).ToListAsync();
+            var payment = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
+
             return payment.Select(d => new PaymentDto
             {
                 id = d.Id,
                 Amount = d.Amount,
+                DebtAmount = d.Debt.Amount,
                 AttachmentPath = d.AttachmentPath,
                 Description = d.Description,
                 Name = d.User?.Name,
+                UserName = d.User?.UserName,
                 UserId = d.UserId,
                 Title = d.Title,
                 DebtId = d.DebtId
 
             }).ToList();
+
         }
 
         public async Task<PaymentDto> GetPaymentsAsync(int id)
@@ -111,6 +149,7 @@ namespace Taavoni.Services.Interfaces
 
         public List<PaymentDto> GetUserPayments(string userId)
         {
+
             return _context.Payments
            .Where(p => p.UserId == userId)
            .Select(p => new PaymentDto
@@ -141,25 +180,68 @@ namespace Taavoni.Services.Interfaces
             return result;
 
         }
-
-        public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto)
+        public async Task<bool> UpdatePaymentDetailAsync(UpdatePaymentDto dto, IFormFile? attachment = null)
         {
+            var Debts = await _context.Debts.Include(d => d.User).Include(d => d.debtTitle).ToListAsync();
+            var payments = await _context.Payments.Include(d => d.User).Include(d => d.Debt).ToListAsync();
             var model = await _context.Payments.FindAsync(dto.id);
             if (model == null)
             {
                 return false;
             }
 
-            var PersianPaymentDate = PersianDateTime.Parse(dto.PaymentDate!.PersianToEnglish());
-
+            // به‌روزرسانی فیلدهای اصلی
             model.Title = dto.Title;
-            model.UserId = dto.UserId;
             model.DebtId = dto.DebtId;
             model.Amount = dto.Amount;
             model.Description = dto.Description;
-            model.PaymentDate = PersianPaymentDate.ToDateTime();
+            foreach (var item in Debts)
+            {
+                //  var d = payments.FirstOrDefault(t => t.DebtId == item.Id);
+                var d = payments.Where(t => t.DebtId == item.Id);
+                if (d != null && d.Sum(d => d.Amount) >= item.Amount)
+                {
+                    item.IsPaid = true;
+                }
+                else if (d != null && d.Sum(d => d.Amount) <= item.Amount)
+                {
+                    item.IsPaid = false;
+                }
+            }
+            // اگر فایل پیوست جدید ارسال شده است
+            if (attachment != null)
+            {
+                // بررسی فرمت فایل
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(attachment.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    throw new InvalidOperationException("Invalid file format. Only .jpg, .jpeg, .png files are allowed.");
+                }
 
-           
+                // اگر فایل پیوست قدیمی وجود دارد، آن را حذف کنید
+                if (!string.IsNullOrEmpty(model.AttachmentPath) && File.Exists(model.AttachmentPath))
+                {
+                    File.Delete(model.AttachmentPath);
+                }
+
+                // ذخیره فایل جدید
+                var todayDate = DateTime.Now.ToString("yyyy-MM-dd");
+                var directoryPath = Path.Combine("wwwroot/attachments", todayDate);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+                var fileName = Path.GetRandomFileName() + fileExtension; // ایجاد یک نام فایل منحصر به فرد
+                var filePath = Path.Combine(directoryPath, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await attachment.CopyToAsync(stream);
+                }
+                model.AttachmentPath = filePath;
+            }
+
+
             _context.Payments.Update(model);
             await _context.SaveChangesAsync();
 

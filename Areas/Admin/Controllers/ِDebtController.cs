@@ -56,9 +56,16 @@ namespace Taavoni.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            var users = await _userManager.Users
+    .Select(u => new UserViewModel
+    {
+        Id = u.Id,
+        UserName = u.UserName,
+        Name = u.Name
+    })
+    .ToListAsync();
 
-            var users = await _userManager.Users.ToListAsync();
-            ViewBag.Users = new MultiSelectList(users, "Id", "UserName");
+            ViewBag.Users = new MultiSelectList(users, "Id", "DisplayName");
             ViewBag.DebtTitles = new SelectList(await _debtService.GetDebtTitlesAsync(), "Id", "Title");
             return View();
         }
@@ -96,10 +103,7 @@ namespace Taavoni.Areas.Admin.Controllers
             }
 
             var users = await _userManager.Users.ToListAsync();
-            foreach (var user in users)
-            {
-                Console.WriteLine(user.UserName); // بررسی نام کاربری
-            }
+
 
 
             // ارسال کاربران به ویو
@@ -162,8 +166,29 @@ namespace Taavoni.Areas.Admin.Controllers
             return BadRequest("مشکلی در حذف اطلاعات پیش آمده است.");
         }
 
-      
+        [HttpGet]
+        public IActionResult CreateAll([FromServices] IDebtService debtService)
+        {
+            ViewBag.DebtTitles = debtService.GetDebtTitles();
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateAll(CreateAllDebtDto dto, [FromServices] IDebtService debtService)
+        {
+            if (ModelState.IsValid)
+            {
+                await debtService.AddDebtsForAllUsersAsync(dto);
+                return RedirectToAction("GetAll");
+            }
 
+            ViewBag.DebtTitles = debtService.GetDebtTitles();
+            return View(dto);
+        }
+        public async Task<IActionResult> GetAll()
+        {
+            var summaries = await _debtService.GetDebtSummariesAsync();
+            return View(summaries);
+        }
 
     }
 }

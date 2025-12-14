@@ -37,9 +37,14 @@ namespace Taavoni.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreatePayment()
         {
-            var users = await _userManager.Users.ToListAsync();
+            var users = await _userManager.Users.Select(u => new UserViewModel
+            {
+                Id = u.Id,
+                UserName = u.UserName,
+                Name = u.Name
+            }).ToListAsync();
             ViewBag.DebtId = new SelectList(await _debtService.GetAllDebtsAsync(), "Id", "Name");
-            ViewBag.Users = new MultiSelectList(users, "Id", "UserName");
+            ViewBag.Users = new MultiSelectList(users, "Id", "DisplayName");
             var dto = new CreatePaymentDto(); // مقداردهی اولیه به مدل
             return View(dto);
         }
@@ -65,22 +70,135 @@ namespace Taavoni.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Edit(int id)
         {
-
             var payment = await _paymentService.GetPaymentsAsync(id);
             if (payment == null)
-                return null;
+            {
+                return NotFound(); // یا یک صفحه خطا نمایش دهید
+            }
+            // یافتن کاربر بر اساس شناسه
+            var user = await _userManager.FindByIdAsync(payment.UserId.ToString());
+            if (user == null)
+            {
+                return NotFound(); // یا یک صفحه خطا نمایش دهید
+            }
+
+            var dto = new UpdatePaymentDto
+            {
+                id = payment.id, // اضافه کردن شناسه پرداخت
+                Title = payment.Title,
+                Amount = payment.Amount,
+                Description = payment.Description,
+                DebtId = payment.DebtId,
+                AttachmentPath = payment.AttachmentPath, // اضافه کردن مسیر فایل پیوست
+                UserName = user.Name // نام کاربر
+            };
+
             var users = await _userManager.Users.ToListAsync();
-            // ارسال کاربران به ویو
             ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", payment.id);
 
-            return View(payment);
+            return View(dto);
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, UpdatePaymentDto dto, IFormFile? attachment)
+        {
+            if (id != dto.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var result = await _paymentService.UpdatePaymentDetailAsync(dto, attachment);
+                if (result)
+                {
+                    TempData["SuccessMessage"] = "ویرایش با موفقیت انجام شد.";
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "مشکلی در به‌روزرسانی اطلاعات پیش آمده است.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "لطفاً اطلاعات را به درستی وارد کنید.");
+            }
+
+            // اگر مدل معتبر نباشد، دوباره فرم را نمایش دهید
+            var users = await _userManager.Users.ToListAsync();
+            ViewBag.Users = new SelectList(_context.Users, "Id", "UserName", dto.id);
+            return View(dto);
+        }
         public async Task<IActionResult> GetDebtsByUserId(string userId)
         {
             var debts = _debtService.GetUserDebts(userId);
             return Json(debts);
+        }
+        public async Task<IActionResult> GetUserUnpaidDebts(string userId)
+        {
+            var debts = _debtService.GetUserUnpaidDebtsAsync(userId);
+            return Json(debts);
+        }
+
+        // GET: payments/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var payment = await _paymentService.GetPaymentsAsync(id);
+            if (payment == null)
+            {
+                return NotFound();
+            }
+
+            return View(payment);
+        }
+
+        // POST: Debts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var result = await _paymentService.DeletePaymentDetailAsync(id);
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return BadRequest("مشکلی در حذف اطلاعات پیش آمده است.");
+        }
+
+
+
+
+        public async Task<IActionResult> Download(string filePath)
+        {
+            if (System.IO.File.Exists(filePath))
+            {
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filePath, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, GetContentType(filePath), Path.GetFileName(filePath));
+            }
+            return NotFound();
+        }
+
+        private string GetContentType(string path)
+        {
+            var types = new Dictionary<string, string>
+        {
+            { ".pdf", "application/pdf" },
+            { ".jpg", "image/jpeg" },
+            { ".png", "image/png" },
+            { ".doc", "application/vnd.ms-word" },
+            { ".docx", "application/vnd.ms-word" }
+        };
+
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return types.ContainsKey(ext) ? types[ext] : "application/octet-stream";
         }
 
 

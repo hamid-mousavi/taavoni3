@@ -1,0 +1,251 @@
+@using System.Globalization
+@using Persia_.NET_Core
+@using taavoni3.Extention
+@using Taavoni.DTOs.Reporting
+@using DNTPersianUtils.Core
+@model Taavoni.DTOs.Reporting.DashboardDto
+   <div class="row">
+ <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            مجموع بدهی</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDebt.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    @* <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            مجموع بدهی بااحتساب جریمه</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> *@
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            مجموع پرداختی</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalPaid.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 col-xs-12 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            مبلغ باقیمانده</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.RemainingAmount.ToString("N0").ToPersianNumbers().ToPersianUnit()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+<div class="card shadow mb-4 ">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جزئیات بدهی‌ها</h6>
+    </div>
+    <div class="card-body">
+
+ 
+
+        <div class="table-responsive">
+            <table class="table table-bordered dataTable" id="debttable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td>عنوان</td>
+                        <td>از تاریخ</td>
+                        <td>تا تاریخ</td>
+                        <td>تاریخ سررسید</td>
+                        <td>@("مبلغ ".ToPersianUnit())</td>
+                        @* <td>مبلغ بااحتساب جریمه</td> *@
+                        @* <td>مبلغ باقیمانده</td> *@
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var debt in Model.DebtDetails)
+                    {
+                        <tr>
+                            <td>@debt.Title</td>
+
+                            <td>@debt.StartDate.ToPersianDateTextify()</td>
+                            <td>@debt.EndDate.ToPersianDateTextify()</td>
+                            <td>@debt.DueDate.ToPersianDateTextify()</td>
+                            <td>@debt.Amount.ToString().ToPersianNumbers()</td>
+                            
+                            @* <td>@debt.TotalDeptWithPenaltyRate.ToString("N0").ToPersianNumbers()</td> *@
+                        @* <td>@debt.RemainingAmount.ToString("N0").ToPersianNumbers()</td> *@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card shadow mb-4 dataTable-responsive">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جزئیات پرداخت‌ها </h6>
+    </div>
+    <div class="card-body">
+
+
+        <div class=" table-responsive">
+            <table class="table table-bordered datatable" id="paymenttable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>مبلغ</th>
+                        <th>تاریخ پرداخت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var payment in Model.PaymentDetails)
+                    {
+                        <tr>
+                            <td>@payment.Title</td>
+                           
+                            <td>@payment.Amount.ToString("N0").ToPersianNumbers()</td>
+                           
+                            <td>@( payment.PaymentDate.HasValue ? payment.PaymentDate.Value.ToPersianDateTextify() : "تاریخ موجود نیست")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<h1 class="h3 mb-4 text-gray-800">گزارش بیشترین بدهی ها</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">جدول بیشترین بدهی‌ها</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="debtsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>نام کاربری</th>
+                        <th>مجموع بدهی</th>
+                        <th>مجموع پرداختی</th>
+                        <th>باقیمانده بدهی</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800"> گزارش کل بدهی و پرداخت</h1>
+<div class="row">
+
+    @* <div class="col-lg-6">
+        <!-- نمودار دایره‌ای بدهی‌ها -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی‌ها</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="alldebtChart"></canvas>
+            </div>
+        </div>
+    </div> *@
+    @* <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">گزارش پرداخت ها</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="paymentsChart"></canvas>
+            </div>
+        </div>
+    </div> *@
+        <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">گزارش بدهی ها و پرداخت‌ها</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="debtsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+@section Scripts {
+<script src="~/assets/js/custom-js.js"></script>
+<script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets/js/demo/datatables-demo.js"></script>
+<script src="~/assets/vendor/chart.js/Chart.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+// تعریف مرتب‌سازی سفارشی برای DataTable
+    
+    newTable('#debttable',[4]);
+    newTable('#paymenttable',[1]);
+    @* loadAllDebtChartData(`/Reports/api/UserDebts`, 'alldebtChart', 'doughnut'); *@
+    loaddebtsChartData(`/api/Payments/user-dashboardchart`, 'debtsChart');
+   
+    GetUserDebtsData('#debtsTable');
+   });
+
+</script>
+
+
+}

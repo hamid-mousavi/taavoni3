@@ -5,20 +5,27 @@ using Taavoni.Data;
 using Taavoni.Models.Entities;
 using Taavoni.Services.Interfaces;
 using SQLitePCL;
+using Microsoft.Data.Sqlite;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http.Features;
 
-Batteries_V2.Init();
+
+
 
 var builder = WebApplication.CreateBuilder(args);
-// // Add services to the container.
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseSqlite(connectionString));
-// اضافه کردن DbContext به DI
+
+
+// خواندن کانکشن استرینگ از appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// افزودن DbContext به DI container
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.UseSqlite(connectionString);
-});
+    options.UseSqlite(connectionString));  // پشتیبانی از SQLite با رمزگذاری
+
+
+
 //builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -32,7 +39,12 @@ builder.Services.AddScoped<IDebtService, DebtService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IDebtTitleService, DebtTitleService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+
 builder.Services.AddRazorPages();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 10485760; // 10 MB
+});
 
 var app = builder.Build();
 // Seed داده‌ها
@@ -40,10 +52,13 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     await ApplicationDbContext.SeedAsync(userManager, roleManager);
+     
 }
 
 // Configure the HTTP request pipeline.
@@ -62,6 +77,9 @@ else
 app.UseStaticFiles();
 
 app.UseRouting();
+
+
+
 
 app.UseAuthentication(); // اضافه کردن احراز هویت
 app.UseAuthorization();

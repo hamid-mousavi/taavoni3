@@ -6,34 +6,41 @@
 
 <h2>ایجاد پرداختی جدید</h2>
 
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">پرداختی</h6>
+    </div>
+    <div class="card-body">
 
-<form asp-action="CreatePayment" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="UserId">انتخاب کاربر</label>
-        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
-    </div>
-    <div class="form-group">
-        <label asp-for="Title">عنوان پرداختی</label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PaymentDate">تاریخ پرداخت </label>
-        <input asp-for="PaymentDate" class="form-control" type="text" />
-        <span asp-validation-for="PaymentDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Amount">مقدار پرداخت شده</label>
-        <input asp-for="Amount" class="form-control" type="number" step="0.01" />
-        <span asp-validation-for="Amount" class="text-danger"></span>
-    </div>
-    <div class="form-group"> 
-        <label asp-for="DebtId"></label>
-        <select asp-for="DebtId" class="form-control" id="DebtId">
-            <option value="">Select Debt</option>
-        </select>
-    </div>
-    @* 
+        <form asp-action="CreatePayment" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="UserId">انتخاب کاربر</label>
+                <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control select2">
+                    <option>انتخاب کاربر</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title">عنوان پرداختی</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentDate">تاریخ پرداخت </label>
+                <input asp-for="PaymentDate" class="form-control" type="text" />
+                <span asp-validation-for="PaymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount">مقدار پرداخت شده</label>
+                <input asp-for="Amount" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebtId">شناسه پرداخت</label>
+                <select asp-for="DebtId" class="form-control" id="DebtId">
+                    <option value="">انتخاب</option>
+                </select>
+            </div>
+            @* 
         <div class="form-group">
             <label for="DebtId">انتخاب کاربر</label>
             <select asp-for="DebtId" asp-items="ViewBag.DebtId" class="form-control"></select>
@@ -41,74 +48,72 @@
 
 
 
-    @* <div class="form-group">
+            @* <div class="form-group">
             <label asp-for="DebtId">شناسه بدهی</label>
             <input asp-for="DebtId" class="form-control" type="number" step="0.01" />
             <span asp-validation-for="Amount" class="text-danger"></span>
         </div> *@
 
-    <div class="form-group">
-        <label asp-for="Description">توضیحات</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
+            <div class="form-group">
+                <label asp-for="Description">توضیحات</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
 
-    <div class="form-group">
-        <label for="attachment">پیوست مدرک</label>
-        <input type="file" name="attachment" class="form-control-file" />
-        <span asp-validation-for="AttachmentPath" class="text-danger"></span>
-    </div>
+            <div class="form-group">
+                <label for="attachment">پیوست مدرک</label>
+                <input type="file" name="attachment" class="form-control-file" />
+                <span asp-validation-for="AttachmentPath" class="text-danger"></span>
+            </div>
 
-    <button type="submit" class="btn btn-primary">ثبت پرداختی</button>
-</form>
+            <button type="submit" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">ثبت</span>
+            </button>
+        </form>
+    </div>
+</div>
 
 <hr />
 
-<!-- پیوند به صفحه پرداخت‌های قبلی کاربر -->
-<a asp-action="index" class="btn btn-secondary">برگشت به پرداخت‌ها</a>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <link href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2/dist/css/select2.min.css" rel="stylesheet" />
+
     <script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#PaymentDate').persianDatepicker({
                 format: 'YYYY/MM/DD',
                 autoClose: true
             });
-        });
 
-    </script>
+            // Initialize Select2 on UserId select box
+            $('#UserId').select2();
 
+            $('#UserId').change(function () {
+                var userId = $(this).val();
+                var debtSelect = $('#DebtId');
+                debtSelect.html('<option value="">Loading...</option>');
 
-    <script>
-        document.getElementById('UserId').addEventListener('change', function () {
-            var userId = this.value;
-            var debtSelect = document.getElementById('DebtId');
-            debtSelect.innerHTML = '<option value="">Loading...</option>';
-            console.log(userId);
-
-            let j = (fetch(`@Url.Action("GetDebtsByUserId")?userId=${userId}`));
-            console.log(j.then(response => response.json()));
-
-            fetch(`@Url.Action("GetDebtsByUserId")?userId=${userId}`)
-                .then(response => response.json())
-                .then(data => {
-                    debtSelect.innerHTML = '';
-                    data.forEach(debt => {
-                        var option = document.createElement('option');
-                        option.value = debt.id;
-                        option.textContent = debt.debtTitleName;
-                        debtSelect.appendChild(option);
+                fetch(`@Url.Action("GetUserUnpaidDebts")?userId=${userId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        debtSelect.html('');
+                        data.forEach(debt => {
+                            var option = new Option(debt.debtTitleName, debt.id);
+                            debtSelect.append(option);
+                        });
                     });
-                });
-            console.log(debtSelect);
+            });
         });
     </script>
-
-
 }

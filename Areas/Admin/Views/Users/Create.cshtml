@@ -1,0 +1,69 @@
+@model UserCreateViewModel
+@using taavoni3.Areas.Admin.ViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">ایجاد کاربر جدید</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">فرم ایجاد کاربر</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+
+                <!-- نام کاربری -->
+                <div class="form-group">
+                    <label asp-for="Name" class="font-weight-bold text-dark">نام </label>
+                    <input asp-for="Name" class="form-control form-control-user"
+                        placeholder="نام و نام خانوادگی را وارد کنید" />
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- نام کاربری -->
+                <div class="form-group">
+                    <label asp-for="UserName" class="font-weight-bold text-dark">نام کاربری</label>
+                    <input asp-for="UserName" class="form-control form-control-user"
+                        placeholder="نام کاربری را وارد کنید" />
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <!-- ایمیل -->
+                <div class="form-group">
+                    <label asp-for="Email" class="font-weight-bold text-dark">ایمیل</label>
+                    <input asp-for="Email" class="form-control form-control-user" placeholder="ایمیل را وارد کنید" />
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+
+                <!-- پسورد -->
+                <div class="form-group">
+                    <label asp-for="Password" class="font-weight-bold text-dark">پسورد</label>
+                    <input asp-for="Password" type="password" class="form-control form-control-user"
+                        placeholder="پسورد را وارد کنید" />
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="font-weight-bold text-dark">تأیید پسورد</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control"
+                        placeholder="تکرار رمز عبور جدید" />
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-user btn-block">ایجاد کاربر</button>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

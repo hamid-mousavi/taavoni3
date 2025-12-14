@@ -1,27 +1,62 @@
-@model PaymentDto
+@model UpdatePaymentDto
 @using Taavoni.DTOs.Payment
-<form method="post" asp-action="Edit">
-        <div class="form-group">
-        <label for="UserId">نام کاربر</label>
-        <input type="text" class="form-control" id="UserId" name="UserId" value="@Model.UserId.ToString()" readonly />
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">ویرایش</h6>
     </div>
-    <div class="form-group">
-        <label for="Title">عنوان</label>
-        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required />
+    <div class="card-body">
+        <form method="post" asp-action="Edit" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="UserName">نام کاربر</label>
+                <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserName"
+                    readonly />
+            </div>
+            <div class="form-group">
+                <label for="Title">عنوان </label>
+                <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" />
+            </div>
+
+            <div class="form-group">
+                <label for="Amount">مقدار پرداخت</label>
+                <input type="number" class="form-control" id="Amount" name="Amount" value="@Model.Amount" required />
+            </div>
+            <div class="form-group">
+                <label for="DebtId">شناسه بدهی</label>
+                <input type="number" class="form-control" id="DebtId" name="DebtId" value="@Model.DebtId" required
+                    readonly />
+            </div>
+            <div class="form-group">
+                <label for="Description">توضیحات</label>
+                <input class="form-control" id="Description" name="Description" value="@Model.Description" />
+            </div>
+
+            <!-- بخش فایل پیوست -->
+            <div class="form-group">
+                <label for="attachment">پیوست مدرک</label>
+                <input type="file" name="attachment" class="form-control-file" />
+                @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+                {
+                    <div class="mt-2">
+                        <a href="@Model.AttachmentPath" target="_blank" class="btn btn-info btn-sm">
+                            <i class="fas fa-download"></i> دانلود فایل پیوست فعلی
+                        </a>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">ثبت</span>
+                </button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="Amount">مقدار پرداخت</label>
-        <input type="number" class="form-control" id="Amount" name="Amount" value="@Model.Amount" required />
-    </div>
-    <div class="form-group">
-        <label for="Description">توضیحات</label>
-        <input class="form-control" id="Description" name="Description" value="@Model.Description"/>
-     <div class="form-group">
-        <label for="attachment">پیوست مدرک</label>
-        <input type="file" name="attachment" class="form-control-file" value="@Model.AttachmentPath?.ToString()"/>
-    </div> 
-  
-    
-    
-    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-</form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

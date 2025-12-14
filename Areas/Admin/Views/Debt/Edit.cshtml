@@ -1,5 +1,9 @@
 @model DebtDetailDTO
 @using Taavoni.DTOs
+<div class="card shadow mb-4">
+    <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">ویرایش</h6></div>
+    <div class="card-body">
+        
 <form method="post" asp-action="Edit">
         <div class="form-group">
         <label for="UserId">نام کاربر</label>
@@ -19,13 +23,13 @@
     </div>
     <input type="hidden" asp-for="Id" />
     <div>
-        <label for="DebtTitleId">Debt Title:</label>
+        <label for="DebtTitleId">عنوان بدهی:</label>
         <select asp-for="DebtTitleId" asp-items="@(ViewBag.DebtTitles)"class="form-control">
-            <option value="">Select Title</option>
+            <option value="">انتخاب</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="Amount">مبلغ کل</label>
+        <label for="Amount">مبلغ</label>
         <input type="text" class="form-control" id="Amount" name="Amount" value="@Model.Amount" required />
     </div>
       <div class="form-group">
@@ -33,14 +37,20 @@
         <input type="text" class="form-control" id="PenaltyRate" name="PenaltyRate" value="@Model.PenaltyRate" required />
     </div>
       
-        <div class="form-group col-3">
+        @* <div class="form-group col-3">
         <label asp-for="IsPaid"></label>
         @Html.CheckBoxFor(model => model.IsPaid)
-    </div>
+    </div> *@
     
-    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+    <button type="submit" class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">ذخیره تغییرات</span>
+    </button>
 </form>
-
+    </div>
+</div>
 
 
 

@@ -23,8 +23,8 @@ namespace Taavoni.Controllers
 
         public IActionResult index()
         {
-         //   return View();
-         return Redirect("/user/dashboard");
+            //   return View();
+            return Redirect("/user/dashboard");
         }
         public async Task<IActionResult> MyDebts()
         {
@@ -42,7 +42,13 @@ namespace Taavoni.Controllers
         }
         public async Task<IActionResult> Dashboard()
         {
+
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == "a1c5af87-6fb3-481a-9695-d94dbf5a4e94")
+            {
+                            return Redirect("/admin");
+
+            }
             var dashboardData = await _reportService.GetUserDashboardAsync(userId);
             return View(dashboardData);
         }

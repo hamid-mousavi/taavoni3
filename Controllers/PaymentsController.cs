@@ -9,31 +9,49 @@ using Taavoni.Services.Interfaces;
 
 namespace Taavoni.Controllers
 {
-[Authorize]
-[ApiController]
-[Route("api/[controller]")]
-public class PaymentsController : ControllerBase
-{
-    private readonly IPaymentService _paymentService;
-
-    public PaymentsController(IPaymentService paymentService)
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PaymentsController : ControllerBase
     {
-        _paymentService = paymentService;
-    }
+        private readonly IPaymentService _paymentService;
+        private readonly IReportService _reportService;
 
-    [HttpGet("user-payments")]
-    public IActionResult GetUserPayments()
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrEmpty(userId))
+        public PaymentsController(IPaymentService paymentService, IReportService reportService)
         {
-            return Unauthorized();
+            _paymentService = paymentService;
+            _reportService = reportService;
         }
 
-        var payments = _paymentService.GetUserPayments(userId);
-        return Ok(payments);
+        [HttpGet("user-payments")]
+        public IActionResult GetUserPayments()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+
+            var payments = _paymentService.GetUserPayments(userId);
+            return Ok(payments);
+        }
+        [HttpGet("user-dashboard")]
+        public async Task<IActionResult> GetDashboardData()
+        {
+            var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var dashboardData = await _reportService.GetUserDashboardAsync(uId);
+            //var debts = dashboardData.DebtDetails;
+            return Ok(dashboardData);
+        }
+         [HttpGet("user-dashboardchart")]
+        public async Task<IActionResult> GetUserDashboardChart()
+        {
+            var uId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var dashboardData = await _reportService.GetUserDashboardChartAsync(uId);
+            //var debts = dashboardData.DebtDetails;
+            return Ok(dashboardData);
+        }
     }
-}
 
 }

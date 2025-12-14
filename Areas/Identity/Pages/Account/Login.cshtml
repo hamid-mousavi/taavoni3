@@ -1,25 +1,34 @@
 ﻿@page
+@using System.Globalization
 @model LoginModel
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "~/views/shared/_AuthLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-4">
+<!-- Nested Row within Card Body -->
+
+<div class="col-lg-6">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">ورود به حساب کاربری</h1>
+        </div>
+
         <section>
-            <form id="account" method="post">
-                <h2>ورود به حساب کاربری</h2>
+            <form id="account" method="post" class="user">
+                <h2></h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">ایمیل</label>
+                    <input type="text" class="form-control form-control-user" asp-for="Input.Email"
+                        class="form-control" autocomplete="username" aria-required="true"
+                        placeholder="ایمیل یا نام واحد" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">رمز عبور</label>
+                    <input class="form-control form-control-user" asp-for="Input.Password" class="form-control"
+                        autocomplete="current-password" aria-required="true" placeholder="رمز عبور" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="checkbox mb-3">
@@ -29,21 +38,37 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">ورود</button>
+                    <button id="login-submit" type="submit"
+                        class="btn btn-primary btn-user btn-block">ورود</button>
                 </div>
-                <div>
+                @* <hr>
+                <a href="#" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> ورود با گوگل
+                </a> *@
+
+                @* <div>
                     <br>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">فراموشی رمز عبور</a>
-                    </p>
-                  
-                </div>
+                    <div class="text-center">
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="small">فراموشی رمز عبور</a>
+                    </div>
+
+                </div> *@
             </form>
+
+            @* <div class="text-center">
+                <a asp-area="Identity" asp-page="/Account/Register" class="small">ثبت نام</a>
+            </div> *@
         </section>
+
     </div>
-   
 </div>
+<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 
 @section Scripts {
+    <style>
+        .navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow {
+            display: none;
+        }
+    </style>
     <partial name="_ValidationScriptsPartial" />
 }
